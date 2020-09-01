@@ -1,0 +1,36 @@
+{
+  "editor.suggestSelection": "first",
+  "editor.tabCompletion": "on",
+  "editor.cursorBlinking": "solid",
+  "editor.cursorSmoothCaretAnimation": true,
+  "editor.cursorStyle": "line",
+  "editor.fontFamily": "Inconsolata",
+  "editor.minimap.enabled": false,
+  "editor.codeLens": true,
+  "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnPaste": true,
+  "editor.formatOnType": false,
+  "editor.formatOnSave": true,
+  "editor.letterSpacing": 0.5,
+  "editor.lineHeight": 25,
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorCustomizations": {
+      "diffEditor.removedTextBorder": "#ff0000",
+      "diffEditor.insertedTextBorder": "#00ff00"
+  },
+  "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+  "terminal.integrated.fontSize": 16,
+  "explorer.confirmDragAndDrop": false,
+  "diffEditor.renderSideBySide": false,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "extensions.ignoreRecommendations": false,
+  "eslint.options": { "configFile": "./.eslintrc.json" },
+  "files.autoSave": "afterDelay",
+  "files.hotExit": "onExit",
+  "files.trimTrailingWhitespace": true,
+  "files.autoSaveDelay": 5000,
+  "[html]": { "editor.defaultFormatter": "vscode.html-language-features" }
+}

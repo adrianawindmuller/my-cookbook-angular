@@ -1,0 +1,27 @@
+@import "~@angular/material/theming";
+
+@include mat-core();
+
+$my-cookbook-angular-primary: mat-palette($mat-orange, 500);
+$my-cookbook-angular-accent: mat-palette($mat-pink, A200, A100, A400);
+
+$my-cookbook-angular-warn: mat-palette($mat-red);
+
+$my-cookbook-angular-theme: mat-light-theme(
+  (
+    color: (
+      primary: $my-cookbook-angular-primary,
+      accent: $my-cookbook-angular-accent,
+      warn: $my-cookbook-angular-warn,
+    ),
+  )
+);
+
+@include angular-material-theme($my-cookbook-angular-theme);
+
+$custom-typography: mat-typography-config(
+  $font-family: "Montserrat, sans-serif",
+  $headline: mat-typography-level(32px, 48px, 700),
+  $body-1: mat-typography-level(16px, 24px, 500),
+);
+@include mat-core($custom-typography);
