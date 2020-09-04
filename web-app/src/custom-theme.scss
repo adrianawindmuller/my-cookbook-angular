@@ -1,9 +1,42 @@
 @import "~@angular/material/theming";
 
+$cookbook: (
+   50 : #ffffff,
+    100 : #ffeedc,
+    200 : #ffd3a4,
+    300 : #ffb05c,
+    400 : #ffa23e,
+    500 : #ff931f,
+    600 : #ff8400,
+    700 : #e17400,
+    800 : #c26500,
+    900 : #a45500,
+    A100 : #ffffff,
+    A200 : #ffddb8,
+    A400 : #ffac52,
+    A700 : #ff9f38,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
 @include mat-core();
 
-$my-cookbook-angular-primary: mat-palette($mat-orange, 500);
-$my-cookbook-angular-accent: mat-palette($mat-pink, A200, A100, A400);
+$my-cookbook-angular-primary: mat-palette($cookbook, 500);
+$my-cookbook-angular-accent: mat-palette($cookbook, A100);
 
 $my-cookbook-angular-warn: mat-palette($mat-red);
 

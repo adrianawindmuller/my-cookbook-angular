@@ -6,6 +6,7 @@ import { ContainerComponent } from './container/container.component';
 import { MainComponent } from './main/main.component';
 import { FooterComponent } from './footer/footer.component';
 import { PagesModules } from '../pages/pages.module';
+import { SideNavComponent } from '../app-layout/sidenav/side-nav.component';
 
 @NgModule({
   declarations: [
@@ -13,8 +14,10 @@ import { PagesModules } from '../pages/pages.module';
     ContainerComponent,
     MainComponent,
     FooterComponent,
+    SideNavComponent,
   ],
   imports: [SharedModule, PagesModules],
-  exports: [ContainerComponent],
+  exports: [ContainerComponent, SideNavComponent],
+  providers: [],
 })
 export class AppLayoutModule {}
