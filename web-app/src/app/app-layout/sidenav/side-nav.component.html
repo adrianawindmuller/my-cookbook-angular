@@ -1,5 +1,55 @@
 <div fxLayout="column" fxLayoutAlign="center center" class="container">
-  <img src="../../../assets/avatar.jpg" class="avatar mt3 mb2">
+  <div fxFill fxLayoutAlign="end center" class="p2">
+    <button mat-icon-button (click)="toggle.close()">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </div>
+  <img src="../../../assets/avatar.jpg" class="avatar mb2">
   <div class="h3">Nora Viegas</div>
+
+  <div class="pt3" fxFill>
+    <mat-list>
+      <mat-list-item>
+        <button mat-button fxFill>
+          <mat-icon>near_me</mat-icon>
+          Enviar minha receita
+        </button>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <button mat-button fxFill>
+          <mat-icon>favorite</mat-icon>
+          Receitas Favoritas
+        </button>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <button mat-button fxFill>
+          <mat-icon>description</mat-icon>
+          Meus dados
+        </button>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <button mat-button fxFill>
+          <mat-icon style="transform: rotate(180deg)">exit_to_app</mat-icon>
+          Sair
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </div>
+
+  <!-- <mat-accordion fxFill class="pt3">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          This is the expansion title
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-action-row>
+        <button mat-raised-button color="primary">teste</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </mat-accordion> -->
 
 </div>

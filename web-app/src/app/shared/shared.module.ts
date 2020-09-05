@@ -26,6 +26,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from '../app-routing.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [],
@@ -53,6 +54,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     AppRoutingModule,
     DragDropModule,
     MatSidenavModule,
+    MatExpansionModule,
   ],
 })
 export class SharedModule {}
