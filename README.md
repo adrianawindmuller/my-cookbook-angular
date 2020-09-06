@@ -16,4 +16,4 @@
 ### Até o momento o resultado foi esse:
 
 **Home**
-![home](/src/assets/home.png)
+![home](web-app/src/assets/home.png)
