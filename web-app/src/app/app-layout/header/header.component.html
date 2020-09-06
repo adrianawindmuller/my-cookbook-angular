@@ -1,10 +1,23 @@
-<mat-toolbar fxLayout="row" fxLayoutAlign="start center">
-  <mat-toolbar-row fxFlex>
-    <button mat-icon-button (click)="sideNav.toggle()">
-      <mat-icon>menu</mat-icon>
-    </button>
+<header>
+  <mat-toolbar fxLayout="row" fxLayoutAlign="start center">
     <mat-toolbar-row fxFlex>
-      Cookbook
+      <button mat-icon-button (click)="sideNav.toggle()">
+        <mat-icon color="primary" class="bold">menu</mat-icon>
+      </button>
+      <a class="logo pr4" [routerLink]="['/home']">
+        <span class="mat-headline"> Cookbook </span>
+      </a>
     </mat-toolbar-row>
-  </mat-toolbar-row>
-</mat-toolbar>
+    <mat-toolbar-row fxFlex fxLayoutAlign="end center">
+      <button mat-button>Saladas</button>
+      <button mat-button>Sopas</button>
+      <button mat-button>Lanches</button>
+      <button mat-button>Pratos Rápidos</button>
+      <button mat-button>Carnes</button>
+      <button mat-button>Massas</button>
+      <button mat-raised-button color="primary">Todas Receitas</button>
+
+
+    </mat-toolbar-row>
+  </mat-toolbar>
+</header>
