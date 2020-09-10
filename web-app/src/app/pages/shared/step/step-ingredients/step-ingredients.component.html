@@ -1,0 +1,22 @@
+<div [formGroup]="stepIngredients" fxLayout="column">
+  <div class="pt2">
+    <mat-form-field fxFlex="100" appearance="outline">
+      <mat-label>Ingredientes</mat-label>
+      <textarea matInput #message placeholder="Ex. 3 ovos ..." formControlName="ingredients">
+      </textarea>
+      <mat-hint align="start"> Escreva um ingrediente por linha.</mat-hint>
+      <mat-hint align="end">{{message.value.length}} / 300</mat-hint>
+      <mat-error> {{mensagemErroIngredients()}}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="pt4">
+    <mat-form-field fxFlex="100" appearance="outline">
+      <mat-label>Modo de Preparo</mat-label>
+      <textarea matInput #message placeholder="Ex. 3 ovos ..." formControlName="preparationMode">
+          </textarea>
+      <mat-hint align="start"> Descreva um etapa em cada linha.</mat-hint>
+      <mat-hint align="end">{{message.value.length}} / 300</mat-hint>
+      <mat-error> {{mensagemErroPreparation()}}</mat-error>
+    </mat-form-field>
+  </div>
+</div>

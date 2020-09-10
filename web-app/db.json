@@ -1,0 +1,30 @@
+{
+  "recipe": [],
+
+  "category": [
+    {
+      "id": 1,
+      "nome": "Saladas"
+    },
+    {
+      "id": 2,
+      "nome": "Sopas"
+    },
+    {
+      "id": 2,
+      "nome": "Lanches"
+    },
+    {
+      "id": 2,
+      "nome": "Pratos Rápidos"
+    },
+    {
+      "id": 2,
+      "nome": "Carnes"
+    },
+    {
+      "id": 2,
+      "nome": "Massas"
+    }
+  ]
+}

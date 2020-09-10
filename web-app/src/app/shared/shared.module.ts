@@ -27,11 +27,17 @@ import { AppRoutingModule } from '../app-routing.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatSelectModule } from '@angular/material/select';
+import { HttpClientModule } from '@angular/common/http';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatRippleModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [],
   imports: [],
   exports: [
+    HttpClientModule,
     BrowserAnimationsModule,
     BrowserModule,
     CommonModule,
@@ -55,6 +61,10 @@ import { MatExpansionModule } from '@angular/material/expansion';
     DragDropModule,
     MatSidenavModule,
     MatExpansionModule,
+    MatStepperModule,
+    MatSelectModule,
+    MatSlideToggleModule,
+    MatRippleModule,
   ],
 })
 export class SharedModule {}

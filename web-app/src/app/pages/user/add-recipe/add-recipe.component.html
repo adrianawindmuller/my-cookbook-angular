@@ -1,0 +1,44 @@
+<section fxLayout="column" fxLayoutAlign="start center">
+  <div fxLayout="row" fxFill fxLayoutAlign="center center" class="p3">
+    <span class="mat-headline">Adicionar Receita </span>
+  </div>
+  <div fxLayout="row" fxFill fxLayoutAlign="center center">
+    <!-- linear - obriga o preenchimento-->
+    <mat-horizontal-stepper #stepper fxFlex="70" class="py3 px4" labelPosition="bottom">
+      <mat-step [stepControl]="stepBasic">
+        <form [formGroup]="stepBasic">
+          <ng-template matStepLabel>Básico</ng-template>
+          <app-step-basic [stepBasic]="stepBasic"></app-step-basic>
+          <div fxLayoutAlign="center center" class="pt3">
+            <button mat-raised-button matStepperNext color="primary">Avançar</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="stepIngredients">
+        <form [formGroup]="stepIngredients">
+          <ng-template matStepLabel>Ingredientes</ng-template>
+          <app-step-ingredients [stepIngredients]="stepIngredients"></app-step-ingredients>
+          <div fxLayoutAlign="center center" class="pt3">
+            <button mat-raised-button matStepperPrevious class="btn-back">Voltar</button>
+            <button mat-raised-button matStepperNext color="primary">Avançar</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="stepAdvanced">
+        <form [formGroup]="stepAdvanced">
+          <ng-template matStepLabel>Avançado</ng-template>
+          <app-step-advanced [stepAdvanced]="stepAdvanced"></app-step-advanced>
+          <div fxLayoutAlign="center center" class="pt4">
+            <button mat-raised-button matStepperPrevious class="btn-back">Voltar</button>
+            <button mat-raised-button matStepperNext color="primary" (click)="createRecipe()">Enviar</button>
+          </div>
+        </form>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </div>
+  <div>
+    form 1: {{stepBasic.value | json}}
+    form 2: {{stepIngredients.value | json}}
+    form 3: {{stepAdvanced.value | json}}
+  </div>
+</section>

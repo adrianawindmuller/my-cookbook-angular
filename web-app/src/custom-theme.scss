@@ -21,9 +21,9 @@ $cookbook: (
     200: #000000,
     300: #000000,
     400: #000000,
-    500: #000000,
-    600: #000000,
-    700: #000000,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
     800: #ffffff,
     900: #ffffff,
     A100: #000000,
@@ -56,6 +56,7 @@ $custom-typography: mat-typography-config(
   $font-family: "Montserrat, sans-serif",
   $headline: mat-typography-level(26px, 48px, 700),
   $body-1: mat-typography-level(16px, 24px, 500),
+  $body-2: mat-typography-level(16px, 24px, 500),
   $button: mat-typography-level(16px),
 );
 @include mat-core($custom-typography);
