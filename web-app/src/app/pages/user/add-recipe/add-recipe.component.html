@@ -4,7 +4,7 @@
   </div>
   <div fxLayout="row" fxFill fxLayoutAlign="center center">
     <!-- linear - obriga o preenchimento-->
-    <mat-horizontal-stepper #stepper fxFlex="70" class="py3 px4" labelPosition="bottom">
+    <mat-horizontal-stepper #stepper linear fxFlex="70" class="py3 px4" labelPosition="bottom">
       <mat-step [stepControl]="stepBasic">
         <form [formGroup]="stepBasic">
           <ng-template matStepLabel>Básico</ng-template>
@@ -30,7 +30,8 @@
           <app-step-advanced [stepAdvanced]="stepAdvanced"></app-step-advanced>
           <div fxLayoutAlign="center center" class="pt4">
             <button mat-raised-button matStepperPrevious class="btn-back">Voltar</button>
-            <button mat-raised-button matStepperNext color="primary" (click)="createRecipe()">Enviar</button>
+            <button mat-raised-button type="submit" matStepperNext color="primary" (click)="createRecipe()"
+              [disabled]="invalidForm()">Enviar</button>
           </div>
         </form>
       </mat-step>
@@ -40,5 +41,8 @@
     form 1: {{stepBasic.value | json}}
     form 2: {{stepIngredients.value | json}}
     form 3: {{stepAdvanced.value | json}}
+    form 1 is valid: {{stepBasic.valid}}
+    form 2 is valid: {{stepIngredients.valid}}
+    form 3 is valid: {{stepAdvanced.valid}}
   </div>
 </section>

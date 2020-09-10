@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Category } from '../shared/step/category.model';
 import { Recipe } from '../user/add-recipe/recipe.model';
+import { delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',

@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RecipeService } from '../../shared/recipe.service';
+import { ToastrService } from 'ngx-toastr';
+import { of } from 'rxjs';
+import { catchError, finalize } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-recipe',
@@ -12,7 +16,12 @@ export class AddRecipeComponent implements OnInit {
   stepIngredients: FormGroup;
   stepAdvanced: FormGroup;
 
-  constructor(private fb: FormBuilder, private recipeService: RecipeService) {}
+  constructor(
+    private fb: FormBuilder,
+    private recipeService: RecipeService,
+    private toastr: ToastrService,
+    private route: Router
+  ) {}
 
   ngOnInit(): void {
     this.stepBasic = this.fb.group({
@@ -69,10 +78,27 @@ export class AddRecipeComponent implements OnInit {
   }
 
   createRecipe() {
-    if (this.invalidForm) {
+    if (this.invalidForm()) {
       return;
     }
     const newRecipe = this.joinForms();
-    this.recipeService.createNewRecipe(newRecipe).subscribe();
+    this.recipeService
+      .createNewRecipe(newRecipe)
+      .pipe(
+        catchError((err) => {
+          this.toastr.error(err, '', {
+            progressBar: true,
+          });
+          return of();
+        }),
+        finalize(() => {
+          this.route.navigate(['./home']);
+          this.toastr.success('Receita adicionada com sucesso!👏', '', {
+            progressBar: true,
+            timeOut: 5000,
+          });
+        })
+      )
+      .subscribe();
   }
 }

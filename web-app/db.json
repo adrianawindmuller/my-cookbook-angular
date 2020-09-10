@@ -1,6 +1,50 @@
 {
-  "recipe": [],
-
+  "recipe": [
+    {
+      "name": "bolo de chocolate",
+      "category": "Pratos Rápidos",
+      "numberPortion": 60,
+      "preparationTime": 8,
+      "ingredients": "2 xícaras de farinha de trigo\n2 xícaras de açúcar\n1 xícara de leite\n6 colheres (sopa) de chocolate em pó\n1 colher (sopa) de fermento em pó\n6 ovos",
+      "preparationMode": "Em uma batedeira, bata as claras em neve, acrescente as gemas, o açúcar e bata novamente.\nAdicione a farinha, o chocolate em pó, o fermento, o leite e bata por mais alguns minutos.\nDespeje a massa em uma forma untada e leve para assar em forno médio (180° C), preaquecido, por 40 minutos.",
+      "public": true,
+      "imagemPath": "C:\\fakepath\\bolo-de-aniversario-de-chocolate.jpg",
+      "id": 1
+    },
+    {
+      "name": "sopa de abobora",
+      "category": "Sopas",
+      "numberPortion": 120,
+      "preparationTime": 6,
+      "ingredients": "1/2 abóbora moranga pequena (descascada e cortada em cubos grandes)\n1 batata média (descascada e cortada)\n1/2 cebola picada\n1 dente alho pequeno amassado\n1 litro de água ou mais\n1 cubo de caldo de legumes\nCebolinha verde picada\nSal somente se necessário",
+      "preparationMode": "Em uma panela grande, doure o alho em um fio de óleo e logo acrescente a cebola picada.\nMexa rápido e acrescente a abóbora picada e a batata.\nColoque a água e deixe ferver, após fervura colocar o caldo de legumes e mexer\nDepois despeje tudo no liquidificador e bata até virar creme.",
+      "public": true,
+      "imagemPath": "C:\\fakepath\\sopa-de-abobora.jpg",
+      "id": 2
+    },
+    {
+      "name": "llllllllllllllllll",
+      "category": "Pratos Rápidos",
+      "numberPortion": 555,
+      "preparationTime": 6,
+      "ingredients": "lllllllllllllll",
+      "preparationMode": "llllllllllllllllllllllllllllll",
+      "public": "",
+      "imagemPath": "C:\\fakepath\\sopa-de-abobora.jpg",
+      "id": 3
+    },
+    {
+      "name": "aaaaaaaaaaaa",
+      "category": "Sopas",
+      "numberPortion": 44,
+      "preparationTime": 44,
+      "ingredients": "aaaaaaaaaaaaaaaaaaaaaaa",
+      "preparationMode": "aaaaaaaaaaaaaaaaa\n",
+      "public": true,
+      "imagemPath": "C:\\fakepath\\algoritmo.jpg",
+      "id": 4
+    }
+  ],
   "category": [
     {
       "id": 1,
