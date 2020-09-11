@@ -1,0 +1,4 @@
+<button mat-icon-button (click)="toggleFavorite()">
+  <mat-icon *ngIf="!recipe.favorite">favorite_border</mat-icon>
+  <mat-icon *ngIf="recipe.favorite">favorite</mat-icon>
+</button>

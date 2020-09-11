@@ -1,20 +1,19 @@
-<section fxLayout="row wrap" fxLayoutAlign="center start">
-  <mat-card *ngFor="let item of list" class="ml3 my3">
+<section fxLayout="row wrap" fxLayoutAlign="start start">
+  <mat-card *ngFor="let recipe of recipe" class="ml3 my3">
     <div fxLayout="column">
-      <img mat-card-image src="../../../assets/sopa.jpg">
-      <div fxLayoutAlign="center center">
-        <span class="mat-title"> Sopa de Abobora </span>
-      </div>
+      <img mat-card-image [src]="recipe.imagemPath">
+      <mat-card-title fxLayoutAlign="start center">
+        <div fxFlex>{{recipe.name}} </div>
+        <div fxLayout="column" fxflex fxLayoutAlign="end start">
+          <app-favorite-button [recipe]="recipe"></app-favorite-button>
+        </div>
+      </mat-card-title>
       <div fxLayoutAlign="center center">
         <mat-icon>star</mat-icon>
         <mat-icon>star</mat-icon>
         <mat-icon>star</mat-icon>
         <mat-icon>star_half</mat-icon>
         <mat-icon>star_outline</mat-icon>
-      </div>
-      <div fxLayoutAlign="center center" class="py2">
-        <mat-icon>favorite</mat-icon>
-        <span>4.500</span>
       </div>
     </div>
 

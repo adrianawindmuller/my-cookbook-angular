@@ -33,9 +33,40 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatRippleModule } from '@angular/material/core';
 
+import { RecipeService } from '../shared/recipe.service';
+import { StepBasicComponent } from '../shared/step/step-basic/step-basic.component';
+import { StepIngredientsComponent } from './step/step-ingredients/step-ingredients.component';
+import { StepAdvancedComponent } from './step/step-advanced/step-advanced.component';
+import { FavoriteButtonComponent } from '../shared/favorite-button/favorite-button.component';
+
 @NgModule({
-  declarations: [],
-  imports: [],
+  declarations: [
+    StepBasicComponent,
+    StepIngredientsComponent,
+    StepAdvancedComponent,
+    FavoriteButtonComponent,
+  ],
+  imports: [
+    HttpClientModule,
+    BrowserAnimationsModule,
+    BrowserModule,
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatSliderModule,
+    FlexLayoutModule,
+    MatCardModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+    MatRadioModule,
+    MatCheckboxModule,
+    MatDialogModule,
+    AppRoutingModule,
+    MatStepperModule,
+    MatSelectModule,
+    MatSlideToggleModule,
+  ],
   exports: [
     HttpClientModule,
     BrowserAnimationsModule,
@@ -65,6 +96,13 @@ import { MatRippleModule } from '@angular/material/core';
     MatSelectModule,
     MatSlideToggleModule,
     MatRippleModule,
+
+    // componentes
+    StepBasicComponent,
+    StepIngredientsComponent,
+    StepAdvancedComponent,
+    FavoriteButtonComponent,
   ],
+  providers: [RecipeService],
 })
 export class SharedModule {}

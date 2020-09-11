@@ -1,6 +1,6 @@
 export class Recipe {
   id: number;
-  nome: string;
+  name: string;
   categoria: string;
   numberPortion: number;
   preparationTime: number;
@@ -8,4 +8,5 @@ export class Recipe {
   preparationMode: string;
   public: boolean;
   imagemPath: string;
+  favorite: boolean;
 }
