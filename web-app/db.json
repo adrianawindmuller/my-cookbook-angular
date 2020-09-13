@@ -33,7 +33,7 @@
       "preparationMode": "Em uma batedeira, bata as claras em neve, acrescente as gemas, o açúcar e bata novamente.\nAdicione a farinha, o chocolate em pó, o fermento, o leite e bata por mais alguns minutos.\nDespeje a massa em uma forma untada e leve para assar em forno médio (180° C), preaquecido, por 40 minutos.",
       "public": true,
       "imagemPath": "assets/salada-atum.png",
-      "id": 1
+      "id": 3
     },
     {
       "name": "Carne Assada",
@@ -44,7 +44,8 @@
       "preparationMode": "Em uma batedeira, bata as claras em neve, acrescente as gemas, o açúcar e bata novamente.\nAdicione a farinha, o chocolate em pó, o fermento, o leite e bata por mais alguns minutos.\nDespeje a massa em uma forma untada e leve para assar em forno médio (180° C), preaquecido, por 40 minutos.",
       "public": true,
       "imagemPath": "assets/carne-assada-no-forno.jpg",
-      "id": 1
+      "id": 4,
+      "favorite": true
     },
     {
       "name": "Sopa de Abobora",
@@ -55,7 +56,7 @@
       "preparationMode": "Em uma panela grande, doure o alho em um fio de óleo e logo acrescente a cebola picada.\nMexa rápido e acrescente a abóbora picada e a batata.\nColoque a água e deixe ferver, após fervura colocar o caldo de legumes e mexer\nDepois despeje tudo no liquidificador e bata até virar creme.",
       "public": true,
       "imagemPath": "assets/sopa-de-abobora.jpg",
-      "id": 2,
+      "id": 5,
       "favorite": false
     }
   ],

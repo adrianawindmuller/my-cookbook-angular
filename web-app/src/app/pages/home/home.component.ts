@@ -15,8 +15,4 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.recipeService.getRecipe().subscribe((res) => (this.recipe = res));
   }
-
-  toggleFavorite(recipe: Recipe) {
-    console.log(recipe);
-  }
 }

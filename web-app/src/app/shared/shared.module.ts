@@ -38,6 +38,7 @@ import { StepBasicComponent } from '../shared/step/step-basic/step-basic.compone
 import { StepIngredientsComponent } from './step/step-ingredients/step-ingredients.component';
 import { StepAdvancedComponent } from './step/step-advanced/step-advanced.component';
 import { FavoriteButtonComponent } from '../shared/favorite-button/favorite-button.component';
+import { RatingComponent } from './rating/rating.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { FavoriteButtonComponent } from '../shared/favorite-button/favorite-butt
     StepIngredientsComponent,
     StepAdvancedComponent,
     FavoriteButtonComponent,
+    RatingComponent,
   ],
   imports: [
     HttpClientModule,
@@ -102,6 +104,7 @@ import { FavoriteButtonComponent } from '../shared/favorite-button/favorite-butt
     StepIngredientsComponent,
     StepAdvancedComponent,
     FavoriteButtonComponent,
+    RatingComponent,
   ],
   providers: [RecipeService],
 })

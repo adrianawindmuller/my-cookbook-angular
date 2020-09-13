@@ -1,7 +1,7 @@
 <section fxLayout="row wrap" fxLayoutAlign="start start">
   <mat-card *ngFor="let recipe of recipe" class="ml3 my3">
     <div fxLayout="column">
-      <img mat-card-image [src]="recipe.imagemPath">
+      <img mat-card-image [src]="recipe.imagemPath" [alt]="recipe.name" [routerLink]="['/receita', recipe.id]">
       <mat-card-title fxLayoutAlign="start center">
         <div fxFlex>{{recipe.name}} </div>
         <div fxLayout="column" fxflex fxLayoutAlign="end start">
@@ -20,11 +20,6 @@
           <mat-icon color="primary" class="pr1">restaurant_menu</mat-icon>
           {{ recipe.numberPortion }} Porções
         </div>
-        <!-- <mat-icon>star</mat-icon>
-        <mat-icon>star</mat-icon>
-        <mat-icon>star</mat-icon>
-        <mat-icon>star_half</mat-icon>
-        <mat-icon>star_outline</mat-icon> -->
       </div>
     </div>
 

@@ -1,0 +1,40 @@
+<section *ngIf="recipe" fxLayout="row" fxLayoutAlign="center start" class="py3">
+  <mat-card fxFlex="80">
+    <mat-card-content fxLayoutAlign="center start">
+      <div fxLayout="column" fxFlex="70" fxLayoutAlign="center center" class="p3">
+        <img [src]="recipe.imagemPath">
+      </div>
+      <div fxLayout="column" fxFlex="30">
+        <mat-card-title fxFill fxLayoutAlign="center center" class="pt3">
+          {{recipe.name}}
+        </mat-card-title>
+        <mat-card-subtitle fxFill fxLayoutAlign="center center">
+          {{recipe.category | uppercase}}
+        </mat-card-subtitle>
+        <div fxFill class="pt2" fxLayout="column">
+          <div fxLayout="column" fxLayoutAlign="center center">
+            <mat-icon color="primary" class=" icone ">alarm</mat-icon>
+            <span class="title-icone">PREPARO</span>
+            {{recipe.preparationTime}} Min
+          </div>
+          <div fxLayout="column" fxLayoutAlign="center center" class="pt3">
+            <mat-icon color="primary" class=" icone">restaurant_menu</mat-icon>
+            <span class="title-icone">RENDIMENTO</span>
+            {{recipe.numberPortion}} Porções
+          </div>
+          <div fxLayout="column" fxLayoutAlign="center center" class="pt3">
+            <app-favorite-button [recipe]="recipe"></app-favorite-button>
+            <span class="title-icone">FAVORITOS</span>
+            <span>1.500</span>
+          </div>
+          <div fxLayout="column" fxLayoutAlign="center center" class="pt3">
+            <app-favorite-button [recipe]="recipe"></app-favorite-button>
+            <span class="title-icone">AVALIAR</span>
+            <span>1.500</span>
+          </div>
+        </div>
+
+      </div>
+    </mat-card-content>
+  </mat-card>
+</section>
