@@ -3,8 +3,8 @@
     {
       "name": "Sopa de Abobora",
       "category": "Sopas",
-      "numberPortion": 120,
-      "preparationTime": 6,
+      "numberPortion": 6,
+      "preparationTime": 120,
       "ingredients": "1/2 abóbora moranga pequena (descascada e cortada em cubos grandes)\n1 batata média (descascada e cortada)\n1/2 cebola picada\n1 dente alho pequeno amassado\n1 litro de água ou mais\n1 cubo de caldo de legumes\nCebolinha verde picada\nSal somente se necessário",
       "preparationMode": "Em uma panela grande, doure o alho em um fio de óleo e logo acrescente a cebola picada.\nMexa rápido e acrescente a abóbora picada e a batata.\nColoque a água e deixe ferver, após fervura colocar o caldo de legumes e mexer\nDepois despeje tudo no liquidificador e bata até virar creme.",
       "public": true,
@@ -15,8 +15,8 @@
     {
       "name": "Carne Assada",
       "category": "Pratos Rápidos",
-      "numberPortion": 60,
-      "preparationTime": 8,
+      "numberPortion": 6,
+      "preparationTime": 40,
       "ingredients": "2 xícaras de farinha de trigo\n2 xícaras de açúcar\n1 xícara de leite\n6 colheres (sopa) de chocolate em pó\n1 colher (sopa) de fermento em pó\n6 ovos",
       "preparationMode": "Em uma batedeira, bata as claras em neve, acrescente as gemas, o açúcar e bata novamente.\nAdicione a farinha, o chocolate em pó, o fermento, o leite e bata por mais alguns minutos.\nDespeje a massa em uma forma untada e leve para assar em forno médio (180° C), preaquecido, por 40 minutos.",
       "public": true,
@@ -27,8 +27,8 @@
     {
       "name": "Salada com Atum",
       "category": "Pratos Rápidos",
-      "numberPortion": 60,
-      "preparationTime": 8,
+      "numberPortion": 12,
+      "preparationTime": 70,
       "ingredients": "2 xícaras de farinha de trigo\n2 xícaras de açúcar\n1 xícara de leite\n6 colheres (sopa) de chocolate em pó\n1 colher (sopa) de fermento em pó\n6 ovos",
       "preparationMode": "Em uma batedeira, bata as claras em neve, acrescente as gemas, o açúcar e bata novamente.\nAdicione a farinha, o chocolate em pó, o fermento, o leite e bata por mais alguns minutos.\nDespeje a massa em uma forma untada e leve para assar em forno médio (180° C), preaquecido, por 40 minutos.",
       "public": true,
@@ -38,13 +38,25 @@
     {
       "name": "Carne Assada",
       "category": "Pratos Rápidos",
-      "numberPortion": 60,
-      "preparationTime": 8,
+      "numberPortion": 6,
+      "preparationTime": 40,
       "ingredients": "2 xícaras de farinha de trigo\n2 xícaras de açúcar\n1 xícara de leite\n6 colheres (sopa) de chocolate em pó\n1 colher (sopa) de fermento em pó\n6 ovos",
       "preparationMode": "Em uma batedeira, bata as claras em neve, acrescente as gemas, o açúcar e bata novamente.\nAdicione a farinha, o chocolate em pó, o fermento, o leite e bata por mais alguns minutos.\nDespeje a massa em uma forma untada e leve para assar em forno médio (180° C), preaquecido, por 40 minutos.",
       "public": true,
       "imagemPath": "assets/carne-assada-no-forno.jpg",
       "id": 1
+    },
+    {
+      "name": "Sopa de Abobora",
+      "category": "Sopas",
+      "numberPortion": 6,
+      "preparationTime": 120,
+      "ingredients": "1/2 abóbora moranga pequena (descascada e cortada em cubos grandes)\n1 batata média (descascada e cortada)\n1/2 cebola picada\n1 dente alho pequeno amassado\n1 litro de água ou mais\n1 cubo de caldo de legumes\nCebolinha verde picada\nSal somente se necessário",
+      "preparationMode": "Em uma panela grande, doure o alho em um fio de óleo e logo acrescente a cebola picada.\nMexa rápido e acrescente a abóbora picada e a batata.\nColoque a água e deixe ferver, após fervura colocar o caldo de legumes e mexer\nDepois despeje tudo no liquidificador e bata até virar creme.",
+      "public": true,
+      "imagemPath": "assets/sopa-de-abobora.jpg",
+      "id": 2,
+      "favorite": false
     }
   ],
   "category": [

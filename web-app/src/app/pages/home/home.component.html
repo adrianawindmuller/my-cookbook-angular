@@ -8,12 +8,23 @@
           <app-favorite-button [recipe]="recipe"></app-favorite-button>
         </div>
       </mat-card-title>
-      <div fxLayoutAlign="center center">
-        <mat-icon>star</mat-icon>
+      <div class="mat-subheading-1 recipe" fxLayoutAlign="center center">
+        {{recipe.category}}
+      </div>
+      <div fxLayout="row">
+        <div fxFlex="50" fxLayoutAlign="center center" class="mat-subheading-1">
+          <mat-icon color="primary" class="pr1">alarm</mat-icon>
+          {{recipe.preparationTime}} min
+        </div>
+        <div fxFlex="50" fxLayoutAlign="center center" class="mat-subheading-1">
+          <mat-icon color="primary" class="pr1">restaurant_menu</mat-icon>
+          {{ recipe.numberPortion }} Porções
+        </div>
+        <!-- <mat-icon>star</mat-icon>
         <mat-icon>star</mat-icon>
         <mat-icon>star</mat-icon>
         <mat-icon>star_half</mat-icon>
-        <mat-icon>star_outline</mat-icon>
+        <mat-icon>star_outline</mat-icon> -->
       </div>
     </div>
 

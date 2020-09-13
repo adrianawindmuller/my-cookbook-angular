@@ -27,7 +27,7 @@
     <div fxFlex="100" fxLayoutAlign="space-between center">
       <mat-form-field fxFlex="40%" appearance="outline">
         <mat-label>Tempo de Preparo</mat-label>
-        <input matInput formControlName="numberPortion" type="number"
+        <input matInput formControlName="preparationTime" type="number"
           onKeyPress="if(this.value.length==3) return false;">
         <mat-hint>Minutos</mat-hint>
         <mat-error *ngIf="stepBasic.get('numberPortion').errors?.required">
@@ -36,7 +36,7 @@
       </mat-form-field>
       <mat-form-field fxFlex="40%" appearance="outline">
         <mat-label>Porções</mat-label>
-        <input matInput formControlName="preparationTime" type="number"
+        <input matInput formControlName="numberPortion" type="number"
           onKeyPress="if(this.value.length==3) return false;">
         <mat-error *ngIf="stepBasic.get('preparationTime').errors?.required">
           Campo Obrigatório
