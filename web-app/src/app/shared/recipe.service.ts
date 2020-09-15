@@ -25,11 +25,15 @@ export class RecipeService {
     return this.http.get<Recipe[]>(this.API_Recipe);
   }
 
-  getRecipeId(id: string) {
+  getRecipeId(id: number) {
     return this.http.get<Recipe>(`${this.API_Recipe}/${id}`);
   }
 
   addFavoriteRecipe(recipe: Recipe) {
+    return this.http.put(`${this.API_Recipe}/${recipe.id}`, recipe);
+  }
+
+  addRating(recipe: Recipe) {
     return this.http.put(`${this.API_Recipe}/${recipe.id}`, recipe);
   }
 }

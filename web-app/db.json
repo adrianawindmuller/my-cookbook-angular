@@ -10,7 +10,8 @@
       "public": true,
       "imagemPath": "assets/sopa-de-abobora.jpg",
       "id": 2,
-      "favorite": false
+      "favorite": false,
+      "rating": 1
     },
     {
       "name": "Carne Assada",
@@ -22,7 +23,8 @@
       "public": true,
       "imagemPath": "assets/carne-assada-no-forno.jpg",
       "id": 1,
-      "favorite": false
+      "favorite": true,
+      "rating": 3
     },
     {
       "name": "Salada com Atum",
@@ -33,7 +35,9 @@
       "preparationMode": "Em uma batedeira, bata as claras em neve, acrescente as gemas, o açúcar e bata novamente.\nAdicione a farinha, o chocolate em pó, o fermento, o leite e bata por mais alguns minutos.\nDespeje a massa em uma forma untada e leve para assar em forno médio (180° C), preaquecido, por 40 minutos.",
       "public": true,
       "imagemPath": "assets/salada-atum.png",
-      "id": 3
+      "id": 3,
+      "favorite": true,
+      "rating": 2
     },
     {
       "name": "Carne Assada",
@@ -45,7 +49,8 @@
       "public": true,
       "imagemPath": "assets/carne-assada-no-forno.jpg",
       "id": 4,
-      "favorite": true
+      "favorite": true,
+      "rating": 4
     },
     {
       "name": "Sopa de Abobora",

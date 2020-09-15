@@ -18,10 +18,19 @@ export class ViewRecipeComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      const id = params.get('id');
-      this.recipeService
-        .getRecipeId(id)
-        .subscribe({ next: (recipe) => (this.recipe = recipe) });
+      const id = +params.get('id');
+      this.getRecipes(id);
     });
+  }
+
+  getRecipes(id: number) {
+    this.recipeService
+      .getRecipeId(id)
+      .subscribe({ next: (recipe) => (this.recipe = recipe) });
+  }
+
+  onRatingChanged(rating: number) {
+    this.recipe.rating = rating;
+    this.recipeService.addRating(this.recipe).subscribe();
   }
 }

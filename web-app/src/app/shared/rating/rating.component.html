@@ -1,3 +1,6 @@
-<div>
-  <mat-icon></mat-icon>
-</div>
+<button mat-icon-button (click)="ratingClick(index+1)" color="primary"
+  *ngFor="let ratingId of ratingArray; index as index">
+  <mat-icon>
+    {{ showIcone(index) }}
+  </mat-icon>
+</button>

@@ -28,9 +28,9 @@
             <span>1.500</span>
           </div>
           <div fxLayout="column" fxLayoutAlign="center center" class="pt3">
-            <app-favorite-button [recipe]="recipe"></app-favorite-button>
             <span class="title-icone">AVALIAR</span>
-            <span>1.500</span>
+            <app-rating [rating]="recipe.rating" (ratingUpdated)="onRatingChanged($event)"></app-rating>
+            <!-- <span>1.500</span> -->
           </div>
         </div>
 
