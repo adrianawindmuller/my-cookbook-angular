@@ -40,6 +40,18 @@ import { StepAdvancedComponent } from './step/step-advanced/step-advanced.compon
 import { FavoriteButtonComponent } from '../shared/favorite-button/favorite-button.component';
 import { RatingComponent } from './rating/rating.component';
 
+import { HAMMER_GESTURE_CONFIG, HammerModule } from '@angular/platform-browser';
+import {
+  LyTheme2,
+  StyleRenderer,
+  LY_THEME,
+  LY_THEME_NAME,
+  LyHammerGestureConfig,
+} from '@alyle/ui';
+import { MinimaLight, MinimaDark } from '@alyle/ui/themes/minima';
+import { CarouselComponent } from './carousel/carousel.component';
+import { LyCarouselModule } from '@alyle/ui/carousel';
+
 @NgModule({
   declarations: [
     StepBasicComponent,
@@ -47,6 +59,7 @@ import { RatingComponent } from './rating/rating.component';
     StepAdvancedComponent,
     FavoriteButtonComponent,
     RatingComponent,
+    CarouselComponent,
   ],
   imports: [
     HttpClientModule,
@@ -68,6 +81,10 @@ import { RatingComponent } from './rating/rating.component';
     MatStepperModule,
     MatSelectModule,
     MatSlideToggleModule,
+
+    /// Alyle UI
+    HammerModule,
+    LyCarouselModule,
   ],
   exports: [
     HttpClientModule,
@@ -105,7 +122,20 @@ import { RatingComponent } from './rating/rating.component';
     StepAdvancedComponent,
     FavoriteButtonComponent,
     RatingComponent,
+    CarouselComponent,
+
+    //Alyle Ui
+    LyCarouselModule,
   ],
-  providers: [RecipeService],
+  providers: [
+    RecipeService,
+    [LyTheme2],
+    [StyleRenderer],
+    { provide: LY_THEME_NAME, useValue: 'minima-light' },
+    { provide: LY_THEME, useClass: MinimaLight, multi: true },
+    { provide: LY_THEME, useClass: MinimaDark, multi: true },
+    // Gestures
+    { provide: HAMMER_GESTURE_CONFIG, useClass: LyHammerGestureConfig },
+  ],
 })
 export class SharedModule {}

@@ -11,7 +11,7 @@
       "imagemPath": "assets/sopa-de-abobora.jpg",
       "id": 2,
       "favorite": false,
-      "rating": 1
+      "rating": 3
     },
     {
       "name": "Carne Assada",
@@ -23,8 +23,8 @@
       "public": true,
       "imagemPath": "assets/carne-assada-no-forno.jpg",
       "id": 1,
-      "favorite": true,
-      "rating": 3
+      "favorite": false,
+      "rating": 4
     },
     {
       "name": "Salada com Atum",
@@ -36,8 +36,8 @@
       "public": true,
       "imagemPath": "assets/salada-atum.png",
       "id": 3,
-      "favorite": true,
-      "rating": 2
+      "favorite": false,
+      "rating": 1
     },
     {
       "name": "Carne Assada",

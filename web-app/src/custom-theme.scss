@@ -56,7 +56,8 @@ $custom-typography: mat-typography-config(
   $font-family: "Montserrat, sans-serif",
   $headline: mat-typography-level(26px, 48px, 700),
   $body-1: mat-typography-level(16px, 24px, 500),
-  $body-2: mat-typography-level(16px, 24px, 500),
+  $body-2: mat-typography-level(14px, 16px, 500),
   $button: mat-typography-level(16px),
+  $caption: mat-typography-level(12px, 14px, 500),
 );
 @include mat-core($custom-typography);

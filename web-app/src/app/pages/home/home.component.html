@@ -1,4 +1,4 @@
-<section fxLayout="row wrap" fxLayoutAlign="start start">
+<section fxLayout="row wrap" fxLayoutAlign="center start">
   <mat-card *ngFor="let recipe of recipe" class="ml3 my3">
     <div fxLayout="column">
       <img mat-card-image [src]="recipe.imagemPath" [alt]="recipe.name" [routerLink]="['/receita', recipe.id]">
@@ -8,9 +8,9 @@
           <app-favorite-button [recipe]="recipe"></app-favorite-button>
         </div>
       </mat-card-title>
-      <div class="mat-subheading-1 recipe" fxLayoutAlign="center center">
+      <mat-card-subtitle class=" recipe" fxLayoutAlign="start center">
         {{recipe.category}}
-      </div>
+      </mat-card-subtitle>
       <div fxLayout="row">
         <div fxFlex="50" fxLayoutAlign="center center" class="mat-subheading-1">
           <mat-icon color="primary" class="pr1">alarm</mat-icon>

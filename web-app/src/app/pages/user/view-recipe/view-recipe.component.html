@@ -1,40 +1,44 @@
 <section *ngIf="recipe" fxLayout="row" fxLayoutAlign="center start" class="py3">
-  <mat-card fxFlex="80">
-    <mat-card-content fxLayoutAlign="center start">
-      <div fxLayout="column" fxFlex="70" fxLayoutAlign="center center" class="p3">
-        <img [src]="recipe.imagemPath">
-      </div>
-      <div fxLayout="column" fxFlex="30">
-        <mat-card-title fxFill fxLayoutAlign="center center" class="pt3">
-          {{recipe.name}}
-        </mat-card-title>
-        <mat-card-subtitle fxFill fxLayoutAlign="center center">
-          {{recipe.category | uppercase}}
-        </mat-card-subtitle>
-        <div fxFill class="pt2" fxLayout="column">
+  <mat-card fxFlex="80" fxFlex.xs="100%" fxFlex.sm="90%" fxFlex.lg="70%" fxFlex.xl="60%">
+    <mat-card-title fxLayoutAlign="start center" class="h3">
+      {{recipe.name}}
+    </mat-card-title>
+    <mat-card-subtitle fxFill fxLayout="column" fxLayoutAlign="center start">
+      {{recipe.category | uppercase}}
+    </mat-card-subtitle>
+
+    <mat-card-content class="mat-body-2">
+      <div fxLayout="row" fxLayout.xs="column">
+        <div fxFlex="70">
+          <app-carousel [imagePath]="recipe.imagemPath"></app-carousel>
+        </div>
+        <div fxFlex="30" fxLayout="column" fxLayout.xs="row" fxLayoutAlign="space-around center"
+          [ngClass.xs]="{ 'pt2': true}">
           <div fxLayout="column" fxLayoutAlign="center center">
-            <mat-icon color="primary" class=" icone ">alarm</mat-icon>
+            <mat-icon color="primary">alarm</mat-icon>
             <span class="title-icone">PREPARO</span>
             {{recipe.preparationTime}} Min
           </div>
-          <div fxLayout="column" fxLayoutAlign="center center" class="pt3">
+          <div fxLayout="column" fxLayoutAlign="center center" class="diviser" [ngClass.xs]="{ 'diviser': false}">
             <mat-icon color="primary" class=" icone">restaurant_menu</mat-icon>
             <span class="title-icone">RENDIMENTO</span>
             {{recipe.numberPortion}} Porções
           </div>
-          <div fxLayout="column" fxLayoutAlign="center center" class="pt3">
+          <div fxLayout="column" fxLayoutAlign="center center" class="diviser" [ngClass.xs]="{ 'diviser': false}">
             <app-favorite-button [recipe]="recipe"></app-favorite-button>
-            <span class="title-icone">FAVORITOS</span>
+            <span class="title-icone">FAVORITO</span>
             <span>1.500</span>
           </div>
-          <div fxLayout="column" fxLayoutAlign="center center" class="pt3">
-            <span class="title-icone">AVALIAR</span>
-            <app-rating [rating]="recipe.rating" (ratingUpdated)="onRatingChanged($event)"></app-rating>
-            <!-- <span>1.500</span> -->
-          </div>
         </div>
-
       </div>
+
+      <div fxLayout="row" fxLayoutAlign="start center" class="pt3">
+        <div fxLayout="column">
+          <span class="title-icone pl1">Avaliar Receita</span>
+          <app-rating [rating]="recipe.rating" (ratingUpdated)="onRatingChanged($event)"></app-rating>
+        </div>
+      </div>
+
     </mat-card-content>
   </mat-card>
 </section>
