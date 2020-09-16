@@ -43,7 +43,7 @@ export class AddRecipeComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(5),
-          Validators.maxLength(300),
+          Validators.maxLength(1000),
         ],
       ],
       preparationMode: [
@@ -51,7 +51,7 @@ export class AddRecipeComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(5),
-          Validators.maxLength(300),
+          Validators.maxLength(1000),
         ],
       ],
     });

@@ -1,5 +1,5 @@
 <div fxLayout="column" fxLayoutAlign="center center" class="container">
-  <div fxFill fxLayoutAlign="end center" class="p2">
+  <div fxFill fxLayoutAlign="end center" class="p2" [ngClass.xs]="{ 'p2': false, 'pr3': true }">
     <button mat-icon-button (click)="toggle.close()">
       <mat-icon>clear</mat-icon>
     </button>
@@ -9,8 +9,17 @@
 
   <div class="pt3" fxFill>
     <mat-list>
+      <div fxShow.xs>
+        <mat-list-item>
+          <button mat-button fxFill>
+            <mat-icon>menu_book</mat-icon>
+            Todas Receitas
+          </button>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </div>
       <mat-list-item>
-        <button mat-button fxFill [routerLink]="['/enviar-receita']">
+        <button mat-button fxFill [routerLink]="['/enviar-receita']" (click)="toggle.close()">
           <mat-icon>near_me</mat-icon>
           Enviar minha receita
         </button>

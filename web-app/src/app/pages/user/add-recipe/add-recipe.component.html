@@ -4,7 +4,8 @@
   </div>
   <div fxLayout="row" fxFill fxLayoutAlign="center center">
     <!-- linear - obriga o preenchimento-->
-    <mat-horizontal-stepper #stepper linear fxFlex="70" class="py3 px4" labelPosition="bottom">
+    <mat-horizontal-stepper #stepper linear fxFlex="70" fxFlex.xs="100%" class="py3 px4"
+      [ngClass.xs]="{ 'pt3': false, 'px4': false }" labelPosition="bottom">
       <mat-step [stepControl]="stepBasic">
         <form [formGroup]="stepBasic">
           <ng-template matStepLabel>Básico</ng-template>

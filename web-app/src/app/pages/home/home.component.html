@@ -1,27 +1,34 @@
-<section fxLayout="row wrap" fxLayoutAlign="center start">
-  <mat-card *ngFor="let recipe of recipe" class="ml3 my3">
-    <div fxLayout="column">
-      <img mat-card-image [src]="recipe.imagemPath" [alt]="recipe.name" [routerLink]="['/receita', recipe.id]">
-      <mat-card-title fxLayoutAlign="start center">
-        <div fxFlex>{{recipe.name}} </div>
-        <div fxLayout="column" fxflex fxLayoutAlign="end start">
-          <app-favorite-button [recipe]="recipe"></app-favorite-button>
-        </div>
-      </mat-card-title>
-      <mat-card-subtitle class=" recipe" fxLayoutAlign="start center">
-        {{recipe.category}}
-      </mat-card-subtitle>
-      <div fxLayout="row">
-        <div fxFlex="50" fxLayoutAlign="center center" class="mat-subheading-1">
-          <mat-icon color="primary" class="pr1">alarm</mat-icon>
-          {{recipe.preparationTime}} min
-        </div>
-        <div fxFlex="50" fxLayoutAlign="center center" class="mat-subheading-1">
-          <mat-icon color="primary" class="pr1">restaurant_menu</mat-icon>
-          {{ recipe.numberPortion }} Porções
+<section>
+  <div class="fork-me-github">
+    <a href="https://github.com/adrianawindmuller/my-cookbook-angular"><img loading="lazy" width="149" height="149"
+        src="https://github.blog/wp-content/uploads/2008/12/forkme_right_gray_6d6d6d.png?resize=149%2C149"
+        class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+  </div>
+  <div fxLayout="row wrap" fxLayoutAlign="center start">
+    <mat-card *ngFor="let recipe of recipe" class="ml3 my3">
+      <div fxLayout="column">
+        <img mat-card-image [src]="recipe.imagemPath" [alt]="recipe.name" [routerLink]="['/receita', recipe.id]">
+        <mat-card-title fxLayoutAlign="start center">
+          <div fxFlex>{{recipe.name}} </div>
+          <div fxLayout="column" fxflex fxLayoutAlign="end start">
+            <app-favorite-button [recipe]="recipe"></app-favorite-button>
+          </div>
+        </mat-card-title>
+        <mat-card-subtitle class=" recipe" fxLayoutAlign="start center">
+          {{recipe.category}}
+        </mat-card-subtitle>
+        <div fxLayout="row">
+          <div fxFlex="50" fxLayoutAlign="center center" class="mat-subheading-1">
+            <mat-icon color="primary" class="pr1">alarm</mat-icon>
+            {{recipe.preparationTime}} min
+          </div>
+          <div fxFlex="50" fxLayoutAlign="center center" class="mat-subheading-1">
+            <mat-icon color="primary" class="pr1">restaurant_menu</mat-icon>
+            {{ recipe.numberPortion }} Porções
+          </div>
         </div>
       </div>
-    </div>
 
-  </mat-card>
+    </mat-card>
+  </div>
 </section>

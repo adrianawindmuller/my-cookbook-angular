@@ -46,7 +46,17 @@ export class CarouselComponent implements OnInit {
 
   readonly classes = this.sRenderer.renderSheet(STYLES);
 
-  items = [1, 2, 3];
+  items = [
+    {
+      img: 'assets/bolo-de-chocolate.jpg',
+    },
+    {
+      img: 'assets/bolo-de-chocolate-2.jpg',
+    },
+    {
+      img: 'assets/bolo-de-chocolate-3.jpg',
+    },
+  ];
 
   constructor(private sRenderer: StyleRenderer) {}
 
