@@ -7,6 +7,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class StepIngredientsComponent implements OnInit {
   @Input() stepIngredients;
+  content: string = '';
+  contentPreparation: any = 1;
   constructor() {}
 
   ngOnInit(): void {}

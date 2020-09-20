@@ -18,7 +18,21 @@ export class RecipeService {
   }
 
   createNewRecipe(recipe: Recipe) {
+    recipe.ingredients = this.changeString(recipe.ingredients);
+    recipe.preparationMode = this.changeString(recipe.preparationMode);
+    recipe.imagemPath = recipe.imagemPath.replace('C:\\fakepath\\', 'assets/');
     return this.http.post<Recipe>(this.API_Recipe, recipe);
+  }
+
+  changeString(ingredients: string) {
+    let ingredientesBefore = ingredients.split('\n').filter((i) => i);
+
+    let ingredientsAfter = '<ul>';
+    ingredientesBefore.forEach((item) => {
+      ingredientsAfter += `<li>${item}</li>`;
+    });
+    ingredientsAfter += '</ul>';
+    return ingredientsAfter;
   }
 
   getRecipe() {

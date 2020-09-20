@@ -32,10 +32,25 @@
         </div>
       </div>
 
-      <div fxLayout="row" fxLayoutAlign="start center" class="pt3">
-        <div fxLayout="column">
-          <span class="title-icone pl1">Avaliar Receita</span>
-          <app-rating [rating]="recipe.rating" (ratingUpdated)="onRatingChanged($event)"></app-rating>
+      <div fxLayout="column" fxLayoutAlign="center start" class="pt3">
+        <span class="title-icone pl2">Avaliar Receita</span>
+        <app-rating [rating]="recipe.rating" (ratingUpdated)="onRatingChanged($event)"></app-rating>
+      </div>
+
+      <div fxLayout="column" fxLayoutAlign="center start" class="pt3">
+        <span color="primary" class="title-icone" fxLayoutAlign="center center">
+          <mat-icon color="primary" class="pr1">menu_book</mat-icon>
+          Ingredientes
+        </span>
+        <div [innerHTML]="recipe.ingredients" class="list"></div>
+      </div>
+
+      <div fxLayout="column" fxLayoutAlign="center start" class="pt3">
+        <span color="primary" class="title-icone" fxLayoutAlign="center center">
+          <mat-icon color="primary" class="pr1">menu_book</mat-icon>
+          Preparo
+        </span>
+        <div [innerHTML]="recipe.preparationMode" class="preparationMode list">
         </div>
       </div>
 

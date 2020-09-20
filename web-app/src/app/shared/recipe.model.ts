@@ -8,6 +8,6 @@ export class Recipe {
   ingredients: string;
   preparationMode: string;
   public: boolean;
-  imagemPath: string[];
+  imagemPath: string;
   favorite: boolean;
 }
