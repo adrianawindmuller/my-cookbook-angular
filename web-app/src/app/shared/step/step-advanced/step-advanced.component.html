@@ -18,18 +18,18 @@
     </div>
 
 
-    <div fxflex="50" fxLayoutAlign="center center" class="pt2" *ngIf="imageUrl">
-      <mat-card fxLayoutAlign="center center">
-        <img *ngIf="imageUrl" [src]="imageUrl">
-        <!-- <p *ngIf="!imageUrl">
-          Tamanho da imagem: <br> 500x500
-        </p> -->
-        <div *ngIf="imageUrl" class="closeImage">
-          <button mat-mini-fab color="primary" (click)="reset()">
+    <div fxflex="50" fxLayout="row wrap" fxLayoutAlign="center center" class="pt2">
+      <mat-card fxLayoutAlign="center center" *ngFor="let item of imageUrl, let i = index" class="mr2">
+        <img *ngIf="item" [src]="item">
+        <div *ngIf="item" class="closeImage">
+          <button mat-mini-fab color="primary" (click)="reset(i)">
             <mat-icon>close</mat-icon>
           </button>
         </div>
       </mat-card>
+    </div>
+    <div>
+      imagePath: {{stepAdvanced.get('imagemPath').value | json}}
     </div>
   </div>
 </div>

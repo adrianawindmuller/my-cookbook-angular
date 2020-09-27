@@ -42,21 +42,9 @@ const STYLES = () => {
   providers: [StyleRenderer],
 })
 export class CarouselComponent implements OnInit {
-  @Input() imagePath: string;
+  @Input() imagePath: string[];
 
   readonly classes = this.sRenderer.renderSheet(STYLES);
-
-  items = [
-    {
-      img: 'assets/bolo-de-chocolate.jpg',
-    },
-    {
-      img: 'assets/bolo-de-chocolate-2.jpg',
-    },
-    {
-      img: 'assets/bolo-de-chocolate-3.jpg',
-    },
-  ];
 
   constructor(private sRenderer: StyleRenderer) {}
 

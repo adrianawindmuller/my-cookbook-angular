@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { of } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { Recipe } from 'src/app/shared/recipe.model';
 
 @Component({
   selector: 'app-add-recipe',
@@ -15,6 +16,7 @@ export class AddRecipeComponent implements OnInit {
   stepBasic: FormGroup;
   stepIngredients: FormGroup;
   stepAdvanced: FormGroup;
+  imageUrl: string[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -82,8 +84,16 @@ export class AddRecipeComponent implements OnInit {
       return;
     }
     const newRecipe = this.joinForms();
+
+    let recipeModel = newRecipe as Recipe;
+    recipeModel.imagemPath = this.imageUrl;
+    recipeModel.ingredients = this.changeString(recipeModel.ingredients);
+    recipeModel.preparationMode = this.changeString(
+      recipeModel.preparationMode
+    );
+
     this.recipeService
-      .createNewRecipe(newRecipe)
+      .createNewRecipe(recipeModel)
       .pipe(
         catchError((err) => {
           this.toastr.error(err, '', {
@@ -100,5 +110,20 @@ export class AddRecipeComponent implements OnInit {
         })
       )
       .subscribe();
+  }
+
+  changedFiles(file: string[]) {
+    this.imageUrl = file;
+  }
+
+  changeString(ingredients: string) {
+    let ingredientesBefore = ingredients.split('\n').filter((i) => i);
+
+    let ingredientsAfter = '<ul>';
+    ingredientesBefore.forEach((item) => {
+      ingredientsAfter += `<li>${item}</li>`;
+    });
+    ingredientsAfter += '</ul>';
+    return ingredientsAfter;
   }
 }

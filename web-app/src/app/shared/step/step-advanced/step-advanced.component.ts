@@ -1,6 +1,17 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewChild,
+  ElementRef,
+  Output,
+  EventEmitter,
+} from '@angular/core';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { Recipe } from '../../recipe.model';
+import { RecipeService } from '../../recipe.service';
+import { ImagePath } from './imagePath.model';
 
 @Component({
   selector: 'app-step-advanced',
@@ -10,11 +21,14 @@ import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 export class StepAdvancedComponent implements OnInit {
   @Input() stepAdvanced: FormGroup;
   publicado: boolean;
-  imageUrl: any;
+  imageUrl: string[] = [];
 
+  @Output() changeFile = new EventEmitter<string[]>();
+
+  recipe: Recipe;
   @ViewChild('fileInput') inputImage: ElementRef;
 
-  constructor() {}
+  constructor(private service: RecipeService) {}
 
   ngOnInit(): void {}
 
@@ -22,18 +36,24 @@ export class StepAdvancedComponent implements OnInit {
     this.publicado = event.checked;
   }
 
-  fileUpload(event): void {
-    if (event.target.files && event.target.files[0]) {
-      const file = event.target.files[0];
+  fileUpload(event) {
+    var files = event.target.files;
 
-      const reader = new FileReader();
-      reader.onload = (e) => (this.imageUrl = reader.result);
+    if (files) {
 
-      reader.readAsDataURL(file);
+      for (let file of files) {
+        let reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.imageUrl.push(e.target.result);
+          this.changeFile.emit(this.imageUrl);
+        };
+        reader.readAsDataURL(file);
+      }
     }
   }
 
-  reset() {
-    this.imageUrl = this.stepAdvanced.get('imagemPath').reset();
+  reset(i) {
+    this.imageUrl.splice(i, 1);
+    this.changeFile.emit(this.imageUrl);
   }
 }
