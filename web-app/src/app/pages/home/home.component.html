@@ -6,10 +6,9 @@
   </div>
   <div fxLayout="row wrap" fxLayoutAlign="center start">
     <mat-card *ngFor="let recipe of recipe" class="ml3 my3">
-      <div fxLayout="column">
-        <!-- <app-carousel [imagePath]="recipe.imagemPath" [routerLink]="['/receita', recipe.id]"></app-carousel> -->
-        <img mat-card-image [src]="recipe.imagemPath" [alt]="recipe.name">
-        <mat-card-title fxLayoutAlign="start center">
+      <app-carousel [imagePath]="recipe.imagemPath" [sizeCard]="true"></app-carousel>
+      <div fxLayout="column" class="p1" [routerLink]="['/receita', recipe.id]">
+        <mat-card-title fxLayoutAlign="start center" class="pt1">
           <div fxFlex>{{recipe.name}} </div>
           <div fxLayout="column" fxflex fxLayoutAlign="end start">
             <app-favorite-button [recipe]="recipe"></app-favorite-button>

@@ -16,6 +16,12 @@ const STYLES = () => {
       min-height: 220px
       max-height: 320px
     }`,
+    carouselHome: () => lyl`{
+      margin: auto
+      // responsive
+      max-width: 300px
+      height: 25vh
+    }`,
     carouselItem: () => lyl`{
       display: flex
       text-align: center
@@ -43,6 +49,7 @@ const STYLES = () => {
 })
 export class CarouselComponent implements OnInit {
   @Input() imagePath: string[];
+  @Input() sizeCard: boolean;
 
   readonly classes = this.sRenderer.renderSheet(STYLES);
 
