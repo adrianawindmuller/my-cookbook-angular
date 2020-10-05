@@ -1,5 +1,5 @@
-<ly-carousel [withClass]="classes.carouselHome" *ngIf="sizeCard">
-  <ly-carousel-item *ngFor="let item of imagePath" [withClass]="classes.carouselItem" [srcImg]="item">
+<ly-carousel [withClass]="classes.carouselHome" *ngIf="sizeCard" autoplay hasNavigationArrows="false">
+  <ly-carousel-item *ngFor=" let item of imagePath" [withClass]="classes.carouselItem" [srcImg]="item">
   </ly-carousel-item>
 </ly-carousel>
 

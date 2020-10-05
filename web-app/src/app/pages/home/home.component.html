@@ -6,18 +6,23 @@
   </div>
   <div fxLayout="row wrap" fxLayoutAlign="center start">
     <mat-card *ngFor="let recipe of recipe" class="ml3 my3">
-      <app-carousel [imagePath]="recipe.imagemPath" [sizeCard]="true"></app-carousel>
-      <div fxLayout="column" class="p1" [routerLink]="['/receita', recipe.id]">
-        <mat-card-title fxLayoutAlign="start center" class="pt1">
-          <div fxFlex>{{recipe.name}} </div>
-          <div fxLayout="column" fxflex fxLayoutAlign="end start">
+      <app-carousel [imagePath]="recipe.imagemPath" [sizeCard]="true" [routerLink]="['/receita', recipe.id]"
+        class="carousel">
+      </app-carousel>
+      <div fxLayout="column" class="p1">
+        <mat-card-subtitle fxLayoutAlign="end center" fxLayout="row">
+          <div fxFlex class="category">{{recipe.category}} </div>
+          <div fxflex fxLayoutAlign="end start">
             <app-favorite-button [recipe]="recipe"></app-favorite-button>
+            <button mat-icon-button color="primary">
+              <mat-icon>more_vert</mat-icon>
+            </button>
           </div>
-        </mat-card-title>
-        <mat-card-subtitle class=" recipe" fxLayoutAlign="start center">
-          {{recipe.category}}
         </mat-card-subtitle>
-        <div fxLayout="row">
+        <mat-card-title fxLayoutAlign="start center" fxLayout="row">
+          <div>{{recipe.name}} </div>
+        </mat-card-title>
+        <!-- <div fxLayout="row">
           <div fxFlex="50" fxLayoutAlign="center center" class="mat-subheading-1">
             <mat-icon color="primary" class="pr1">alarm</mat-icon>
             {{recipe.preparationTime}} min
@@ -26,9 +31,8 @@
             <mat-icon color="primary" class="pr1">restaurant_menu</mat-icon>
             {{ recipe.numberPortion }} Porções
           </div>
-        </div>
+        </div> -->
       </div>
-
     </mat-card>
   </div>
 </section>
