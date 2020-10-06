@@ -14,24 +14,19 @@
           <div fxFlex class="category">{{recipe.category}} </div>
           <div fxflex fxLayoutAlign="end start">
             <app-favorite-button [recipe]="recipe"></app-favorite-button>
-            <button mat-icon-button color="primary">
+            <button mat-icon-button color="primary" [matMenuTriggerFor]="menu">
               <mat-icon>more_vert</mat-icon>
             </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="deleteRecipe(recipe.id)">
+                <mat-icon aria-hidden="false">delete</mat-icon>Remover
+              </button>
+            </mat-menu>
           </div>
         </mat-card-subtitle>
         <mat-card-title fxLayoutAlign="start center" fxLayout="row">
           <div>{{recipe.name}} </div>
         </mat-card-title>
-        <!-- <div fxLayout="row">
-          <div fxFlex="50" fxLayoutAlign="center center" class="mat-subheading-1">
-            <mat-icon color="primary" class="pr1">alarm</mat-icon>
-            {{recipe.preparationTime}} min
-          </div>
-          <div fxFlex="50" fxLayoutAlign="center center" class="mat-subheading-1">
-            <mat-icon color="primary" class="pr1">restaurant_menu</mat-icon>
-            {{ recipe.numberPortion }} Porções
-          </div>
-        </div> -->
       </div>
     </mat-card>
   </div>

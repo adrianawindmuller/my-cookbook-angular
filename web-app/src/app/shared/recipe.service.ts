@@ -35,4 +35,8 @@ export class RecipeService {
   addRating(recipe: Recipe) {
     return this.http.put(`${this.API_Recipe}/${recipe.id}`, recipe);
   }
+
+  deleteRecipe(id: number) {
+    return this.http.delete(`${this.API_Recipe}/${id}`);
+  }
 }

@@ -15,4 +15,12 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.recipeService.getRecipe().subscribe((res) => (this.recipe = res));
   }
+
+  deleteRecipe(id: number) {
+    this.recipeService
+      .deleteRecipe(id)
+      .subscribe(() =>
+        this.recipeService.getRecipe().subscribe((res) => (this.recipe = res))
+      );
+  }
 }
