@@ -51,6 +51,7 @@ import {
 import { MinimaLight, MinimaDark } from '@alyle/ui/themes/minima';
 import { CarouselComponent } from './carousel/carousel.component';
 import { LyCarouselModule } from '@alyle/ui/carousel';
+import { DialogConfirmComponent } from './dialog-confirm/dialog-confirm.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { LyCarouselModule } from '@alyle/ui/carousel';
     FavoriteButtonComponent,
     RatingComponent,
     CarouselComponent,
+    DialogConfirmComponent,
   ],
   imports: [
     HttpClientModule,
@@ -123,7 +125,7 @@ import { LyCarouselModule } from '@alyle/ui/carousel';
     FavoriteButtonComponent,
     RatingComponent,
     CarouselComponent,
-
+    DialogConfirmComponent,
     //Alyle Ui
     LyCarouselModule,
   ],

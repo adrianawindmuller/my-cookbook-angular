@@ -16,17 +16,17 @@
           [ngClass.xs]="{ 'pt2': true}">
           <div fxLayout="column" fxLayoutAlign="center center">
             <mat-icon color="primary">alarm</mat-icon>
-            <span class="title-icone">PREPARO</span>
+            <p class="title-icone">PREPARO</p>
             {{recipe.preparationTime}} Min
           </div>
           <div fxLayout="column" fxLayoutAlign="center center" class="diviser" [ngClass.xs]="{ 'diviser': false}">
             <mat-icon color="primary" class=" icone">restaurant_menu</mat-icon>
-            <span class="title-icone">RENDIMENTO</span>
+            <p class="title-icone">RENDIMENTO</p>
             {{recipe.numberPortion}} Porções
           </div>
           <div fxLayout="column" fxLayoutAlign="center center" class="diviser" [ngClass.xs]="{ 'diviser': false}">
             <app-favorite-button [recipe]="recipe"></app-favorite-button>
-            <span class="title-icone">FAVORITO</span>
+            <p class="title-icone">FAVORITO</p>
             <span>1.500</span>
           </div>
         </div>

@@ -1,0 +1,7 @@
+<div mat-dialog-content fxLayout="row" fxLayoutAlign="center center">
+  <p>Deseja excluir a receita?</p>
+</div>
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+  <button mat-raised-button cdkFocusInitial (click)="dialogRef.close(true)">Sim</button>
+  <button mat-raised-button (click)="dialogRef.close(false)" color="warn">Não</button>
+</div>
