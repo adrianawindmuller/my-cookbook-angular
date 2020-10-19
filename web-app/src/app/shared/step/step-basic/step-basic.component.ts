@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Category } from '../category.model';
 import { RecipeService } from '../../recipe.service';
+import { Recipe } from '../../recipe.model';
 
 @Component({
   selector: 'app-step-basic',
@@ -10,6 +11,7 @@ import { RecipeService } from '../../recipe.service';
 })
 export class StepBasicComponent implements OnInit {
   @Input() stepBasic: FormGroup;
+  @Input() editRecipe: Recipe;
   category: Category[];
 
   constructor(private service: RecipeService) {}

@@ -2,7 +2,7 @@
   <div fxLayout="row" fxFill fxLayoutAlign="center center" class="pt2">
     <mat-form-field fxFlex="100" appearance="outline">
       <mat-label>Nome da Receita</mat-label>
-      <input matInput #name formControlName="name" placeholder="Nome da Receita">
+      <input matInput #name formControlName="name" placeholder="Nome da Receita" [ngModel]="editRecipe?.name">
       <mat-hint align="end">{{name.value.length}} / 60</mat-hint>
       <mat-error *ngIf="stepBasic.get('name').invalid">
         {{mensagemErroName()}}
@@ -12,7 +12,7 @@
   <div fxLayout="row" fxFill fxLayoutAlign="center center" class="pt2">
     <mat-form-field fxFlex="100" appearance="outline">
       <mat-label>Categoria</mat-label>
-      <mat-select formControlName="category">
+      <mat-select formControlName="category" [ngModel]="editRecipe?.category">
         <mat-option>--</mat-option>
         <mat-option *ngFor="let category of category" [value]="category.nome">
           {{category.nome}}
@@ -28,17 +28,17 @@
       <mat-form-field fxFlex="40%" appearance="outline">
         <mat-label>Tempo de Preparo</mat-label>
         <input matInput formControlName="preparationTime" type="number"
-          onKeyPress="if(this.value.length==3) return false;">
+          onKeyPress="if(this.value.length==3) return false;" [ngModel]="editRecipe?.preparationTime">
         <mat-hint>Minutos</mat-hint>
-        <mat-error *ngIf="stepBasic.get('numberPortion').errors?.required">
+        <mat-error *ngIf="stepBasic.get('preparationTime').errors?.required">
           Campo Obrigatório
         </mat-error>
       </mat-form-field>
       <mat-form-field fxFlex="40%" appearance="outline">
         <mat-label>Porções</mat-label>
         <input matInput formControlName="numberPortion" type="number"
-          onKeyPress="if(this.value.length==3) return false;">
-        <mat-error *ngIf="stepBasic.get('preparationTime').errors?.required">
+          onKeyPress="if(this.value.length==3) return false;" [ngModel]="editRecipe?.numberPortion">
+        <mat-error *ngIf="stepBasic.get('numberPortion').errors?.required">
           Campo Obrigatório
         </mat-error>
       </mat-form-field>

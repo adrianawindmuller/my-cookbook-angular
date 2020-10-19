@@ -1,41 +1,44 @@
-<section fxLayout="column" fxLayoutAlign="start center">
-  <div fxLayout="row" fxFill fxLayoutAlign="center center" class="p3">
+<section fxLayout="column" fxLayoutAlign="start center" class="p3">
+  <div fxLayout="row" fxFill fxLayoutAlign="center center">
     <span class="mat-headline">Adicionar Receita </span>
   </div>
   <div fxLayout="row" fxFill fxLayoutAlign="center center">
     <!-- linear - obriga o preenchimento-->
-    <mat-horizontal-stepper #stepper fxFlex="70" fxFlex.xs="100%" class="py3 px4"
-      [ngClass.xs]="{ 'pt3': false, 'px4': false }" labelPosition="bottom">
-      <mat-step [stepControl]="stepBasic">
-        <form [formGroup]="stepBasic">
-          <ng-template matStepLabel>Básico</ng-template>
-          <app-step-basic [stepBasic]="stepBasic"></app-step-basic>
-          <div fxLayoutAlign="center center" class="pt3">
-            <button mat-raised-button matStepperNext color="primary">Avançar</button>
-          </div>
-        </form>
-      </mat-step>
-      <mat-step [stepControl]="stepIngredients">
-        <form [formGroup]="stepIngredients">
-          <ng-template matStepLabel>Ingredientes</ng-template>
-          <app-step-ingredients [stepIngredients]="stepIngredients"></app-step-ingredients>
-          <div fxLayoutAlign="center center" class="pt3">
-            <button mat-raised-button matStepperPrevious class="btn-back">Voltar</button>
-            <button mat-raised-button matStepperNext color="primary">Avançar</button>
-          </div>
-        </form>
-      </mat-step>
-      <mat-step [stepControl]="stepAdvanced">
-        <form [formGroup]="stepAdvanced">
-          <ng-template matStepLabel>Avançado</ng-template>
-          <app-step-advanced [stepAdvanced]="stepAdvanced" (changeFile)="changedFiles($event)"></app-step-advanced>
-          <div fxLayoutAlign="center center" class="pt4">
-            <button mat-raised-button matStepperPrevious class="btn-back">Voltar</button>
-            <button mat-raised-button type="submit" matStepperNext color="primary" (click)="createRecipe()"
-              [disabled]="invalidForm()">Enviar</button>
-          </div>
-        </form>
-      </mat-step>
-    </mat-horizontal-stepper>
+    <mat-card class="mat-elevation-z4" fxFlex="70" fxFlex.xs="100%">
+      <mat-horizontal-stepper #stepper linear labelPosition="bottom">
+        <mat-step [stepControl]="stepBasic">
+          <form [formGroup]="stepBasic">
+            <ng-template matStepLabel>Básico</ng-template>
+            <app-step-basic [stepBasic]="stepBasic" [editRecipe]="notEditRecipe"></app-step-basic>
+            <div fxLayoutAlign="center center" class="pt2">
+              <button mat-raised-button matStepperNext color="primary">Avançar</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="stepIngredients">
+          <form [formGroup]="stepIngredients">
+            <ng-template matStepLabel>Ingredientes</ng-template>
+            <app-step-ingredients [stepIngredients]="stepIngredients" [editRecipe]="notEditRecipe">
+            </app-step-ingredients>
+            <div fxLayoutAlign="center center" class="pt2">
+              <button mat-raised-button matStepperPrevious class="btn-back">Voltar</button>
+              <button mat-raised-button matStepperNext color="primary">Avançar</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="stepAdvanced">
+          <form [formGroup]="stepAdvanced">
+            <ng-template matStepLabel>Avançado</ng-template>
+            <app-step-advanced [stepAdvanced]="stepAdvanced" (changeFile)="changedFiles($event)"
+              [editRecipe]="notEditRecipe"></app-step-advanced>
+            <div fxLayoutAlign="center center" class="pt2">
+              <button mat-raised-button matStepperPrevious class="btn-back">Voltar</button>
+              <button mat-raised-button type="submit" matStepperNext color="primary" (click)="createRecipe()"
+                [disabled]="invalidForm()">Enviar</button>
+            </div>
+          </form>
+        </mat-step>
+      </mat-horizontal-stepper>
+    </mat-card>
   </div>
 </section>

@@ -1,7 +1,8 @@
 <div [formGroup]="stepAdvanced" fxLayout="column">
   <div fxLayout="row" class="pt2" fxLayoutAlign="center center">
     <span class="pr2">Deseja Publicar está receita?</span>
-    <mat-slide-toggle color="primary" (change)="changePublic($event)" formControlName="public">
+    <mat-slide-toggle color="primary" (change)="changePublic($event)" formControlName="public"
+      [ngModel]="editRecipe?.public">
       <span *ngIf="publicado">Publicado</span>
       <span *ngIf="!publicado">Despublicado</span>
     </mat-slide-toggle>
@@ -27,9 +28,6 @@
           </button>
         </div>
       </mat-card>
-    </div>
-    <div>
-      imagePath: {{stepAdvanced.get('imagemPath').value | json}}
     </div>
   </div>
 </div>

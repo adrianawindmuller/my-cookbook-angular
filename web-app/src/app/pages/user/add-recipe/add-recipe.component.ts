@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RecipeService } from '../../../shared/recipe.service';
 import { ToastrService } from 'ngx-toastr';
@@ -16,6 +16,7 @@ export class AddRecipeComponent implements OnInit {
   stepBasic: FormGroup;
   stepIngredients: FormGroup;
   stepAdvanced: FormGroup;
+  notEditRecipe: boolean = false;
   imageUrl: string[] = [];
 
   constructor(

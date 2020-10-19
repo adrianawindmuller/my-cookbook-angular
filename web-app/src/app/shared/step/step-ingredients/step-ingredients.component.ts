@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { Recipe } from '../../recipe.model';
 
 @Component({
   selector: 'app-step-ingredients',
@@ -6,7 +8,8 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./step-ingredients.component.sass'],
 })
 export class StepIngredientsComponent implements OnInit {
-  @Input() stepIngredients;
+  @Input() stepIngredients: FormGroup;
+  @Input() editRecipe: Recipe;
   content: string = '';
   contentPreparation: any = 1;
   constructor() {}

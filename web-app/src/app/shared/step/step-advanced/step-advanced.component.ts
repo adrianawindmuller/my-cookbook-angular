@@ -20,6 +20,7 @@ import { ImagePath } from './imagePath.model';
 })
 export class StepAdvancedComponent implements OnInit {
   @Input() stepAdvanced: FormGroup;
+  @Input() editRecipe: Recipe;
   publicado: boolean;
   imageUrl: string[] = [];
 
@@ -27,7 +28,6 @@ export class StepAdvancedComponent implements OnInit {
 
   recipe: Recipe;
   @ViewChild('fileInput') inputImage: ElementRef;
-
   constructor(private service: RecipeService) {}
 
   ngOnInit(): void {}
@@ -40,7 +40,6 @@ export class StepAdvancedComponent implements OnInit {
     var files = event.target.files;
 
     if (files) {
-
       for (let file of files) {
         let reader = new FileReader();
         reader.onload = (e: any) => {

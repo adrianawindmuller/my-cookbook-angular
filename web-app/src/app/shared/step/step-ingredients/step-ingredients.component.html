@@ -2,7 +2,8 @@
   <div class="pt2">
     <mat-form-field fxFlex="100" appearance="outline">
       <mat-label>Ingredientes</mat-label>
-      <textarea matInput #message placeholder="Ex. 3 ovos ..." formControlName="ingredients">
+      <textarea matInput #message placeholder="Ex. 3 ovos ..." formControlName="ingredients"
+        [ngModel]="editRecipe?.ingredients">
       </textarea>
       <mat-hint align="start"> Escreva um ingrediente por linha.</mat-hint>
       <mat-hint align="end">{{message.value.length}} / 1000</mat-hint>
@@ -12,8 +13,9 @@
   <div class="pt4">
     <mat-form-field fxFlex="100" appearance="outline">
       <mat-label>Modo de Preparo</mat-label>
-      <textarea matInput #message placeholder="Ex. 3 ovos ..." formControlName="preparationMode">
-          </textarea>
+      <textarea matInput #message placeholder="Ex. 3 ovos ..." formControlName="preparationMode"
+        [ngModel]="editRecipe?.preparationMode">
+      </textarea>
       <mat-hint align="start"> Descreva um etapa em cada linha.</mat-hint>
       <mat-hint align="end">{{message.value.length}} / 1000</mat-hint>
       <mat-error> {{mensagemErroPreparation()}}</mat-error>
