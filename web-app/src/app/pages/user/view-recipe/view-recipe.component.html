@@ -1,60 +1,59 @@
-<section *ngIf="recipe" fxLayout="row" fxLayoutAlign="center start" class="py3">
-  <mat-card fxFlex="80" fxFlex.xs="100%" fxFlex.sm="90%" fxFlex.lg="70%" fxFlex.xl="60%">
+<section *ngIf="recipe" class="py3" fxLayout="row" fxLayoutAlign="center start">
+  <mat-card fxFlex="90" fxFlex.xs="100%" fxFlex.sm="900%" fxFlex.lg="60%" fxFlex.xl="50%" class="mat-elevation-z0">
     <mat-card-title fxLayoutAlign="start center" class="h3">
-      {{recipe.name}}
+      {{recipe.name | uppercase}}
     </mat-card-title>
     <mat-card-subtitle fxFill fxLayout="column" fxLayoutAlign="center start">
       {{recipe.category | uppercase}}
     </mat-card-subtitle>
-
-    <mat-card-content class="mat-body-2">
-      <div fxLayout="row" fxLayout.xs="column">
-        <div fxFlex="70">
+    <div class="mat-body-2">
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <div fxFlex="100" fxFlex.xs="100%">
           <app-carousel [imagePath]="recipe.imagemPath"></app-carousel>
         </div>
-        <div fxFlex="30" fxLayout="column" fxLayout.xs="row" fxLayoutAlign="space-around center"
-          [ngClass.xs]="{ 'pt2': true}">
-          <div fxLayout="column" fxLayoutAlign="center center">
-            <mat-icon color="primary">alarm</mat-icon>
-            <p class="title-icone">PREPARO</p>
-            {{recipe.preparationTime}} Min
-          </div>
-          <div fxLayout="column" fxLayoutAlign="center center" class="diviser" [ngClass.xs]="{ 'diviser': false}">
-            <mat-icon color="primary" class=" icone">restaurant_menu</mat-icon>
-            <p class="title-icone">RENDIMENTO</p>
-            {{recipe.numberPortion}} Porções
-          </div>
-          <div fxLayout="column" fxLayoutAlign="center center" class="diviser" [ngClass.xs]="{ 'diviser': false}">
-            <app-favorite-button [recipe]="recipe"></app-favorite-button>
-            <p class="title-icone">FAVORITO</p>
-            <span>1.500</span>
-          </div>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="row wrap" class="pt2">
+        <div fxFlex="22" fxFlex.sm="20%" fxFlex.xs="48%" fxLayout="column" fxLayoutAlign="center center"
+          class="background-itens py1">
+          <mat-icon color="primary">alarm</mat-icon>
+          <p class="title-icone">PREPARO</p>
+          {{recipe.preparationTime}} MIN
+        </div>
+        <div fxFlex="22" fxFlex.sm="20%" fxFlex.xs="48%" fxLayout="column" fxLayoutAlign="center center"
+          class="background-itens py1">
+          <mat-icon color="primary" class=" icone">restaurant_menu</mat-icon>
+          <p class="title-icone">RENDIMENTO</p>
+          {{recipe.numberPortion}} PORÇÕES
+        </div>
+        <div fxFlex="22" fxFlex.sm="20%" fxFlex.xs="100%" fxLayout="column" fxLayoutAlign="center center"
+          class="background-itens" [ngClass.xs]="{ 'mt1': true }">
+          <app-favorite-button [recipe]="recipe"></app-favorite-button>
+          <p class="title-icone">FAVORITO</p>
+          <span>1.500</span>
+        </div>
+        <div fxFlex="30" fxFlex.sm="35%" fxFlex.xs="100%" fxLayout="column" fxLayoutAlign="center center"
+          class="background-itens py2" [ngClass.xs]="{ 'mt1': true }">
+          <span class="title-icone pl2">Avaliar Receita</span>
+          <app-rating [rating]="recipe.rating" (ratingUpdated)="onRatingChanged($event)"></app-rating>
         </div>
       </div>
-
       <div fxLayout="column" fxLayoutAlign="center start" class="pt3">
-        <span class="title-icone pl2">Avaliar Receita</span>
-        <app-rating [rating]="recipe.rating" (ratingUpdated)="onRatingChanged($event)"></app-rating>
-      </div>
-
-      <div fxLayout="column" fxLayoutAlign="center start" class="pt3">
-        <span color="primary" class="title-icone" fxLayoutAlign="center center">
+        <span fxFill color="primary" class="title-icone background-itens pl1 py2" fxLayoutAlign="start center">
           <mat-icon color="primary" class="pr1">menu_book</mat-icon>
-          Ingredientes
+          INGREDIENTES
         </span>
         <div [innerHTML]="recipe.ingredients" class="list">
         </div>
       </div>
 
       <div fxLayout="column" fxLayoutAlign="center start" class="pt3">
-        <span color="primary" class="title-icone" fxLayoutAlign="center center">
-          <mat-icon color="primary" class="pr1">menu_book</mat-icon>
-          Preparo
+        <span fxFill color="primary" class="title-icone background-itens pl1 py2" fxLayoutAlign="start center">
+          <mat-icon color="primary" class="pr1">restaurant_menu</mat-icon>
+          PREPARO
         </span>
         <div [innerHTML]="recipe.preparationMode" class="preparationMode list">
         </div>
       </div>
-
-    </mat-card-content>
+    </div>
   </mat-card>
 </section>

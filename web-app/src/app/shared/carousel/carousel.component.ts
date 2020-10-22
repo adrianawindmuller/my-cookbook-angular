@@ -11,10 +11,10 @@ const STYLES = () => {
     carousel: () => lyl`{
       margin: auto
       // responsive
-      max-width: 800px
+      max-width: 1000px
       height: 50vh
       min-height: 220px
-      max-height: 320px
+      max-height: 400px
     }`,
     carouselHome: () => lyl`{
       margin: auto
