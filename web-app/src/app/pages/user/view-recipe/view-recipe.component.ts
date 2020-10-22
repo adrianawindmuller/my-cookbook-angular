@@ -10,6 +10,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ViewRecipeComponent implements OnInit {
   recipe: Recipe;
+  ingredientsHtml: string;
+  preparoModeHtml: string;
 
   constructor(
     private recipeService: RecipeService,
@@ -19,18 +21,29 @@ export class ViewRecipeComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       const id = +params.get('id');
-      this.getRecipes(id);
+      this.recipeService.getRecipeId(id).subscribe({
+        next: (recipe) => {
+          this.recipe = recipe;
+          this.ingredientsHtml = this.changeString(this.recipe.ingredients);
+          this.preparoModeHtml = this.changeString(this.recipe.preparationMode);
+        },
+      });
     });
-  }
-
-  getRecipes(id: number) {
-    this.recipeService
-      .getRecipeId(id)
-      .subscribe({ next: (recipe) => (this.recipe = recipe) });
   }
 
   onRatingChanged(rating: number) {
     this.recipe.rating = rating;
     this.recipeService.addRating(this.recipe).subscribe();
+  }
+
+  changeString(ingredients: string) {
+    let ingredientesBefore = ingredients.split('\n').filter((i) => i);
+
+    let ingredientsAfter = '<ul>';
+    ingredientesBefore.forEach((item) => {
+      ingredientsAfter += `<li>${item}</li>`;
+    });
+    ingredientsAfter += '</ul>';
+    return ingredientsAfter;
   }
 }

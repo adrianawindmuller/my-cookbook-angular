@@ -88,10 +88,6 @@ export class AddRecipeComponent implements OnInit {
 
     let recipeModel = newRecipe as Recipe;
     recipeModel.imagemPath = this.imageUrl;
-    // recipeModel.ingredients = this.changeString(recipeModel.ingredients);
-    // recipeModel.preparationMode = this.changeString(
-    //   recipeModel.preparationMode
-    // );
 
     this.recipeService
       .createNewRecipe(recipeModel)
@@ -116,15 +112,4 @@ export class AddRecipeComponent implements OnInit {
   changedFiles(file: string[]) {
     this.imageUrl = file;
   }
-
-  // changeString(ingredients: string) {
-  //   let ingredientesBefore = ingredients.split('\n').filter((i) => i);
-
-  //   let ingredientsAfter = '<ul>';
-  //   ingredientesBefore.forEach((item) => {
-  //     ingredientsAfter += `<li>${item}</li>`;
-  //   });
-  //   ingredientsAfter += '</ul>';
-  //   return ingredientsAfter;
-  // }
 }
