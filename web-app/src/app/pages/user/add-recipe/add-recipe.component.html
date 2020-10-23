@@ -29,7 +29,7 @@
         <mat-step [stepControl]="stepAdvanced">
           <form [formGroup]="stepAdvanced">
             <ng-template matStepLabel>Avançado</ng-template>
-            <app-step-advanced [stepAdvanced]="stepAdvanced" [recipe]="notEditRecipe"
+            <app-step-advanced [stepAdvanced]="stepAdvanced" [editRecipe]="notEditRecipe"
               (changeFile)="changedFiles($event)">
             </app-step-advanced>
             <div fxLayoutAlign="center center" class="pt2">

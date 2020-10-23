@@ -19,7 +19,7 @@ import { RecipeService } from '../../recipe.service';
 })
 export class StepAdvancedComponent implements OnInit {
   @Input() stepAdvanced: FormGroup;
-  @Input() recipe: Recipe;
+  @Input() editRecipe: Recipe;
   publicado: boolean;
   imagemUrl: string[] = [];
 
@@ -60,8 +60,8 @@ export class StepAdvancedComponent implements OnInit {
       for (let file of files) {
         let reader = new FileReader();
         reader.onload = (e: any) => {
-          this.recipe.imagemPath.push(e.target.result);
-          this.changeFile.emit(this.recipe.imagemPath);
+          this.editRecipe.images.push(e.target.result);
+          this.changeFile.emit(this.editRecipe.images);
         };
         reader.readAsDataURL(file);
       }
@@ -69,7 +69,7 @@ export class StepAdvancedComponent implements OnInit {
   }
 
   resetEditImage(i) {
-    this.recipe.imagemPath.splice(i, 1);
-    this.changeFile.emit(this.recipe.imagemPath);
+    this.editRecipe.images.splice(i, 1);
+    this.changeFile.emit(this.editRecipe.images);
   }
 }

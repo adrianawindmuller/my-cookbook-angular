@@ -6,8 +6,7 @@
   </div>
   <div fxLayout="row wrap" fxLayoutAlign="center start">
     <mat-card *ngFor="let recipe of recipe" class="ml3 my3">
-      <app-carousel [imagePath]="recipe.imagemPath" [sizeCard]="true" [routerLink]="['/recipe', recipe.id]"
-        class="carousel">
+      <app-carousel [images]="recipe.images" [sizeCard]="true" [routerLink]="['/recipe', recipe.id]" class="carousel">
       </app-carousel>
       <div fxLayout="column" class="p1">
         <mat-card-subtitle fxLayoutAlign="end center" fxLayout="row">

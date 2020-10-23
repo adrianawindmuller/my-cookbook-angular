@@ -2,25 +2,26 @@
   <div fxLayout="row" class="pt2" fxLayoutAlign="center center">
     <span class="pr2">Deseja Publicar está receita?</span>
     <mat-slide-toggle color="primary" (change)="changePublic($event)" formControlName="public"
-      [ngModel]="recipe?.public">
+      [ngModel]="editRecipe?.public">
       <span *ngIf="publicado">Publicado</span>
       <span *ngIf="!publicado">Despublicado</span>
     </mat-slide-toggle>
   </div>
 
-  <div fxLayout="column" class="pt4" *ngIf="recipe, else imagem">
+  <div fxLayout="column" class="pt3" *ngIf="editRecipe, else imagem">
     <div fxLayout="column" fxLayoutAlign="center center">
-      <input type="file" (change)="fileUploadEditImage($event)" hidden #fileInput formControlName="imagemPath"
+      <input type="file" (change)="fileUploadEditImage($event)" hidden #fileInput formControlName="images"
         multiple="true">
       <button mat-raised-button color="primary" type="file" name="img" accept="image/*" (click)="fileInput.click()">
-        <mat-icon class="pr1">cloud_upload</mat-icon>Add Imagem
+        <mat-icon class="pr1">cloud_upload</mat-icon>Adicionar Imagem
       </button>
-      <mat-error *ngIf="stepAdvanced.get('imagemPath').errors?.required">
+      <mat-error *ngIf="stepAdvanced.get('images').errors?.required">
         Campo Obrigatório
       </mat-error>
     </div>
     <div fxflex="50" fxLayout="row wrap" fxLayoutAlign="center center" class="pt2">
-      <mat-card fxLayoutAlign="center center" *ngFor="let itemEdit of recipe?.imagemPath, let x = index" class="mr2">
+      <mat-card fxLayoutAlign="center center" *ngFor="let itemEdit of editRecipe?.images, let x = index"
+        class="mr2">
         <img *ngIf="itemEdit" [src]="itemEdit">
         <div *ngIf="itemEdit" class="closeImage">
           <button mat-mini-fab color="primary" (click)="resetEditImage(x)">
@@ -31,14 +32,14 @@
     </div>
   </div>
 
-  <ng-template fxLayout="column" class="pt4" #imagem>
-    <div fxLayout="column" fxLayoutAlign="center center">
-      <input type="file" (change)="fileUploadImage($event)" hidden #fileInput formControlName="imagemPath"
+  <ng-template fxLayout="column" #imagem>
+    <div fxLayout="column" fxLayoutAlign="center center" class="pt3">
+      <input type="file" (change)="fileUploadImage($event)" hidden #fileInput formControlName="images"
         multiple="true">
       <button mat-raised-button color="primary" type="file" name="img" accept="image/*" (click)="fileInput.click()">
         <mat-icon class="pr1">cloud_upload</mat-icon>Adicionar Imagem
       </button>
-      <mat-error *ngIf="stepAdvanced.get('imagemPath').errors?.required">
+      <mat-error *ngIf="stepAdvanced.get('images').errors?.required">
         Campo Obrigatório
       </mat-error>
     </div>

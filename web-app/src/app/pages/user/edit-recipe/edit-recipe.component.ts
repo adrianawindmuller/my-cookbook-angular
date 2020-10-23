@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { of } from 'rxjs';
+import { catchError, finalize } from 'rxjs/operators';
 import { Recipe } from 'src/app/shared/recipe.model';
 import { RecipeService } from 'src/app/shared/recipe.service';
 
@@ -17,8 +20,10 @@ export class EditRecipeComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private service: RecipeService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -62,7 +67,7 @@ export class EditRecipeComponent implements OnInit {
     });
     this.stepAdvanced = this.fb.group({
       public: [''],
-      imagemPath: ['', Validators.required],
+      images: ['', Validators.required],
     });
   }
 
@@ -78,12 +83,28 @@ export class EditRecipeComponent implements OnInit {
     var step = this.joinForms();
     let recipeModel = step as Recipe;
     recipeModel.id = this.recipe.id;
-    recipeModel.imagemPath = this.recipe.imagemPath;
+    recipeModel.images = this.recipe.images;
 
-    this.service.updateRecipe(recipeModel).subscribe();
+    this.service
+      .updateRecipe(recipeModel)
+      .pipe(
+        catchError((err) => {
+          this.toastr.error(err, '', {
+            progressBar: true,
+          });
+          return of();
+        }),
+        finalize(() => {
+          this.toastr.success('Receita atualizada com sucesso!👏', '', {
+            progressBar: true,
+            timeOut: 5000,
+          });
+        })
+      )
+      .subscribe();
   }
 
   changedFiles(file: string[]) {
-    this.recipe.imagemPath = file;
+    this.recipe.images = file;
   }
 }

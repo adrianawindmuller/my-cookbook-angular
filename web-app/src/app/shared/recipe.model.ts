@@ -1,5 +1,3 @@
-import { ImagePath } from './step/step-advanced/imagePath.model';
-
 export class Recipe {
   id: number;
   name: string;
@@ -10,7 +8,7 @@ export class Recipe {
   ingredients: string;
   preparationMode: string;
   public: boolean;
-  imagemPath: string[] = [];
+  images: string[] = [];
   favorite: boolean;
   constructor() {}
 }

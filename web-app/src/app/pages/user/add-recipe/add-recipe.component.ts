@@ -60,7 +60,7 @@ export class AddRecipeComponent implements OnInit {
     });
     this.stepAdvanced = this.fb.group({
       public: [''],
-      imagemPath: ['', Validators.required],
+      images: ['', Validators.required],
     });
   }
 
@@ -87,7 +87,7 @@ export class AddRecipeComponent implements OnInit {
     const newRecipe = this.joinForms();
 
     let recipeModel = newRecipe as Recipe;
-    recipeModel.imagemPath = this.imageUrl;
+    recipeModel.images = this.imageUrl;
 
     this.recipeService
       .createNewRecipe(recipeModel)

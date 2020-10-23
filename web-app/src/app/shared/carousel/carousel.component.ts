@@ -48,7 +48,7 @@ const STYLES = () => {
   providers: [StyleRenderer],
 })
 export class CarouselComponent implements OnInit {
-  @Input() imagePath: string[];
+  @Input() images: string[];
   @Input() sizeCard: boolean;
 
   readonly classes = this.sRenderer.renderSheet(STYLES);
