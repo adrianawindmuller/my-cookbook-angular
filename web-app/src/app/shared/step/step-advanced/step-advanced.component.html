@@ -2,14 +2,39 @@
   <div fxLayout="row" class="pt2" fxLayoutAlign="center center">
     <span class="pr2">Deseja Publicar está receita?</span>
     <mat-slide-toggle color="primary" (change)="changePublic($event)" formControlName="public"
-      [ngModel]="editRecipe?.public">
+      [ngModel]="recipe?.public">
       <span *ngIf="publicado">Publicado</span>
       <span *ngIf="!publicado">Despublicado</span>
     </mat-slide-toggle>
   </div>
-  <div fxLayout="column" class="pt4">
+
+  <div fxLayout="column" class="pt4" *ngIf="recipe, else imagem">
     <div fxLayout="column" fxLayoutAlign="center center">
-      <input type="file" (change)="fileUpload($event)" hidden #fileInput formControlName="imagemPath" multiple="true">
+      <input type="file" (change)="fileUploadEditImage($event)" hidden #fileInput formControlName="imagemPath"
+        multiple="true">
+      <button mat-raised-button color="primary" type="file" name="img" accept="image/*" (click)="fileInput.click()">
+        <mat-icon class="pr1">cloud_upload</mat-icon>Add Imagem
+      </button>
+      <mat-error *ngIf="stepAdvanced.get('imagemPath').errors?.required">
+        Campo Obrigatório
+      </mat-error>
+    </div>
+    <div fxflex="50" fxLayout="row wrap" fxLayoutAlign="center center" class="pt2">
+      <mat-card fxLayoutAlign="center center" *ngFor="let itemEdit of recipe?.imagemPath, let x = index" class="mr2">
+        <img *ngIf="itemEdit" [src]="itemEdit">
+        <div *ngIf="itemEdit" class="closeImage">
+          <button mat-mini-fab color="primary" (click)="resetEditImage(x)">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+
+  <ng-template fxLayout="column" class="pt4" #imagem>
+    <div fxLayout="column" fxLayoutAlign="center center">
+      <input type="file" (change)="fileUploadImage($event)" hidden #fileInput formControlName="imagemPath"
+        multiple="true">
       <button mat-raised-button color="primary" type="file" name="img" accept="image/*" (click)="fileInput.click()">
         <mat-icon class="pr1">cloud_upload</mat-icon>Adicionar Imagem
       </button>
@@ -18,14 +43,14 @@
       </mat-error>
     </div>
     <div fxflex="50" fxLayout="row wrap" fxLayoutAlign="center center" class="pt2">
-      <mat-card fxLayoutAlign="center center" *ngFor="let item of imageUrl, let i = index" class="mr2">
+      <mat-card fxLayoutAlign="center center" *ngFor="let item of imagemUrl, let i = index" class="mr2">
         <img *ngIf="item" [src]="item">
         <div *ngIf="item" class="closeImage">
-          <button mat-mini-fab color="primary" (click)="reset(i)">
+          <button mat-mini-fab color="primary" (click)="resetImage(i)">
             <mat-icon>close</mat-icon>
           </button>
         </div>
       </mat-card>
     </div>
-  </div>
+  </ng-template>
 </div>

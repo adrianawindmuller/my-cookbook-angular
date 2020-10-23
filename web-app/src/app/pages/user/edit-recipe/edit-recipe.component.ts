@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Recipe } from 'src/app/shared/recipe.model';
 import { RecipeService } from 'src/app/shared/recipe.service';
@@ -66,5 +66,24 @@ export class EditRecipeComponent implements OnInit {
     });
   }
 
-  SaveEditRecipe() {}
+  joinForms() {
+    return {
+      ...this.stepBasic.value,
+      ...this.stepIngredients.value,
+      ...this.stepAdvanced.value,
+    };
+  }
+
+  SaveEditRecipe() {
+    var step = this.joinForms();
+    let recipeModel = step as Recipe;
+    recipeModel.id = this.recipe.id;
+    recipeModel.imagemPath = this.recipe.imagemPath;
+
+    this.service.updateRecipe(recipeModel).subscribe();
+  }
+
+  changedFiles(file: string[]) {
+    this.recipe.imagemPath = file;
+  }
 }

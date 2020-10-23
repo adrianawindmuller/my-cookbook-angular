@@ -5,7 +5,7 @@
   <div fxLayout="row" fxFill fxLayoutAlign="center center">
     <!-- linear - obriga o preenchimento-->
     <mat-card class="mat-elevation-z4" fxFlex="70" fxFlex.xs="100%">
-      <mat-horizontal-stepper #stepper linear labelPosition="bottom">
+      <mat-horizontal-stepper #stepper labelPosition="bottom">
         <mat-step [stepControl]="stepBasic">
           <form [formGroup]="stepBasic">
             <ng-template matStepLabel>Básico</ng-template>
@@ -29,8 +29,9 @@
         <mat-step [stepControl]="stepAdvanced">
           <form [formGroup]="stepAdvanced">
             <ng-template matStepLabel>Avançado</ng-template>
-            <app-step-advanced [stepAdvanced]="stepAdvanced" (changeFile)="changedFiles($event)"
-              [editRecipe]="notEditRecipe"></app-step-advanced>
+            <app-step-advanced [stepAdvanced]="stepAdvanced" [recipe]="notEditRecipe"
+              (changeFile)="changedFiles($event)">
+            </app-step-advanced>
             <div fxLayoutAlign="center center" class="pt2">
               <button mat-raised-button matStepperPrevious class="btn-back">Voltar</button>
               <button mat-raised-button type="submit" matStepperNext color="primary" (click)="createRecipe()"

@@ -16,7 +16,12 @@
         </div>
       </mat-tab>
       <mat-tab label="Avançado">
-        <app-step-advanced [stepAdvanced]="stepAdvanced" [editRecipe]="recipe"></app-step-advanced>
+        <app-step-advanced [recipe]="recipe" [stepAdvanced]="stepAdvanced" (changeFile)="changedFiles($event)">
+        </app-step-advanced>
+        <div fxLayoutAlign="center center" class="pt2">
+          <button mat-raised-button color="primary" (click)="SaveEditRecipe()"
+            [disabled]="stepAdvanced.pristine">Salvar</button>
+        </div>
       </mat-tab>
     </mat-tab-group>
   </mat-card>
