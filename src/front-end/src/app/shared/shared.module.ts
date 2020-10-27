@@ -34,7 +34,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatRippleModule } from '@angular/material/core';
 import { MatTabsModule } from '@angular/material/tabs';
 
-import { RecipeService } from '../shared/recipe.service';
+import { RecipeService } from './recipe.service';
 import { StepBasicComponent } from '../shared/step/step-basic/step-basic.component';
 import { StepIngredientsComponent } from './step/step-ingredients/step-ingredients.component';
 import { StepAdvancedComponent } from './step/step-advanced/step-advanced.component';

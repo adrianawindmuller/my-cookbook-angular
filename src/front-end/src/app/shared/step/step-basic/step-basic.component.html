@@ -14,8 +14,8 @@
       <mat-label>Categoria</mat-label>
       <mat-select formControlName="category" [ngModel]="editRecipe?.category">
         <mat-option>--</mat-option>
-        <mat-option *ngFor="let category of category" [value]="category.nome">
-          {{category.nome}}
+        <mat-option *ngFor="let category of category" [value]="category.name">
+          {{category.name}}
         </mat-option>
       </mat-select>
       <mat-error *ngIf="stepBasic.get('category').errors?.required">

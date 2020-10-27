@@ -1,7 +1,7 @@
 export class Recipe {
   id: number;
   name: string;
-  category: string;
+  categoryId: number;
   rating: number;
   numberPortion: number;
   preparationTime: number;
@@ -10,5 +10,6 @@ export class Recipe {
   public: boolean;
   images: string[] = [];
   favorite: boolean;
+  userId: number = 1;
   constructor() {}
 }

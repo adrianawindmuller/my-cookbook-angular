@@ -1,8 +1,16 @@
 <section *ngIf="recipe" class="py3" fxLayout="row" fxLayoutAlign="center start">
   <mat-card fxFlex="90" fxFlex.xs="100%" fxFlex.sm="900%" fxFlex.lg="60%" fxFlex.xl="50%" class="mat-elevation-z0">
-    <mat-card-title fxLayoutAlign="start center" class="h3">
-      {{recipe.name | uppercase}}
-    </mat-card-title>
+    <div fxLayout="row">
+      <mat-card-title fxFlex="50" fxLayoutAlign="start center" class="h3">
+        {{recipe.name | uppercase}}
+      </mat-card-title>
+      <div fxFlex fxLayoutAlign="end center">
+        <button mat-raised-button color="primary" [routerLink]="['/recipe', recipe.id, 'edit']">
+          <mat-icon>edit</mat-icon>
+          Editar
+        </button>
+      </div>
+    </div>
     <mat-card-subtitle fxFill fxLayout="column" fxLayoutAlign="center start">
       {{recipe.category | uppercase}}
     </mat-card-subtitle>

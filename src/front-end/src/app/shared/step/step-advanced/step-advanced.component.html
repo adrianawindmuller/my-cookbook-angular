@@ -15,13 +15,12 @@
       <button mat-raised-button color="primary" type="file" name="img" accept="image/*" (click)="fileInput.click()">
         <mat-icon class="pr1">cloud_upload</mat-icon>Adicionar Imagem
       </button>
-      <mat-error *ngIf="stepAdvanced.get('images').errors?.required">
+      <mat-error *ngIf="stepAdvanced.get('images').touched">
         Campo Obrigatório
       </mat-error>
     </div>
     <div fxflex="50" fxLayout="row wrap" fxLayoutAlign="center center" class="pt2">
-      <mat-card fxLayoutAlign="center center" *ngFor="let itemEdit of editRecipe?.images, let x = index"
-        class="mr2">
+      <mat-card fxLayoutAlign="center center" *ngFor="let itemEdit of editRecipe?.images, let x = index" class="mr2">
         <img *ngIf="itemEdit" [src]="itemEdit">
         <div *ngIf="itemEdit" class="closeImage">
           <button mat-mini-fab color="primary" (click)="resetEditImage(x)">
@@ -34,8 +33,7 @@
 
   <ng-template fxLayout="column" #imagem>
     <div fxLayout="column" fxLayoutAlign="center center" class="pt3">
-      <input type="file" (change)="fileUploadImage($event)" hidden #fileInput formControlName="images"
-        multiple="true">
+      <input type="file" (change)="fileUploadImage($event)" hidden #fileInput formControlName="images" multiple="true">
       <button mat-raised-button color="primary" type="file" name="img" accept="image/*" (click)="fileInput.click()">
         <mat-icon class="pr1">cloud_upload</mat-icon>Adicionar Imagem
       </button>
@@ -46,7 +44,7 @@
     <div fxflex="50" fxLayout="row wrap" fxLayoutAlign="center center" class="pt2">
       <mat-card fxLayoutAlign="center center" *ngFor="let item of imagemUrl, let i = index" class="mr2">
         <img *ngIf="item" [src]="item">
-        <div *ngIf="item" class="closeImage">
+        <div *ngIf="item" class="closeImage" formControlName="images">
           <button mat-mini-fab color="primary" (click)="resetImage(i)">
             <mat-icon>close</mat-icon>
           </button>
@@ -54,4 +52,5 @@
       </mat-card>
     </div>
   </ng-template>
+  <p>touched: {{stepAdvanced.get('images').dirty}}</p>
 </div>

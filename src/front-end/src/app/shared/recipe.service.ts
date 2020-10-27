@@ -3,18 +3,21 @@ import { HttpClient } from '@angular/common/http';
 import { Category } from './step/category.model';
 import { Recipe } from './recipe.model';
 import { Observable } from 'rxjs';
-
+import { AppEnviroment } from './app-environment';
 @Injectable({
   providedIn: 'root',
 })
 export class RecipeService {
   private API_Category = 'http://localhost:3000/category';
   private API_Recipe = 'http://localhost:3000/recipe';
+  private appEnviroment: AppEnviroment;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.appEnviroment = new AppEnviroment();
+  }
 
   getCategory() {
-    return this.http.get<Category[]>(this.API_Category);
+    return this.http.get<Category[]>(this.appEnviroment.categoryApi.category());
   }
 
   createNewRecipe(recipe: Recipe) {
