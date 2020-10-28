@@ -109,9 +109,9 @@
                 </mat-slide-toggle>
               </div>
               <!-- Images -->
-              <div fxLayout="column" class="pt3" *ngIf="images, else imagem">
-                <div fxLayout="column" fxLayoutAlign="center center">
-                  <input type="file" (change)="fileUploadEditImage($event)" hidden #fileInput formControlName="images"
+              <div fxLayout="column" class="pt3">
+                <div fxLayout=" column" fxLayoutAlign="center center">
+                  <input type="file" (change)="fileUploadImage($event)" hidden #fileInput formControlName="images"
                     multiple="true">
                   <button mat-raised-button color="primary" type="file" name="img" accept="image/*"
                     (click)="fileInput.click()">
@@ -126,37 +126,13 @@
                     class="mr2 images">
                     <img *ngIf="itemEdit" [src]="itemEdit">
                     <div *ngIf="itemEdit" class="closeImage">
-                      <button mat-mini-fab color="primary" (click)="resetEditImage(x)">
+                      <button mat-mini-fab color="primary" (click)="resetImage(x)">
                         <mat-icon>close</mat-icon>
                       </button>
                     </div>
                   </mat-card>
                 </div>
               </div>
-
-              <ng-template fxLayout="column" #imagem>
-                <div fxLayout="column" fxLayoutAlign="center center" class="pt3">
-                  <input type="file" (change)="fileUploadImage($event)" hidden #fileInput formControlName="images"
-                    multiple="true">
-                  <button mat-raised-button color="primary" type="file" name="img" accept="image/*"
-                    (click)="fileInput.click()">
-                    <mat-icon class="pr1">cloud_upload</mat-icon>Adicionar Imagem
-                  </button>
-                  <mat-error *ngIf="recipeForm.get('images').errors?.required">
-                    Campo Obrigatório
-                  </mat-error>
-                </div>
-                <div fxflex="50" fxLayout="row wrap" fxLayoutAlign="center center" class="pt2">
-                  <mat-card fxLayoutAlign="center center" *ngFor="let item of images, let i = index" class="mr2 images">
-                    <img *ngIf="item" [src]="item">
-                    <div *ngIf="item" class="closeImage" formControlName="images">
-                      <button mat-mini-fab color="primary" (click)="resetImage(i)">
-                        <mat-icon>close</mat-icon>
-                      </button>
-                    </div>
-                  </mat-card>
-                </div>
-              </ng-template>
             </div>
             <div fxLayoutAlign="center center" class="pt2">
               <button mat-raised-button matStepperPrevious class="btn-back">Voltar</button>

@@ -119,24 +119,6 @@ export class AddRecipeComponent implements OnInit {
     this.images.splice(i, 1);
   }
 
-  fileUploadEditImage(event) {
-    var files = event.target.files;
-
-    if (files) {
-      for (let file of files) {
-        let reader = new FileReader();
-        reader.onload = (e: any) => {
-          this.images.push(e.target.result);
-        };
-        reader.readAsDataURL(file);
-      }
-    }
-  }
-
-  resetEditImage(i) {
-    this.images.splice(i, 1);
-  }
-
   mensagemErroName() {
     return this.recipeForm.get('name').hasError('required')
       ? 'Campo Obrigatório'
