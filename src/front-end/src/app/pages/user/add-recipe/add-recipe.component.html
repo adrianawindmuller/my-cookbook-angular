@@ -4,38 +4,164 @@
   </div>
   <div fxLayout="row" fxFill fxLayoutAlign="center center">
     <!-- linear - obriga o preenchimento-->
+    <!-- Step 01 -->
     <mat-card class="mat-elevation-z4" fxFlex="70" fxFlex.xs="100%">
       <mat-horizontal-stepper #stepper labelPosition="bottom">
-        <mat-step [stepControl]="stepBasic">
-          <form [formGroup]="stepBasic">
+        <mat-step [stepControl]="recipeForm">
+          <form [formGroup]="recipeForm">
             <ng-template matStepLabel>Básico</ng-template>
-            <app-step-basic [stepBasic]="stepBasic" [editRecipe]="notEditRecipe"></app-step-basic>
+            <div fxLayout="column">
+              <div fxLayout="row" fxFill fxLayoutAlign="center center" class="pt2">
+                <mat-form-field fxFlex="100" appearance="outline">
+                  <mat-label>Nome da Receita</mat-label>
+                  <input matInput #name formControlName="name" placeholder="Nome da Receita">
+                  <mat-hint align="end">{{name.value.length}} / 60</mat-hint>
+                  <mat-error *ngIf="recipeForm.get('name').invalid">
+                    {{mensagemErroName()}}
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div fxLayout="row" fxFill fxLayoutAlign="center center" class="pt2">
+                <mat-form-field fxFlex="100" appearance="outline">
+                  <mat-label>Categoria</mat-label>
+                  <mat-select formControlName="category">
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let category of category" [value]="category.name">
+                      {{category.name}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="recipeForm.get('category').errors?.required">
+                    Campo Obrigatório
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div fxLayout="row" fxFill fxLayoutAlign="center center" class="pt2">
+                <div fxFlex="100" fxLayoutAlign="space-between center">
+                  <mat-form-field fxFlex="40%" appearance="outline">
+                    <mat-label>Tempo de Preparo</mat-label>
+                    <input matInput formControlName="preparationTime" type="number"
+                      onKeyPress="if(this.value.length==3) return false;">
+                    <mat-hint>Minutos</mat-hint>
+                    <mat-error *ngIf="recipeForm.get('preparationTime').errors?.required">
+                      Campo Obrigatório
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field fxFlex="40%" appearance="outline">
+                    <mat-label>Porções</mat-label>
+                    <input matInput formControlName="numberPortion" type="number"
+                      onKeyPress="if(this.value.length==3) return false;">
+                    <mat-error *ngIf="recipeForm.get('numberPortion').errors?.required">
+                      Campo Obrigatório
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
             <div fxLayoutAlign="center center" class="pt2">
               <button mat-raised-button matStepperNext color="primary">Avançar</button>
             </div>
           </form>
         </mat-step>
-        <mat-step [stepControl]="stepIngredients">
-          <form [formGroup]="stepIngredients">
+
+        <!-- Step 2 -->
+        <mat-step [stepControl]="recipeForm">
+          <form [formGroup]="recipeForm">
             <ng-template matStepLabel>Ingredientes</ng-template>
-            <app-step-ingredients [stepIngredients]="stepIngredients" [editRecipe]="notEditRecipe">
-            </app-step-ingredients>
+            <div [formGroup]="recipeForm" fxLayout="column">
+              <div class="pt2">
+                <mat-form-field fxFlex="100" appearance="outline">
+                  <mat-label>Ingredientes</mat-label>
+                  <textarea matInput #message placeholder="Ex. 3 ovos ..." formControlName="ingredients">
+                  </textarea>
+                  <mat-hint align="start"> Escreva um ingrediente por linha.</mat-hint>
+                  <mat-hint align="end">{{message.value.length}} / 1000</mat-hint>
+                  <mat-error> {{mensagemErroIngredients()}}</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="pt4">
+                <mat-form-field fxFlex="100" appearance="outline">
+                  <mat-label>Modo de Preparo</mat-label>
+                  <textarea matInput #message placeholder="Ex. 3 ovos ..." formControlName="preparationMode">
+                  </textarea>
+                  <mat-hint align="start"> Descreva um etapa em cada linha.</mat-hint>
+                  <mat-hint align="end">{{message.value.length}} / 1000</mat-hint>
+                  <mat-error> {{mensagemErroPreparation()}}</mat-error>
+                </mat-form-field>
+              </div>
+            </div>
             <div fxLayoutAlign="center center" class="pt2">
               <button mat-raised-button matStepperPrevious class="btn-back">Voltar</button>
               <button mat-raised-button matStepperNext color="primary">Avançar</button>
             </div>
           </form>
         </mat-step>
-        <mat-step [stepControl]="stepAdvanced">
-          <form [formGroup]="stepAdvanced">
+
+        <!-- Step 3 -->
+        <mat-step [stepControl]="recipeForm">
+          <form [formGroup]="recipeForm">
             <ng-template matStepLabel>Avançado</ng-template>
-            <app-step-advanced [stepAdvanced]="stepAdvanced" [editRecipe]="notEditRecipe"
-              (changeFile)="changedFiles($event)">
-            </app-step-advanced>
+            <div [formGroup]="recipeForm" fxLayout="column">
+              <div fxLayout="row" class="pt2" fxLayoutAlign="center center">
+                <span class="pr2">Deseja Publicar está receita?</span>
+                <mat-slide-toggle color="primary" (change)="changePublic($event)" formControlName="public">
+                  <span *ngIf="publicado">Publicado</span>
+                  <span *ngIf="!publicado">Despublicado</span>
+                </mat-slide-toggle>
+              </div>
+              <!-- Images -->
+              <div fxLayout="column" class="pt3" *ngIf="images, else imagem">
+                <div fxLayout="column" fxLayoutAlign="center center">
+                  <input type="file" (change)="fileUploadEditImage($event)" hidden #fileInput formControlName="images"
+                    multiple="true">
+                  <button mat-raised-button color="primary" type="file" name="img" accept="image/*"
+                    (click)="fileInput.click()">
+                    <mat-icon class="pr1">cloud_upload</mat-icon>Adicionar Imagem
+                  </button>
+                  <mat-error *ngIf="recipeForm.get('images').touched">
+                    Campo Obrigatório
+                  </mat-error>
+                </div>
+                <div fxflex="50" fxLayout="row wrap" fxLayoutAlign="center center" class="pt2">
+                  <mat-card fxLayoutAlign="center center" *ngFor="let itemEdit of images, let x = index"
+                    class="mr2 images">
+                    <img *ngIf="itemEdit" [src]="itemEdit">
+                    <div *ngIf="itemEdit" class="closeImage">
+                      <button mat-mini-fab color="primary" (click)="resetEditImage(x)">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                    </div>
+                  </mat-card>
+                </div>
+              </div>
+
+              <ng-template fxLayout="column" #imagem>
+                <div fxLayout="column" fxLayoutAlign="center center" class="pt3">
+                  <input type="file" (change)="fileUploadImage($event)" hidden #fileInput formControlName="images"
+                    multiple="true">
+                  <button mat-raised-button color="primary" type="file" name="img" accept="image/*"
+                    (click)="fileInput.click()">
+                    <mat-icon class="pr1">cloud_upload</mat-icon>Adicionar Imagem
+                  </button>
+                  <mat-error *ngIf="recipeForm.get('images').errors?.required">
+                    Campo Obrigatório
+                  </mat-error>
+                </div>
+                <div fxflex="50" fxLayout="row wrap" fxLayoutAlign="center center" class="pt2">
+                  <mat-card fxLayoutAlign="center center" *ngFor="let item of images, let i = index" class="mr2 images">
+                    <img *ngIf="item" [src]="item">
+                    <div *ngIf="item" class="closeImage" formControlName="images">
+                      <button mat-mini-fab color="primary" (click)="resetImage(i)">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                    </div>
+                  </mat-card>
+                </div>
+              </ng-template>
+            </div>
             <div fxLayoutAlign="center center" class="pt2">
               <button mat-raised-button matStepperPrevious class="btn-back">Voltar</button>
               <button mat-raised-button type="submit" matStepperNext color="primary" (click)="createRecipe()"
-                [disabled]="invalidForm()">Enviar</button>
+                [disabled]="recipeForm.invalid">Enviar</button>
             </div>
           </form>
         </mat-step>
