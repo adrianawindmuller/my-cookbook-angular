@@ -16,5 +16,7 @@ export class AppEnviroment {
   public recipeApi = {
     recipe: (): string => `${this.recipe}`,
     recipeId: (id: number): string => `${this.recipe}/${id}`,
+    toggleFavorite: (id: number): string =>
+      `${this.recipe}/${id}/toggle-favorite`,
   };
 }

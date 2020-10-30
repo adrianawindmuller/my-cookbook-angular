@@ -34,8 +34,8 @@ export class RecipeService {
     );
   }
 
-  addFavoriteRecipe(recipe: Recipe) {
-    return this.http.put(`${this.API_Recipe}/${recipe.id}`, recipe);
+  ToggleFavoriteRecipe(id: number) {
+    return this.http.put(this.appEnviroment.recipeApi.toggleFavorite(id), 0);
   }
 
   addRating(recipe: Recipe) {

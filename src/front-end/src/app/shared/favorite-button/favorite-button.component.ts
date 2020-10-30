@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { RecipeDetails } from '../recipe-details.model';
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
 
@@ -8,16 +9,17 @@ import { RecipeService } from '../recipe.service';
   styleUrls: ['./favorite-button.component.sass'],
 })
 export class FavoriteButtonComponent implements OnInit {
-  @Input() recipe: Recipe;
+  @Input() favorite: boolean;
+  @Input() recipeId: number;
 
   constructor(private recipeServive: RecipeService) {}
 
   ngOnInit(): void {}
 
   toggleFavorite() {
-    this.recipe.favorite = !this.recipe.favorite;
-    // this.recipeServive
-    //   .addFavoriteRecipe(this.recipe)
-    //   .subscribe(() => this.recipeServive.getRecipe());
+    this.favorite = !this.favorite;
+    this.recipeServive
+      .ToggleFavoriteRecipe(this.recipeId)
+      .subscribe(() => this.recipeServive.getRecipeId(this.recipeId));
   }
 }

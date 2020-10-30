@@ -118,8 +118,21 @@ namespace MyCookbook.Api.Controllers
 
         }
 
-        //[Route("{id}")]
-        //[HttpPut]
-        //public async Task(IActionResult) PutFavorite()
+        [Route("{id}/toggle-favorite")]
+        [HttpPut]
+        public async Task<IActionResult> ToggleFavoriteAsync(int id)
+        {
+            var recipe = await _recipeRepository.GetByIdAsync(id);
+            if (recipe is null)
+            {
+                return NotFound($"Receita {id} não encontrada.");
+            }
+
+            recipe.ToogleFavorite();
+            _recipeRepository.Update(recipe);
+            await _recipeRepository.UnitOfWork.CommitAsync();
+
+            return Ok("Atualizado com sucesso!");
+        }
     }
 }

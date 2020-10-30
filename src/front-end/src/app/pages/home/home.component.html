@@ -13,7 +13,7 @@
         <mat-card-subtitle fxLayoutAlign="end center" fxLayout="row">
           <div fxFlex class="category">{{recipe.categoryName}} </div>
           <div fxflex fxLayoutAlign="end start">
-            <app-favorite-button [recipe]="recipe"></app-favorite-button>
+            <app-favorite-button [favorite]="recipe.favorite" [recipeId]="recipe.recipeId"></app-favorite-button>
             <button mat-icon-button color="primary" [matMenuTriggerFor]="menu">
               <mat-icon>more_vert</mat-icon>
             </button>

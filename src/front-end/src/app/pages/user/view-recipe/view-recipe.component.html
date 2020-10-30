@@ -35,7 +35,7 @@
         </div>
         <div fxFlex="22" fxFlex.sm="20%" fxFlex.xs="100%" fxLayout="column" fxLayoutAlign="center center"
           class="background-itens" [ngClass.xs]="{ 'mt1': true }">
-          <app-favorite-button [recipe]="recipe"></app-favorite-button>
+          <app-favorite-button [favorite]="recipe.favorite" [recipeId]="recipe.recipeId"></app-favorite-button>
           <p class="title-icone">FAVORITO</p>
           <span>1.500</span>
         </div>
