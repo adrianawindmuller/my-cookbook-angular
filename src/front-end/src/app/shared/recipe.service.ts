@@ -38,8 +38,8 @@ export class RecipeService {
     return this.http.put(this.appEnviroment.recipeApi.toggleFavorite(id), 0);
   }
 
-  addRating(recipe: Recipe) {
-    return this.http.put(`${this.API_Recipe}/${recipe.id}`, recipe);
+  SetRating(id: number, rating: number) {
+    return this.http.put(this.appEnviroment.recipeApi.setRating(id, rating), 0);
   }
 
   deleteRecipe(id: number) {

@@ -42,7 +42,7 @@
         <div fxFlex="30" fxFlex.sm="35%" fxFlex.xs="100%" fxLayout="column" fxLayoutAlign="center center"
           class="background-itens py2" [ngClass.xs]="{ 'mt1': true }">
           <span class="title-icone pl2">Avaliar Receita</span>
-          <app-rating [rating]="recipe.rating" (ratingUpdated)="onRatingChanged($event)"></app-rating>
+          <app-rating [rating]="recipe.rating" [recipeId]="recipe.recipeId"></app-rating>
         </div>
       </div>
       <div fxLayout="column" fxLayoutAlign="center start" class="pt3">

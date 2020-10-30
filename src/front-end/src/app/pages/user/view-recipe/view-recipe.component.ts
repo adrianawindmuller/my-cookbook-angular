@@ -34,11 +34,6 @@ export class ViewRecipeComponent implements OnInit {
     });
   }
 
-  onRatingChanged(rating: number) {
-    this.recipe.rating = rating;
-    // this.recipeService.addRating(this.recipe).subscribe();
-  }
-
   changeString(ingredients: string) {
     let ingredientesBefore = ingredients.split('\\n' || '\n').filter((i) => i);
 

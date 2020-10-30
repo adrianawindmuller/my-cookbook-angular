@@ -18,5 +18,7 @@ export class AppEnviroment {
     recipeId: (id: number): string => `${this.recipe}/${id}`,
     toggleFavorite: (id: number): string =>
       `${this.recipe}/${id}/toggle-favorite`,
+    setRating: (id: number, rate: number): string =>
+      `${this.recipe}/${id}/set-rating/${rate}`,
   };
 }

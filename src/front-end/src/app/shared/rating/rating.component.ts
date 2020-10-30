@@ -9,8 +9,7 @@ import { RecipeService } from '../recipe.service';
 })
 export class RatingComponent implements OnInit {
   @Input() rating: number;
-  @Output() ratingUpdated = new EventEmitter();
-
+  @Input() recipeId: number;
   starMax: Number = 5;
   ratingArray = [];
 
@@ -23,7 +22,10 @@ export class RatingComponent implements OnInit {
   }
 
   ratingClick(rating: number) {
-    this.ratingUpdated.emit(rating);
+    this.rating = rating;
+    this.recipeService
+      .SetRating(this.recipeId, rating)
+      .subscribe(() => this.recipeService.getRecipeId(this.recipeId));  
   }
 
   showIcone(index: number) {

@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using MyCookbook.Api.Controllers.ViewModel;
 using MyCookbook.Api.Domain;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -132,7 +134,24 @@ namespace MyCookbook.Api.Controllers
             _recipeRepository.Update(recipe);
             await _recipeRepository.UnitOfWork.CommitAsync();
 
-            return Ok("Atualizado com sucesso!");
+            return Ok();
+        }
+
+        [Route("{id}/set-rating/{rate}")]
+        [HttpPut]
+        public async Task<IActionResult> SetRatingAsync(int id, [Required][Range(1, 5)] int rate)
+        {
+            var recipe = await _recipeRepository.GetByIdAsync(id);
+            if (recipe is null)
+            {
+                return NotFound($"Receita {id} não encontrada.");
+            }
+
+            recipe.SetRating(rate);
+            _recipeRepository.Update(recipe);
+            await _recipeRepository.UnitOfWork.CommitAsync();
+
+            return Ok();
         }
     }
 }
