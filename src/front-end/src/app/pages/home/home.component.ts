@@ -6,6 +6,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogConfirmComponent } from 'src/app/shared/dialog-confirm/dialog-confirm.component';
 import { ToastrService } from 'ngx-toastr';
 import { catchError, finalize } from 'rxjs/operators';
+import { Category } from 'src/app/shared/category.model';
+import { CardRecipe } from 'src/app/shared/card-recipe.model';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +15,7 @@ import { catchError, finalize } from 'rxjs/operators';
   styleUrls: ['./home.component.sass'],
 })
 export class HomeComponent implements OnInit {
-  recipe: Recipe[];
+  recipes: CardRecipe[];
 
   constructor(
     private recipeService: RecipeService,
@@ -22,7 +24,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.recipeService.getRecipe().subscribe((res) => (this.recipe = res));
+    this.recipeService.getRecipes().subscribe((res) => (this.recipes = res));
   }
 
   deleteRecipe(id: number) {
@@ -49,8 +51,8 @@ export class HomeComponent implements OnInit {
           )
           .subscribe(() =>
             this.recipeService
-              .getRecipe()
-              .subscribe((res) => (this.recipe = res))
+              .getRecipes()
+              .subscribe((res) => (this.recipes = res))
           );
       }
     });

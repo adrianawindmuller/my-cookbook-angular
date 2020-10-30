@@ -28,7 +28,9 @@ namespace MyCookbook.Api.Infrastructure
                 new { Id = 1, Name = "Bolos" },
                 new { Id = 2, Name = "Sopas" },
                 new { Id = 3, Name = "Carnes" },
-                new { Id = 4, Name = "Bebidas" });
+                new { Id = 4, Name = "Massas" },
+                new { Id = 5, Name = "Peixe" });
+
         }
     }
 }

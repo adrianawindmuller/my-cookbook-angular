@@ -52,14 +52,14 @@ namespace MyCookbook.Api.Domain
 
         public bool Publicated { get; private set; }
 
-        public int Rating { get; private set; }
+        public int? Rating { get; private set; }
 
-        //public bool Favorite { get; private set; }
+        public bool Favorite { get; private set; }
 
-        //public void ToogleFavorite()
-        //{
-        //    Favorite = !Favorite;
-        //}
+        public void ToogleFavorite()
+        {
+            Favorite = !Favorite;
+        }
 
         public void TooglePublicated()
         {
@@ -168,10 +168,8 @@ namespace MyCookbook.Api.Domain
                 throw new ArgumentException("Insira no máximo 1000 caracteres.", nameof(preparationMode));
             #endregion
 
-            if (numberPortion > 1 && numberPortion <= 40)
+            if (numberPortion < 1 || numberPortion > 40)
                 throw new ArgumentException("Insira um numero de 1 a 40.", nameof(numberPortion));
-
-
 
         }
     }

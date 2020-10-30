@@ -22,11 +22,11 @@ namespace MyCookbook.Test
         }
 
         [Theory]
-        [InlineData("", "Nome obrigatório! (Parameter 'category')")]
-        [InlineData(" ", "Nome obrigatório! (Parameter 'category')")]
-        [InlineData(null, "Nome obrigatório! (Parameter 'category')")]
-        [InlineData("B", "Insira pelo menos 2 caracteres. (Parameter 'category')")]
-        [InlineData("Minha categoria com  ", "Insira no máximo 20 caracteres. (Parameter 'category')")]
+        [InlineData("", "Nome obrigatório! (Parameter 'name')")]
+        [InlineData(" ", "Nome obrigatório! (Parameter 'name')")]
+        [InlineData(null, "Nome obrigatório! (Parameter 'name')")]
+        [InlineData("B", "Insira pelo menos 2 caracteres. (Parameter 'name')")]
+        [InlineData("Minha categoria com  ", "Insira no máximo 20 caracteres. (Parameter 'name')")]
         public void NewCategory_InvalidName_CategoryInvalid(string name, string errorExpected)
         {
             var ex = Assert.Throws<ArgumentException>(() => new Category(name));
@@ -45,11 +45,11 @@ namespace MyCookbook.Test
         }
 
         [Theory]
-        [InlineData("", "Nome obrigatório! (Parameter 'category')")]
-        [InlineData(" ", "Nome obrigatório! (Parameter 'category')")]
-        [InlineData(null, "Nome obrigatório! (Parameter 'category')")]
-        [InlineData("B", "Insira pelo menos 2 caracteres.(Parameter 'category')")]
-        [InlineData("Minha categoria com  ", "Insira no máximo 20 caracteres. (Parameter 'category')")]
+        [InlineData("", "Nome obrigatório! (Parameter 'name')")]
+        [InlineData(" ", "Nome obrigatório! (Parameter 'name')")]
+        [InlineData(null, "Nome obrigatório! (Parameter 'name')")]
+        [InlineData("B", "Insira pelo menos 2 caracteres.(Parameter 'name')")]
+        [InlineData("Minha categoria com  ", "Insira no máximo 20 caracteres. (Parameter 'name')")]
         public void Edit_InvalidName_EditInvalid(string name, string errorExpected)
         {
             var ex = Assert.Throws<ArgumentException>(() =>

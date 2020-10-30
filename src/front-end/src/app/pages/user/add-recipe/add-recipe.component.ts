@@ -6,8 +6,10 @@ import { of } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Recipe } from 'src/app/shared/recipe.model';
-import { Category } from 'src/app/shared/step/category.model';
+import { Category } from 'src/app/shared/category.model';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { MatSelectChange } from '@angular/material/select';
+import { SelectionChange } from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-add-recipe',
@@ -40,7 +42,7 @@ export class AddRecipeComponent implements OnInit {
           Validators.maxLength(60),
         ],
       ],
-      category: ['', Validators.required],
+      categoryId: ['', Validators.required],
       numberPortion: ['', [Validators.required, Validators.maxLength(3)]],
       preparationTime: ['', [Validators.required, Validators.maxLength(3)]],
       ingredients: [

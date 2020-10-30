@@ -16,8 +16,8 @@ export class FavoriteButtonComponent implements OnInit {
 
   toggleFavorite() {
     this.recipe.favorite = !this.recipe.favorite;
-    this.recipeServive
-      .addFavoriteRecipe(this.recipe)
-      .subscribe(() => this.recipeServive.getRecipe());
+    // this.recipeServive
+    //   .addFavoriteRecipe(this.recipe)
+    //   .subscribe(() => this.recipeServive.getRecipe());
   }
 }

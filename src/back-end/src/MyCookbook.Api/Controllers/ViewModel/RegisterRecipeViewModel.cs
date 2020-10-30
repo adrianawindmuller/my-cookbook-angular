@@ -43,7 +43,7 @@ namespace MyCookbook.Api.Controllers.ViewModel
 
         [Required(ErrorMessage = Text.ErrorMessenges.FielRequired)]
         [Range(1, 6, ErrorMessage = "Insira no máximo 6 imagens.")]
-        public List<ImageViewModel> Images { get; set; }
+        public List<string> Images { get; set; }
 
         public bool Publicated { get; set; }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Recipe } from 'src/app/shared/recipe.model';
 import { RecipeService } from 'src/app/shared/recipe.service';
 import { ActivatedRoute } from '@angular/router';
+import { Category } from 'src/app/shared/category.model';
 
 @Component({
   selector: 'app-view-recipe',
@@ -12,6 +13,7 @@ export class ViewRecipeComponent implements OnInit {
   recipe: Recipe;
   ingredientsHtml: string;
   preparoModeHtml: string;
+  category: Category;
 
   constructor(
     private recipeService: RecipeService,
@@ -26,6 +28,9 @@ export class ViewRecipeComponent implements OnInit {
           this.recipe = recipe;
           this.ingredientsHtml = this.changeString(this.recipe.ingredients);
           this.preparoModeHtml = this.changeString(this.recipe.preparationMode);
+          this.recipeService
+            .getCategoryId(recipe.categoryId)
+            .subscribe((res) => (this.category = res));
         },
       });
     });

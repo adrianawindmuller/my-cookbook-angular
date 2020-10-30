@@ -7,7 +7,7 @@ import { of } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
 import { Recipe } from 'src/app/shared/recipe.model';
 import { RecipeService } from 'src/app/shared/recipe.service';
-import { Category } from 'src/app/shared/step/category.model';
+import { Category } from 'src/app/shared/category.model';
 
 @Component({
   selector: 'app-edit-recipe',
@@ -16,7 +16,6 @@ import { Category } from 'src/app/shared/step/category.model';
 })
 export class EditRecipeComponent implements OnInit {
   recipeFormEdit: FormGroup;
-  // images: string[] = [];
   publicado: boolean;
   category: Category[];
   recipe: Recipe;
@@ -29,14 +28,14 @@ export class EditRecipeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.service.getCategory().subscribe((res) => (this.category = res));
+
     this.route.paramMap.subscribe((params) => {
       const id = +params.get('id');
       this.service.getRecipeId(id).subscribe({
         next: (res) => (this.recipe = res),
       });
     });
-
-    this.service.getCategory().subscribe((res) => (this.category = res));
 
     this.recipeFormEdit = this.fb.group({
       name: [

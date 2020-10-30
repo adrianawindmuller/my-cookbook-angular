@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Category } from './step/category.model';
+import { Category } from './category.model';
 import { Recipe } from './recipe.model';
-import { Observable } from 'rxjs';
 import { AppEnviroment } from './app-environment';
+import { CardRecipe } from './card-recipe.model';
 @Injectable({
   providedIn: 'root',
 })
 export class RecipeService {
-  private API_Category = 'http://localhost:3000/category';
   private API_Recipe = 'http://localhost:3000/recipe';
   private appEnviroment: AppEnviroment;
 
@@ -20,12 +19,18 @@ export class RecipeService {
     return this.http.get<Category[]>(this.appEnviroment.categoryApi.category());
   }
 
+  getCategoryId(id: number) {
+    return this.http.get<Category>(
+      this.appEnviroment.categoryApi.categoryId(id)
+    );
+  }
+
   createNewRecipe(recipe: Recipe) {
     return this.http.post<Recipe>(this.API_Recipe, recipe);
   }
 
-  getRecipe() {
-    return this.http.get<Recipe[]>(this.API_Recipe);
+  getRecipes() {
+    return this.http.get<CardRecipe[]>(this.appEnviroment.recipeApi.recipe());
   }
 
   getRecipeId(id: number) {

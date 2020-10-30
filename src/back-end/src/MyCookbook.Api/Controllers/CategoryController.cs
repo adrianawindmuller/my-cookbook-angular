@@ -25,14 +25,25 @@ namespace MyCookbook.Api.Controllers
 
             var vm = new List<GetCategoryViewModel>();
 
-            //foreach (var category in categories)  -->>Forma manual
-            //{
-            //    vm.Add(new CategoryViewModel { Id = category.Id, Name = category.Name });
-            //}
-
             vm.AddRange(categories.Select(c => new GetCategoryViewModel { Id = c.Id, Name = c.Name }));
 
             return Ok(vm);
+        }
+
+        [Route("{id}")]
+        [HttpGet]
+        public async Task<IActionResult> GetIdAsync(int id)
+        {
+            var category = await _categoryRepository.GetByIdAsync(id);
+
+            var vm = new GetCategoryViewModel
+            {
+                Id = category.Id,
+                Name = category.Name
+            };
+
+            return Ok(vm);
+
         }
 
         [HttpPost]

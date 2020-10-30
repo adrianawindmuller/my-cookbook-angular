@@ -155,15 +155,15 @@ namespace MyCookbook.Test
             Assert.Throws<ArgumentException>(() => recipe.Edit("", userNew, category, 60, 5, " ", "", true, _7Images));
         }
 
-        //[Fact]
-        //public void ToogleFavorite_Caled_Toogled()
-        //{
-        //    var recipe = GetNewRecipe(_3Images);
+        [Fact]
+        public void ToogleFavorite_Caled_Toogled()
+        {
+            var recipe = GetNewRecipe(_3Images, _NewUser, _NewCategory);
 
-        //    Assert.False(recipe.Favorite);
-        //    recipe.ToogleFavorite();
-        //    Assert.True(recipe.Favorite);
-        //}
+            Assert.False(recipe.Favorite);
+            recipe.ToogleFavorite();
+            Assert.True(recipe.Favorite);
+        }
 
         [Fact]
         public void TooglePublicated_Caled_Toogled()

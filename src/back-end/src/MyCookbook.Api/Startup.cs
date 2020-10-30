@@ -48,6 +48,7 @@ namespace MyCookbook.Api
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddScoped<IRecipeRepository, RecipeRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
 
         }

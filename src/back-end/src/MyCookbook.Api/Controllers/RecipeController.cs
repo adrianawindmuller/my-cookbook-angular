@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyCookbook.Api.Controllers.ViewModel;
 using MyCookbook.Api.Domain;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,9 +12,7 @@ namespace MyCookbook.Api.Controllers
     public class RecipeController : ControllerBase
     {
         private IRecipeRepository _recipeRepository;
-
         private IUserRepository _userRepository;
-
         private ICategoryRepository _categoryRepository;
 
         public RecipeController(IRecipeRepository recipeRepository, IUserRepository userRepository, ICategoryRepository categoryRepository)
@@ -37,7 +36,7 @@ namespace MyCookbook.Api.Controllers
             {
                 return NotFound($"Categoria {model.CategoryId} não encontrada.");
             }
-            var imagens = model.Images.Select(c => new Image(c.RawContent)).ToList();
+            var imagens = model.Images.Select(i => new Image(i)).ToList();
 
             var recipe = new Recipe(
                 model.Name,
@@ -50,9 +49,71 @@ namespace MyCookbook.Api.Controllers
                 imagens,
                 model.Publicated);
 
+
             await _recipeRepository.AddAsync(recipe);
             await _recipeRepository.UnitOfWork.CommitAsync();
             return Ok("Receita criada com sucesso!");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetRecipe()
+        {
+            var recipes = await _recipeRepository.ListAllAsync();
+            var vmRecipes = new List<CardRecipeViewModel>();
+
+
+            foreach (var recipe in recipes)
+            {
+                var vmRecipe = new CardRecipeViewModel
+                {
+                    RecipeName = recipe.Name,
+                    CategoryName = recipe.Category.Name,
+                    Favorite = recipe.Favorite,
+                };
+
+                foreach (var image in recipe.Images)
+                {
+                    vmRecipe.Images.Add(image.RawContent);
+                }
+
+                vmRecipes.Add(vmRecipe);
+            }
+
+            return Ok(vmRecipes);
+
+        }
+
+        [Route("{id}")]
+        [HttpGet]
+        public async Task<IActionResult> GetRecipeDetails(int id)
+        {
+            var recipe = await _recipeRepository.GetByIdAsync(id);
+            if (recipe is null)
+            {
+                return NotFound($"Recipe {recipe.Id} não encontrada.");
+            }
+
+            var imageVm = new List<string>();
+            foreach (var image in recipe.Images)
+            {
+                imageVm.Add(image.RawContent);
+            }
+
+            var vm = new GetRecipeDetailsViewModel
+            {
+                RecipeName = recipe.Name,
+                CategoryName = recipe.Category.Name,
+                NumberPortion = recipe.NumberPortion,
+                PreparationTimeInMinutes = recipe.PreparationTimeInMinutes,
+                Ingredients = recipe.Ingredients,
+                PreparationMode = recipe.PreparationMode,
+                Images = imageVm,
+                Favorite = recipe.Favorite,
+                Rating = recipe.Rating.Value,
+            };
+
+            return Ok(vm);
+
         }
     }
 }
