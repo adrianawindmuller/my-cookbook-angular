@@ -2,17 +2,17 @@
   <mat-card fxFlex="90" fxFlex.xs="100%" fxFlex.sm="900%" fxFlex.lg="60%" fxFlex.xl="50%" class="mat-elevation-z0">
     <div fxLayout="row">
       <mat-card-title fxFlex="50" fxLayoutAlign="start center" class="h3">
-        {{recipe.name | uppercase}}
+        {{recipe.recipeName | uppercase}}
       </mat-card-title>
       <div fxFlex fxLayoutAlign="end center">
-        <button mat-raised-button color="primary" [routerLink]="['/recipe', recipe.id, 'edit']">
+        <button mat-raised-button color="primary" [routerLink]="['/recipe', recipe.recipeId, 'edit']">
           <mat-icon>edit</mat-icon>
           Editar
         </button>
       </div>
     </div>
     <mat-card-subtitle fxFill fxLayout="column" fxLayoutAlign="center start">
-      {{this.category?.name | uppercase}}
+      {{recipe.categoryName | uppercase}}
     </mat-card-subtitle>
     <div class="mat-body-2">
       <div fxLayout="row" fxLayoutAlign="start center">
@@ -25,7 +25,7 @@
           class="background-itens py1">
           <mat-icon color="primary">alarm</mat-icon>
           <p class="title-icone">PREPARO</p>
-          {{recipe.preparationTime}} MIN
+          {{recipe.preparationTimeInMinutes}} MIN
         </div>
         <div fxFlex="22" fxFlex.sm="20%" fxFlex.xs="48%" fxLayout="column" fxLayoutAlign="center center"
           class="background-itens py1">

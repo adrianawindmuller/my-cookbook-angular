@@ -4,6 +4,7 @@ import { Category } from './category.model';
 import { Recipe } from './recipe.model';
 import { AppEnviroment } from './app-environment';
 import { CardRecipe } from './card-recipe.model';
+import { RecipeDetails } from './recipe-details.model';
 @Injectable({
   providedIn: 'root',
 })
@@ -19,12 +20,6 @@ export class RecipeService {
     return this.http.get<Category[]>(this.appEnviroment.categoryApi.category());
   }
 
-  getCategoryId(id: number) {
-    return this.http.get<Category>(
-      this.appEnviroment.categoryApi.categoryId(id)
-    );
-  }
-
   createNewRecipe(recipe: Recipe) {
     return this.http.post<Recipe>(this.API_Recipe, recipe);
   }
@@ -34,7 +29,9 @@ export class RecipeService {
   }
 
   getRecipeId(id: number) {
-    return this.http.get<Recipe>(`${this.API_Recipe}/${id}`);
+    return this.http.get<RecipeDetails>(
+      this.appEnviroment.recipeApi.recipeId(id)
+    );
   }
 
   addFavoriteRecipe(recipe: Recipe) {

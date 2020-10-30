@@ -1,5 +1,5 @@
 export class RecipeDetails {
-  id: number;
+  recipeId: number;
   recipeName: string;
   categoryName: number;
   numberPortion: number;

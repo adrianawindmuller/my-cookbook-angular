@@ -66,6 +66,7 @@ namespace MyCookbook.Api.Controllers
             {
                 var vmRecipe = new CardRecipeViewModel
                 {
+                    RecipeId = recipe.Id,
                     RecipeName = recipe.Name,
                     CategoryName = recipe.Category.Name,
                     Favorite = recipe.Favorite,
@@ -101,6 +102,7 @@ namespace MyCookbook.Api.Controllers
 
             var vm = new GetRecipeDetailsViewModel
             {
+                RecipeId = recipe.Id,
                 RecipeName = recipe.Name,
                 CategoryName = recipe.Category.Name,
                 NumberPortion = recipe.NumberPortion,
@@ -109,11 +111,15 @@ namespace MyCookbook.Api.Controllers
                 PreparationMode = recipe.PreparationMode,
                 Images = imageVm,
                 Favorite = recipe.Favorite,
-                Rating = recipe.Rating.Value,
+                Rating = recipe.Rating,
             };
 
             return Ok(vm);
 
         }
+
+        //[Route("{id}")]
+        //[HttpPut]
+        //public async Task(IActionResult) PutFavorite()
     }
 }

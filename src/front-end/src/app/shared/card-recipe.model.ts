@@ -1,5 +1,5 @@
 export class CardRecipe {
-  id: number;
+  recipeId: number;
   recipeName: string;
   categoryName: number;
   images: string[] = [];

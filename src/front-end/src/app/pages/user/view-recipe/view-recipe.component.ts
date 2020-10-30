@@ -3,6 +3,7 @@ import { Recipe } from 'src/app/shared/recipe.model';
 import { RecipeService } from 'src/app/shared/recipe.service';
 import { ActivatedRoute } from '@angular/router';
 import { Category } from 'src/app/shared/category.model';
+import { RecipeDetails } from 'src/app/shared/recipe-details.model';
 
 @Component({
   selector: 'app-view-recipe',
@@ -10,7 +11,7 @@ import { Category } from 'src/app/shared/category.model';
   styleUrls: ['./view-recipe.component.sass'],
 })
 export class ViewRecipeComponent implements OnInit {
-  recipe: Recipe;
+  recipe: RecipeDetails;
   ingredientsHtml: string;
   preparoModeHtml: string;
   category: Category;
@@ -28,9 +29,6 @@ export class ViewRecipeComponent implements OnInit {
           this.recipe = recipe;
           this.ingredientsHtml = this.changeString(this.recipe.ingredients);
           this.preparoModeHtml = this.changeString(this.recipe.preparationMode);
-          this.recipeService
-            .getCategoryId(recipe.categoryId)
-            .subscribe((res) => (this.category = res));
         },
       });
     });
@@ -38,11 +36,11 @@ export class ViewRecipeComponent implements OnInit {
 
   onRatingChanged(rating: number) {
     this.recipe.rating = rating;
-    this.recipeService.addRating(this.recipe).subscribe();
+    // this.recipeService.addRating(this.recipe).subscribe();
   }
 
   changeString(ingredients: string) {
-    let ingredientesBefore = ingredients.split('\n').filter((i) => i);
+    let ingredientesBefore = ingredients.split('\\n' || '\n').filter((i) => i);
 
     let ingredientsAfter = '<ul>';
     ingredientesBefore.forEach((item) => {

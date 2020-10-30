@@ -11,10 +11,10 @@ export class AppEnviroment {
 
   public categoryApi = {
     category: (): string => `${this.category}`,
-    categoryId: (id: number): string => `${this.category}/${id}`,
   };
 
   public recipeApi = {
     recipe: (): string => `${this.recipe}`,
+    recipeId: (id: number): string => `${this.recipe}/${id}`,
   };
 }

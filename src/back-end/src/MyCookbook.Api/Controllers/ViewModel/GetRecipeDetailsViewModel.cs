@@ -4,6 +4,7 @@ namespace MyCookbook.Api.Controllers.ViewModel
 {
     public class GetRecipeDetailsViewModel
     {
+        public int RecipeId { get; set; }
 
         public string RecipeName { get; set; }
 
@@ -17,10 +18,10 @@ namespace MyCookbook.Api.Controllers.ViewModel
 
         public string PreparationMode { get; set; }
 
-        public List<string> Images { get; set; }
-
-        public int Rating { get; set; }
+        public int? Rating { get; set; }
 
         public bool Favorite { get; set; }
+
+        public List<string> Images { get; set; }
     }
 }

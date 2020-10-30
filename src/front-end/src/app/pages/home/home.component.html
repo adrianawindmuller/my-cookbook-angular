@@ -6,7 +6,8 @@
   </div>
   <div fxLayout="row wrap" fxLayoutAlign="center start">
     <mat-card *ngFor="let recipe of recipes" class="ml3 my3">
-      <app-carousel [images]="recipe.images" [sizeCard]="true" [routerLink]="['/recipe', recipe.id]" class="carousel">
+      <app-carousel [images]="recipe.images" [sizeCard]="true" [routerLink]="['/recipe', recipe.recipeId]"
+        class="carousel">
       </app-carousel>
       <div fxLayout="column" class="p1">
         <mat-card-subtitle fxLayoutAlign="end center" fxLayout="row">
@@ -17,10 +18,10 @@
               <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-              <button mat-menu-item [routerLink]="['/recipe', recipe.id, 'edit']">
+              <button mat-menu-item [routerLink]="['/recipe', recipe.recipeId, 'edit']">
                 <mat-icon aria-hidden="false">create</mat-icon>Editar
               </button>
-              <button mat-menu-item (click)="deleteRecipe(recipe.id)">
+              <button mat-menu-item (click)="deleteRecipe(recipe.recipeId)">
                 <mat-icon aria-hidden="false">delete</mat-icon>Remover
               </button>
             </mat-menu>
