@@ -5,12 +5,9 @@ import { ToastrService } from 'ngx-toastr';
 import { of } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { Recipe } from 'src/app/shared/recipe.model';
-import { Category } from 'src/app/shared/category.model';
+import { Category } from 'src/app/shared/models/category.model';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
-import { MatSelectChange } from '@angular/material/select';
-import { SelectionChange } from '@angular/cdk/collections';
-
+import { RecipeRegister } from 'src/app/shared/models/recipe-register.model';
 @Component({
   selector: 'app-add-recipe',
   templateUrl: './add-recipe.component.html',
@@ -19,7 +16,7 @@ import { SelectionChange } from '@angular/cdk/collections';
 export class AddRecipeComponent implements OnInit {
   recipeForm: FormGroup;
   images: string[] = [];
-  publicado: boolean;
+  publicado: boolean = false;
   category: Category[];
 
   constructor(
@@ -44,7 +41,10 @@ export class AddRecipeComponent implements OnInit {
       ],
       categoryId: ['', Validators.required],
       numberPortion: ['', [Validators.required, Validators.maxLength(3)]],
-      preparationTime: ['', [Validators.required, Validators.maxLength(3)]],
+      preparationTimeInMinutes: [
+        '',
+        [Validators.required, Validators.maxLength(3)],
+      ],
       ingredients: [
         '',
         [
@@ -61,7 +61,6 @@ export class AddRecipeComponent implements OnInit {
           Validators.maxLength(1000),
         ],
       ],
-      public: [''],
       images: ['', Validators.required],
     });
   }
@@ -72,13 +71,16 @@ export class AddRecipeComponent implements OnInit {
     }
     const newRecipe = this.recipeForm.value;
 
-    let recipeModel = newRecipe as Recipe;
+    let recipeModel = newRecipe as RecipeRegister;
     recipeModel.images = this.images;
+    recipeModel.userId = 1;
+    recipeModel.publicated = this.publicado;
 
     this.recipeService
       .createNewRecipe(recipeModel)
       .pipe(
         catchError((err) => {
+          console.log(JSON.stringify(err));
           this.toastr.error(err, '', {
             progressBar: true,
           });
@@ -93,10 +95,6 @@ export class AddRecipeComponent implements OnInit {
         })
       )
       .subscribe();
-  }
-
-  changedFiles(file: string[]) {
-    this.images = file;
   }
 
   changePublic(event: MatSlideToggleChange) {

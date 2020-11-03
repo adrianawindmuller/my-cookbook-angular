@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Recipe } from 'src/app/shared/recipe.model';
 import { RecipeService } from 'src/app/shared/recipe.service';
 import { ActivatedRoute } from '@angular/router';
-import { Category } from 'src/app/shared/category.model';
-import { RecipeDetails } from 'src/app/shared/recipe-details.model';
+import { Category } from 'src/app/shared/models/category.model';
+import { RecipeViewDetails } from 'src/app/shared/models/recipe-view-details.model';
 
 @Component({
   selector: 'app-view-recipe',
@@ -11,7 +11,7 @@ import { RecipeDetails } from 'src/app/shared/recipe-details.model';
   styleUrls: ['./view-recipe.component.sass'],
 })
 export class ViewRecipeComponent implements OnInit {
-  recipe: RecipeDetails;
+  recipe: RecipeViewDetails;
   ingredientsHtml: string;
   preparoModeHtml: string;
   category: Category;

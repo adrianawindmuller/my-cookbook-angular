@@ -1,13 +1,18 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { of } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
-import { Recipe } from 'src/app/shared/recipe.model';
 import { RecipeService } from 'src/app/shared/recipe.service';
-import { Category } from 'src/app/shared/category.model';
+import { Category } from 'src/app/shared/models/category.model';
+import { RecipeRegister } from 'src/app/shared/models/recipe-register.model';
 
 @Component({
   selector: 'app-edit-recipe',
@@ -16,9 +21,9 @@ import { Category } from 'src/app/shared/category.model';
 })
 export class EditRecipeComponent implements OnInit {
   recipeFormEdit: FormGroup;
-  publicado: boolean;
+  publicated: boolean = false;
   category: Category[];
-  recipe: Recipe;
+  recipe: RecipeRegister;
 
   constructor(
     private route: ActivatedRoute,
@@ -32,57 +37,67 @@ export class EditRecipeComponent implements OnInit {
 
     this.route.paramMap.subscribe((params) => {
       const id = +params.get('id');
-      this.service.getRecipeId(id).subscribe({
-        next: (res) => (this.recipe = res),
-      });
+      this.service.getRecipeIdEdit(id).subscribe((res) => (this.recipe = res));
     });
 
     this.recipeFormEdit = this.fb.group({
-      name: [
-        '',
-        [
+      name: new FormControl(
+        { value: '' },
+        Validators.compose([
           Validators.required,
           Validators.minLength(5),
           Validators.maxLength(60),
-        ],
-      ],
-      category: ['', Validators.required],
-      numberPortion: ['', [Validators.required, Validators.maxLength(3)]],
-      preparationTime: ['', [Validators.required, Validators.maxLength(3)]],
-      ingredients: [
-        '',
-        [
+        ])
+      ),
+      categoryId: new FormControl(
+        { value: '' },
+        Validators.compose([Validators.required])
+      ),
+      numberPortion: new FormControl(
+        { value: '' },
+        Validators.compose([Validators.required, Validators.maxLength(3)])
+      ),
+      preparationTimeInMinutes: new FormControl(
+        { value: '' },
+        Validators.compose([Validators.required, Validators.maxLength(3)])
+      ),
+      ingredients: new FormControl(
+        { value: '' },
+        Validators.compose([
           Validators.required,
           Validators.minLength(5),
           Validators.maxLength(1000),
-        ],
-      ],
-      preparationMode: [
-        '',
-        [
+        ])
+      ),
+      preparationMode: new FormControl(
+        { value: '' },
+        Validators.compose([
           Validators.required,
           Validators.minLength(5),
           Validators.maxLength(1000),
-        ],
-      ],
-      public: [''],
-      images: ['', Validators.required],
+        ])
+      ),
+      publicated: new FormControl({ value: '' }),
+      images: new FormControl(
+        { value: '' },
+        Validators.compose([Validators.required])
+      ),
     });
   }
 
   SaveEditRecipe() {
     var recipeEdit = this.recipeFormEdit.value;
-    let recipeModel = recipeEdit as Recipe;
+    let recipeModel = recipeEdit as RecipeRegister;
     recipeModel.id = this.recipe.id;
+    recipeModel.userId = 1;
     recipeModel.images = this.recipe.images;
+    recipeModel.publicated = this.publicated;
 
     this.service
       .updateRecipe(recipeModel)
       .pipe(
         catchError((err) => {
-          this.toastr.error(err, '', {
-            progressBar: true,
-          });
+          this.toastr.error(err, '');
           return of();
         }),
         finalize(() => {
@@ -96,7 +111,7 @@ export class EditRecipeComponent implements OnInit {
   }
 
   changePublic(event: MatSlideToggleChange) {
-    this.publicado = event.checked;
+    this.publicated = event.checked;
   }
 
   fileUploadEditImage(event) {

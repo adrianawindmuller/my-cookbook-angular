@@ -27,6 +27,11 @@ namespace MyCookbook.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> PostAsync(RegisterRecipeViewModel model)
         {
+            if (model.Images.Count > 6)
+            {
+                ModelState.AddModelError("images", "Insira no máximo 6 imagens.");
+            }
+
             var user = await _userRepository.GetByIdAsync(model.UserId);
             if (user is null)
             {
@@ -38,6 +43,7 @@ namespace MyCookbook.Api.Controllers
             {
                 return NotFound($"Categoria {model.CategoryId} não encontrada.");
             }
+
             var imagens = model.Images.Select(i => new Image(i)).ToList();
 
             var recipe = new Recipe(
@@ -55,6 +61,49 @@ namespace MyCookbook.Api.Controllers
             await _recipeRepository.AddAsync(recipe);
             await _recipeRepository.UnitOfWork.CommitAsync();
             return Ok("Receita criada com sucesso!");
+        }
+
+        [Route("{id}")]
+        [HttpPut]
+        public async Task<IActionResult> PutRecipe(int id, RegisterRecipeViewModel model)
+        {
+            var recipe = await _recipeRepository.GetByIdAsync(id);
+            if (recipe is null)
+            {
+                return NotFound($"Receita {id} não encontrada");
+            }
+
+            var user = await _userRepository.GetByIdAsync(model.UserId);
+            if (user is null)
+            {
+                return NotFound($"User {model.UserId} não encontrada.");
+            };
+
+            var category = await _categoryRepository.GetByIdAsync(model.CategoryId);
+            if (category is null)
+            {
+                return NotFound($"Categoria {model.CategoryId}");
+            };
+
+            var images = model.Images.Select(i => new Image(i)).ToList();
+
+            recipe.Edit(
+                model.Name,
+                user,
+                category,
+                model.NumberPortion,
+                model.PreparationTimeInMinutes,
+                model.Ingredients,
+                model.PreparationMode,
+                model.Publicated,
+                images
+                );
+
+            _recipeRepository.Update(recipe);
+            await _recipeRepository.UnitOfWork.CommitAsync();
+
+            return Ok("Receita atualizada com sucesso!");
+
         }
 
         [HttpGet]
@@ -86,7 +135,7 @@ namespace MyCookbook.Api.Controllers
 
         }
 
-        [Route("{id}")]
+        [Route("{id}/details")]
         [HttpGet]
         public async Task<IActionResult> GetRecipeDetails(int id)
         {
@@ -114,6 +163,40 @@ namespace MyCookbook.Api.Controllers
                 Images = imageVm,
                 Favorite = recipe.Favorite,
                 Rating = recipe.Rating,
+            };
+
+            return Ok(vm);
+
+        }
+
+        [Route("{id}")]
+        [HttpGet]
+        public async Task<IActionResult> GetRecipeEdit(int id)
+        {
+            var recipe = await _recipeRepository.GetByIdAsync(id);
+            if (recipe is null)
+            {
+                return NotFound($"Receita {id} não encontrada.");
+            }
+
+            var imagesVm = new List<string>();
+            foreach (var image in recipe.Images)
+            {
+                imagesVm.Add(image.RawContent);
+            }
+
+            var vm = new RegisterRecipeViewModel
+            {
+                Id = recipe.Id,
+                Name = recipe.Name,
+                CategoryId = recipe.Category.Id,
+                UserId = recipe.User.Id,
+                NumberPortion = recipe.NumberPortion,
+                PreparationTimeInMinutes = recipe.PreparationTimeInMinutes,
+                Ingredients = recipe.Ingredients,
+                PreparationMode = recipe.PreparationMode,
+                Images = imagesVm,
+                Publicated = recipe.Publicated
             };
 
             return Ok(vm);

@@ -39,10 +39,10 @@
                 <div fxFlex="100" fxLayoutAlign="space-between center">
                   <mat-form-field fxFlex="40%" appearance="outline">
                     <mat-label>Tempo de Preparo</mat-label>
-                    <input matInput formControlName="preparationTime" type="number"
+                    <input matInput formControlName="preparationTimeInMinutes" type="number"
                       onKeyPress="if(this.value.length==3) return false;">
                     <mat-hint>Minutos</mat-hint>
-                    <mat-error *ngIf="recipeForm.get('preparationTime').errors?.required">
+                    <mat-error *ngIf="recipeForm.get('preparationTimeInMinutes').errors?.required">
                       Campo Obrigatório
                     </mat-error>
                   </mat-form-field>
@@ -101,7 +101,7 @@
             <div [formGroup]="recipeForm" fxLayout="column">
               <div fxLayout="row" class="pt2" fxLayoutAlign="center center">
                 <span class="pr2">Deseja Publicar está receita?</span>
-                <mat-slide-toggle color="primary" (change)="changePublic($event)" formControlName="public">
+                <mat-slide-toggle color="primary" (change)="changePublic($event)">
                   <span *ngIf="publicado">Publicado</span>
                   <span *ngIf="!publicado">Despublicado</span>
                 </mat-slide-toggle>

@@ -1,6 +1,4 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { RecipeDetails } from '../recipe-details.model';
-import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
 
 @Component({

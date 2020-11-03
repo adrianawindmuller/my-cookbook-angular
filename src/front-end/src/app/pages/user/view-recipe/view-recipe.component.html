@@ -2,7 +2,7 @@
   <mat-card fxFlex="90" fxFlex.xs="100%" fxFlex.sm="900%" fxFlex.lg="60%" fxFlex.xl="50%" class="mat-elevation-z0">
     <div fxLayout="row">
       <mat-card-title fxFlex="50" fxLayoutAlign="start center" class="h3">
-        {{recipe.recipeName | uppercase}}
+        {{recipe.nameRecipe | uppercase}}
       </mat-card-title>
       <div fxFlex fxLayoutAlign="end center">
         <button mat-raised-button color="primary" [routerLink]="['/recipe', recipe.recipeId, 'edit']">
@@ -53,7 +53,6 @@
         <div [innerHTML]="ingredientsHtml" class="list">
         </div>
       </div>
-
       <div fxLayout="column" fxLayoutAlign="center start" class="pt3">
         <span fxFill color="primary" class="title-icone background-itens pl1 py2" fxLayoutAlign="start center">
           <mat-icon color="primary" class="pr1">restaurant_menu</mat-icon>

@@ -6,8 +6,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogConfirmComponent } from 'src/app/shared/dialog-confirm/dialog-confirm.component';
 import { ToastrService } from 'ngx-toastr';
 import { catchError, finalize } from 'rxjs/operators';
-import { Category } from 'src/app/shared/category.model';
-import { CardRecipe } from 'src/app/shared/card-recipe.model';
+import { Category } from 'src/app/shared/models/category.model';
+import { CardRecipe } from 'src/app/shared/models/card-recipe.model';
 
 @Component({
   selector: 'app-home',

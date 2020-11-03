@@ -1,12 +1,12 @@
-export class RecipeDetails {
-  recipeId: number;
-  recipeName: string;
-  categoryName: number;
+export class RecipeRegister {
+  id: number;
+  name: string;
+  categoryId: number;
+  userId: number;
   numberPortion: number;
   preparationTimeInMinutes: number;
   ingredients: string;
   preparationMode: string;
   images: string[] = [];
-  favorite: boolean;
-  rating: number;
+  publicated: boolean;
 }

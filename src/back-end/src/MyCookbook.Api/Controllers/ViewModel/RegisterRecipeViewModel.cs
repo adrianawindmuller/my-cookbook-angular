@@ -6,6 +6,8 @@ namespace MyCookbook.Api.Controllers.ViewModel
 {
     public class RegisterRecipeViewModel
     {
+        public int Id { get; set; }
+
         [Required(ErrorMessage = Text.ErrorMessenges.FielRequired)]
         [MaxLength(60, ErrorMessage = "Insira no máximo 60 caracteres.")]
         [MinLength(5, ErrorMessage = "Insira pelo menos 5 caracteres.")]
@@ -42,7 +44,6 @@ namespace MyCookbook.Api.Controllers.ViewModel
         public string PreparationMode { get; set; }
 
         [Required(ErrorMessage = Text.ErrorMessenges.FielRequired)]
-        [Range(1, 6, ErrorMessage = "Insira no máximo 6 imagens.")]
         public List<string> Images { get; set; }
 
         public bool Publicated { get; set; }

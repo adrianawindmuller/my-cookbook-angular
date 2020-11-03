@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Category } from './category.model';
+import { Category } from './models/category.model';
 import { Recipe } from './recipe.model';
 import { AppEnviroment } from './app-environment';
-import { CardRecipe } from './card-recipe.model';
-import { RecipeDetails } from './recipe-details.model';
+import { CardRecipe } from './models/card-recipe.model';
+import { RecipeViewDetails } from './models/recipe-view-details.model';
+import { RecipeRegister } from './models/recipe-register.model';
 @Injectable({
   providedIn: 'root',
 })
@@ -20,8 +21,18 @@ export class RecipeService {
     return this.http.get<Category[]>(this.appEnviroment.categoryApi.category());
   }
 
-  createNewRecipe(recipe: Recipe) {
-    return this.http.post<Recipe>(this.API_Recipe, recipe);
+  createNewRecipe(recipe: RecipeRegister) {
+    return this.http.post<RecipeRegister>(
+      this.appEnviroment.recipeApi.registerRecipe(),
+      recipe
+    );
+  }
+
+  updateRecipe(recipe: RecipeRegister) {
+    return this.http.put(
+      this.appEnviroment.recipeApi.recipeIdEdit(recipe.id),
+      recipe
+    );
   }
 
   getRecipes() {
@@ -29,8 +40,14 @@ export class RecipeService {
   }
 
   getRecipeId(id: number) {
-    return this.http.get<RecipeDetails>(
+    return this.http.get<RecipeViewDetails>(
       this.appEnviroment.recipeApi.recipeId(id)
+    );
+  }
+
+  getRecipeIdEdit(id: number) {
+    return this.http.get<RecipeRegister>(
+      this.appEnviroment.recipeApi.recipeIdEdit(id)
     );
   }
 
@@ -44,9 +61,5 @@ export class RecipeService {
 
   deleteRecipe(id: number) {
     return this.http.delete(`${this.API_Recipe}/${id}`);
-  }
-
-  updateRecipe(recipe: Recipe) {
-    return this.http.put(`${this.API_Recipe}/${recipe.id}`, recipe);
   }
 }
