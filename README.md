@@ -13,10 +13,9 @@
 - [Sass](https://sass-lang.com/)
 - [TypeScript](https://www.typescriptlang.org/)
 
-### Até o momento o resultado foi esse:
+### Este foi o resultado :
 
 🎥 [Vídeo Youtube](https://www.youtube.com/watch?v=3E-1YAEN120&t=1s)
 
 **Home**
-[![home](web-app/src/assets/home.png)](https://www.youtube.com/watch?v=3E-1YAEN120&t=1s)
-
+[![home](src/front-end/src/assets/home.png)](https://www.youtube.com/watch?v=3E-1YAEN120&t=1s)

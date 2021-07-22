@@ -133,6 +133,7 @@ namespace MyCookbook.Test
             var userNew = new User("Taís", "tais@gmail.com", "src://tais.jpg", "A5F@hf88");
             var categoryNew = new Category("Sopas");
             var recipe = GetNewRecipe(_3Images, _NewUser, _NewCategory);
+
             recipe.Edit("Sopa de Abobora", userNew, categoryNew, 8, 60, "1 abobora....", "Corte a abobora e coloque para cozinhar...", true, _3Images);
             Assert.Equal("Sopa de Abobora", recipe.Name);
             Assert.Equal(userNew, recipe.User);
