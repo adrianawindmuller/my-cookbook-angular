@@ -4,9 +4,9 @@ namespace MyCookbook.Api.Controllers
 {
     public class CardRecipeViewModel
     {
-        public int RecipeId { get; set; }
+        public int Id { get; set; }
 
-        public string RecipeName { get; set; }
+        public string Name { get; set; }
 
         public string CategoryName { get; set; }
 

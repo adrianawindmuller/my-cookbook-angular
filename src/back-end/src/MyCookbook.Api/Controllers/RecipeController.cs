@@ -117,8 +117,8 @@ namespace MyCookbook.Api.Controllers
             {
                 var vmRecipe = new CardRecipeViewModel
                 {
-                    RecipeId = recipe.Id,
-                    RecipeName = recipe.Name,
+                    Id = recipe.Id,
+                    Name = recipe.Name,
                     CategoryName = recipe.Category.Name,
                     Favorite = recipe.Favorite,
                 };
