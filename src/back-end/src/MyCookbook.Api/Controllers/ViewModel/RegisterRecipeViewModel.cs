@@ -28,7 +28,7 @@ namespace MyCookbook.Api.Controllers.ViewModel
 
 
         [Required(ErrorMessage = Text.ErrorMessenges.FielRequired)]
-        [Range(10, 600, ErrorMessage = "Insira um número de 10 minutos a 10 horas.")]
+        [Range(10, 600, ErrorMessage = "Insira um número de 10 minutos a 600 minutos.")]
         public uint PreparationTimeInMinutes { get; set; }
 
 

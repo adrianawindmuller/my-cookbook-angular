@@ -60,7 +60,7 @@ namespace MyCookbook.Api.Controllers
 
             await _recipeRepository.AddAsync(recipe);
             await _recipeRepository.UnitOfWork.CommitAsync();
-            return Ok("Receita criada com sucesso!");
+            return Ok();
         }
 
         [Route("{id}")]
@@ -118,6 +118,8 @@ namespace MyCookbook.Api.Controllers
                 var vmRecipe = new CardRecipeViewModel
                 {
                     Id = recipe.Id,
+                    UserId = recipe.User.Id,
+                    UserName = recipe.User.Name,
                     Name = recipe.Name,
                     CategoryName = recipe.Category.Name,
                     Favorite = recipe.Favorite,

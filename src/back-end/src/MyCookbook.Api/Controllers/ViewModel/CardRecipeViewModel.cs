@@ -6,6 +6,10 @@ namespace MyCookbook.Api.Controllers
     {
         public int Id { get; set; }
 
+        public int UserId { get; set; }
+
+        public string UserName { get; set; }
+
         public string Name { get; set; }
 
         public string CategoryName { get; set; }
