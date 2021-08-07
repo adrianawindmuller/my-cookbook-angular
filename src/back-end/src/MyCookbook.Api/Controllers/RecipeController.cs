@@ -155,8 +155,10 @@ namespace MyCookbook.Api.Controllers
 
             var vm = new GetRecipeDetailsViewModel
             {
-                RecipeId = recipe.Id,
-                RecipeName = recipe.Name,
+                Id = recipe.Id,
+                Name = recipe.Name,
+                UserId = recipe.User.Id,
+                UserName = recipe.User.Name,
                 CategoryName = recipe.Category.Name,
                 NumberPortion = recipe.NumberPortion,
                 PreparationTimeInMinutes = recipe.PreparationTimeInMinutes,

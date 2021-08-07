@@ -4,9 +4,13 @@ namespace MyCookbook.Api.Controllers.ViewModel
 {
     public class GetRecipeDetailsViewModel
     {
-        public int RecipeId { get; set; }
+        public int Id { get; set; }
 
-        public string RecipeName { get; set; }
+        public string Name { get; set; }
+
+        public int UserId { get; set; }
+
+        public string UserName { get; set; }
 
         public string CategoryName { get; set; }
 
