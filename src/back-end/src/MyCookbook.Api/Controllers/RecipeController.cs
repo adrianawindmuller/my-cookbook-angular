@@ -102,7 +102,7 @@ namespace MyCookbook.Api.Controllers
             _recipeRepository.Update(recipe);
             await _recipeRepository.UnitOfWork.CommitAsync();
 
-            return Ok("Receita atualizada com sucesso!");
+            return Ok();
 
         }
 
