@@ -106,6 +106,23 @@ namespace MyCookbook.Api.Controllers
 
         }
 
+        [Route("{id}")]
+        [HttpDelete]
+        public async Task<IActionResult> DeleteRecipe(int id)
+        {
+            var recipe = _recipeRepository.GetByIdAsync(id);
+
+            if (recipe is null)
+            {
+                return NotFound($"Receita {id} não encontrada");
+            }
+
+            _recipeRepository.Delete(recipe.Result);
+            await _recipeRepository.UnitOfWork.CommitAsync();
+
+            return Ok();
+        }
+
         [HttpGet]
         public async Task<IActionResult> GetRecipe()
         {
