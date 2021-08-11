@@ -1,14 +1,4 @@
-<mat-sidenav-container class="container">
-
-  <mat-sidenav #sidenav mode="side" class="mat-elevation-z8">
-    <app-side-nav [toggle]="sidenav"></app-side-nav>
-  </mat-sidenav>
-
-  <mat-sidenav-container class="mat-elevation-z2">
-    <app-header [sideNav]="sidenav">
-    </app-header>
-    <app-main></app-main>
-    <app-footer></app-footer>
-  </mat-sidenav-container>
-
-</mat-sidenav-container>
+<app-header></app-header>
+<div class="body">
+  <router-outlet></router-outlet>
+</div>

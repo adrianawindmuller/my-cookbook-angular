@@ -1,0 +1,56 @@
+<div class="container-fluid py-4">
+  <div class="row justify-content-center">
+    <div *ngIf="recipe" class="col-lg-7 p-3 shadow rounded" style="background-color: white">
+      <div class="d-flex flex-column">
+        <div class="d-flex justify-content-between align-items-center">
+          <p class="fs-4 m-1 fw-bold text-capitalize text-break">{{recipe.name}}</p>
+          <div>
+            <button type="button" class="btn btn-outline-primary me-3"
+              [routerLink]="['/edit', recipe.id]">Editar</button>
+            <button type="button" class="btn btn-outline-danger"
+              (click)="openModalDeleteRecipe(recipe.id)">Deletar</button>
+          </div>
+        </div>
+        <p class="m-0">
+          <i class="bi bi-person"></i>
+          Por {{recipe.userName}}
+        </p>
+        <p class="m-0">
+          <i class="bi bi-tag"></i>
+          {{recipe.categoryName}}
+        </p>
+        <app-rating [rating]="recipe.rating" [id]="recipe.id">
+        </app-rating>
+        <div class="d-flex justify-content-center">
+          <app-carousel [images]="recipe.images" [name]="recipe.name"></app-carousel>
+        </div>
+        <div class="d-flex flex--grow-1 justify-content-around mt-3">
+          <app-card-details-recipe icon="bi-alarm" name="Porção" [result]="recipe.numberPortion">
+          </app-card-details-recipe>
+
+          <app-card-details-recipe icon="bi-info-circle" name="Preparo" [result]="recipe.preparationTimeInMinutes">
+          </app-card-details-recipe>
+
+          <div class="card text-center mb-2" style="width: 8rem;">
+            <div class="card-body">
+              <app-toggle-favorite [isFavorite]="recipe.favorite" [id]="recipe.id"></app-toggle-favorite>
+              <h5 class="card-title m-0">Favorito</h5>
+            </div>
+          </div>
+        </div>
+
+        <!-- ingredientes -->
+        <div>
+          <p class="fs-4 m-1 fw-bold">Ingredientes</p>
+          <div [innerHtml]="htmlIngredients" style="line-height: 2;"></div>
+        </div>
+
+        <!-- modo de preparo-->
+        <div>
+          <p class="fs-4 m-1 fw-bold">Modo de preparo</p>
+          <div [innerHtml]="htmlPreparationMode" style="line-height: 2;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

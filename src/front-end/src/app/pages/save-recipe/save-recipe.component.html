@@ -1,0 +1,138 @@
+<div class="container-fluid py-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-7 p-5 shadow rounded" style="background-color: white">
+      <div class="d-flex flex-column">
+        <p class="fs-3 text-center fw-bold">Enviar Receita</p>
+        <form (ngSubmit)="onSubmit()" [formGroup]="recipeForm" class="needs-validation" novalidate>
+          <!-- name -->
+          <div class="mb-3">
+            <label for="name" class="form-label"> Nome da receita </label>
+            <input type="text" class="form-control" id="name" placeholder="Bolo de cenoura" formControlName="name"
+              [ngClass]="{'is-invalid': (submitted && form.name.errors) || (form.name.touched && form.name.errors)}" />
+            <div *ngIf="(submitted && form.name.errors) || (form.name.touched && form.name.errors)"
+              class="invalid-feedback">
+              {{ messengeErrorName() }}
+            </div>
+          </div>
+
+          <!-- categorias -->
+          <div class="mb-3">
+            <label for="category" class="form-label">Categoria</label>
+            <select formControlName="categoryId" id="category" class="form-select"
+              [ngClass]="{ 'is-invalid': (submitted && form.categoryId.errors) || (form.categoryId.touched && form.categoryId.errors) }">
+              <option selected disabled value="">
+                Selecione uma categoria
+              </option>
+              <option *ngFor="let category of categories" value="{{ category.id }}">
+                {{ category.name }}
+              </option>
+            </select>
+            <div *ngIf="(submitted && form.categoryId.errors) || (form.categoryId.touched && form.categoryId.errors) "
+              class="invalid-feedback">
+              <div *ngIf="form.categoryId.errors?.required">
+                Este campo é obrigatório
+              </div>
+            </div>
+          </div>
+
+          <div class="row row-cols-1 row-cols-sm-2">
+            <!-- Número de porções -->
+            <div class="col mb-3">
+              <label for="portion" class="form-label">
+                Numero de porções
+              </label>
+              <input type="number" class="form-control" id="portion" placeholder="8" formControlName="numberPortion"
+                min="1" max="40"
+                [ngClass]="{ 'is-invalid': (submitted && form.numberPortion.errors) || (form.numberPortion.touched && form.numberPortion.errors)}" />
+              <div
+                *ngIf="(submitted && form.numberPortion.errors) || (form.numberPortion.touched && form.numberPortion.errors)"
+                class="invalid-feedback">
+                {{ messengeErrorNumberPortion() }}
+              </div>
+            </div>
+
+            <!-- Tempo de preparo -->
+            <div class="col">
+              <label for="preparation" class="form-label">
+                Tempo de preparo em min
+              </label>
+              <div class=" input-group mb-3">
+                <input type="number" class="form-control" placeholder="60" aria-label="Recipient's username"
+                  aria-describedby="preparation" formControlName="preparationTimeInMinutes" min="10" max="600"
+                  [ngClass]="{'is-invalid': (submitted && form.preparationTimeInMinutes.errors) ||
+                   (form.preparationTimeInMinutes.touched && form.preparationTimeInMinutes.errors)}">
+                <span class="input-group-text" id="preparation">minutos</span>
+                <div *ngIf="(submitted && form.preparationTimeInMinutes.errors) ||
+                  (form.preparationTimeInMinutes.touched && form.preparationTimeInMinutes.errors)"
+                  class="invalid-feedback">
+                  {{messengeErrorPreparationTimeInMinutes()}}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ingredientes -->
+          <div class="mb-3">
+            <label for="ingredients" class="form-label">Ingredientes</label>
+            <textarea class="form-control" id="ingredients" rows="3" maxlength="1000" formControlName="ingredients"
+              [ngClass]="{ 'is-invalid': (submitted && form.ingredients.errors) || (form.ingredients.touched && form.ingredients.errors)}"></textarea>
+            <div *ngIf="(submitted && form.ingredients.errors) || (form.ingredients.touched && form.ingredients.errors)"
+              class="invalid-feedback">
+              {{ messengeErrorIngredients() }}
+            </div>
+          </div>
+
+          <!-- Modo de preparo -->
+          <div class="mb-3">
+            <label for="preparationMode" class="form-label">Modo de preparo</label>
+            <textarea class="form-control" id="preparationMode" rows="3" formControlName="preparationMode" [ngClass]="{ 'is-invalid': (submitted && form.preparationMode.errors) ||
+               (form.preparationMode.touched && form.preparationMode.errors)}"></textarea>
+            <div
+              *ngIf="(submitted && form.preparationMode.errors) ||  (form.preparationMode.touched && form.preparationMode.errors)"
+              class="invalid-feedback">
+              {{messengeErrorPreparationMode()}}
+            </div>
+          </div>
+
+          <!-- Upload Images -->
+          <p>Adicionar Imagem</p>
+          <div class="mb-3 d-flex align-items-center pt-2">
+            <div>
+              <button class="btn btn-primary rounded-circle" for="image" type="button" (click)="fileInput.click()">
+                <i class="bi bi-cloud-arrow-up"></i>
+              </button>
+            </div>
+            <input class="form-control" type="file" id="image" (change)="fileUploadImage($event)" formArrayName="images"
+              multiple style="display: none;" #fileInput
+              [ngClass]="{ 'is-invalid': (submitted && images.errors) || (images.touched && images.errors)}" />
+
+            <div *ngIf="images.length > 0" class="d-flex flex-row flex-wrap ms-2">
+              <div *ngFor="let image of images.controls, let i = index" style="position: relative;">
+                <img src="{{image.value}}" class="image ms-2 rounded">
+                <button type="button" class="btn-close close-button" aria-label="Close"
+                  (click)="removeImage(i)"></button>
+              </div>
+            </div>
+
+            <div *ngIf="(submitted && images.errors) || (images.touched && images.errors)"
+              class="ms-2 invalid-feedback">
+              <div *ngIf="images.errors?.required">
+                Este campo é obrigatório
+              </div>
+            </div>
+          </div>
+
+          <!-- Publicado -->
+          <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" value="" id="published" formControlName="published" />
+            <label class="form-check-label" for="published"> Publicar (opcional) </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary" [disabled]="!recipeForm.valid">
+            Salvar Receita
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

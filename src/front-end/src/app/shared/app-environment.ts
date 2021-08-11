@@ -1,29 +1,26 @@
 import { environment } from '../../environments/environment';
 
 export class AppEnviroment {
-  private category: string;
   private recipe: string;
+  private category: string;
 
   constructor() {
-    this.category = `${environment.BaseUrl}/category`;
     this.recipe = `${environment.BaseUrl}/recipe`;
+    this.category = `${environment.BaseUrl}/category`;
   }
 
-  public categoryApi = {
-    category: (): string => `${this.category}`,
-  };
-
   public recipeApi = {
-    recipe: (): string => `${this.recipe}`,
-    recipeId: (id: number): string => `${this.recipe}/${id}/details`,
-    recipeIdEdit: (id: number): string => `${this.recipe}/${id}`,
-
-    registerRecipe: (): string => `${this.recipe}`,
-
-    toggleFavorite: (id: number): string =>
+    get: (): string => `${this.recipe}`,
+    getDetailsById: (id: number): string => `${this.recipe}/${id}/details`,
+    getEditById: (id: number): string => `${this.recipe}/${id}`,
+    post: (): string => `${this.recipe}`,
+    put: (id: number): string => `${this.recipe}/${id}`,
+    delete: (id: number): string => `${this.recipe}/${id}`,
+    togglefavorite: (id: number): string =>
       `${this.recipe}/${id}/toggle-favorite`,
-
     setRating: (id: number, rate: number): string =>
       `${this.recipe}/${id}/set-rating/${rate}`,
   };
+
+  public categoryApi = { get: (): string => `${this.category}` };
 }

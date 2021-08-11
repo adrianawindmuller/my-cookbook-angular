@@ -1,38 +1,28 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Recipe } from '../recipe.model';
+import { Component, Input, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { RecipeService } from '../recipe.service';
 
 @Component({
   selector: 'app-rating',
   templateUrl: './rating.component.html',
-  styleUrls: ['./rating.component.sass'],
 })
 export class RatingComponent implements OnInit {
-  @Input() rating: number;
-  @Input() recipeId: number;
-  starMax: Number = 5;
-  ratingArray = [];
+  @Input() id!: number;
+  @Input() rating!: number;
 
-  constructor(private recipeService: RecipeService) {}
+  constructor(
+    private recipeService: RecipeService,
+    private toastr: ToastrService
+  ) {}
 
-  ngOnInit(): void {
-    for (let index = 0; index < this.starMax; index++) {
-      this.ratingArray.push(index);
-    }
-  }
+  ngOnInit(): void {}
 
-  ratingClick(rating: number) {
-    this.rating = rating;
-    this.recipeService
-      .SetRating(this.recipeId, rating)
-      .subscribe(() => this.recipeService.getRecipeId(this.recipeId));  
-  }
-
-  showIcone(index: number) {
-    if (this.rating >= index + 1) {
-      return 'star';
-    } else {
-      return 'star_outline';
-    }
+  setRating() {
+    this.recipeService.setRating(this.id, this.rating).subscribe((res) => {
+      this.toastr.success('Avaliação feita com sucesso!', '', {
+        progressBar: true,
+        timeOut: 5000,
+      });
+    });
   }
 }

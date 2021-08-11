@@ -1,6 +1,5 @@
-<button mat-icon-button (click)="ratingClick(index+1)" color="primary"
-  *ngFor="let ratingId of ratingArray; index as index">
-  <mat-icon>
-    {{ showIcone(index) }}
-  </mat-icon>
-</button>
+<div class="d-flex align-items-center">
+  <span class="m-0">Sua Avaliação:</span>
+  <ngb-rating [(rate)]="rating" (rateChange)="setRating()" [max]="5" style="font-size: 25px; color: rgb(255, 174, 0)">
+  </ngb-rating>
+</div>

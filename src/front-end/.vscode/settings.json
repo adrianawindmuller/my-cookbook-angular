@@ -8,7 +8,7 @@
   "editor.minimap.enabled": false,
   "editor.codeLens": true,
   "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true
+    "source.fixAll.eslint": true
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnPaste": true,
@@ -18,8 +18,8 @@
   "editor.lineHeight": 25,
   "workbench.iconTheme": "material-icon-theme",
   "workbench.colorCustomizations": {
-      "diffEditor.removedTextBorder": "#ff0000",
-      "diffEditor.insertedTextBorder": "#00ff00"
+    "diffEditor.removedTextBorder": "#ff0000",
+    "diffEditor.insertedTextBorder": "#00ff00"
   },
   "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
   "terminal.integrated.fontSize": 16,

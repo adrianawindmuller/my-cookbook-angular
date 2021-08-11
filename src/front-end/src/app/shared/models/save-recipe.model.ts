@@ -1,15 +1,12 @@
-export class RecipeViewDetails {
+export class SaveRecipe {
   id!: number;
   name!: string;
-  categoryName!: string;
+  categoryId!: number;
+  userId!: number;
   numberPortion!: number;
   preparationTimeInMinutes!: number;
   ingredients!: string;
   preparationMode!: string;
   images: string[] = [];
-  userId!: number;
-  userName!: string;
-  publicated!: boolean;
-  favorite!: boolean;
-  rating!: number;
+  published!: boolean;
 }

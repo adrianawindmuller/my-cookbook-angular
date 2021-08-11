@@ -1,23 +1,33 @@
-<header>
-  <mat-toolbar fxLayout="row" fxLayoutAlign="start center">
-    <mat-toolbar-row fxFlex>
-      <button mat-icon-button (click)="sideNav.toggle()">
-        <mat-icon color="primary" class="bold">menu</mat-icon>
-      </button>
-      <a class="logo pr4" [routerLink]="['/home']">
-        <span class="mat-headline"> Cookbook </span>
-      </a>
-    </mat-toolbar-row>
-    <mat-toolbar-row fxFlex fxLayoutAlign="end center">
-      <!-- <div>
-        <button mat-button>Saladas</button>
-        <button mat-button>Sopas</button>
-        <button mat-button>Lanches</button>
-        <button mat-button>Pratos Rápidos</button>
-        <button mat-button>Carnes</button>
-        <button mat-button>Massas</button>
-      </div> -->
-      <button mat-raised-button color="primary" fxHide.xs>Todas Receitas</button>
-    </mat-toolbar-row>
-  </mat-toolbar>
-</header>
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #4e70ff;">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold text-light" href="#">My CookBook</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active text-light" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" href="#">Sobre</a>
+        </li>
+        <li class="nav-item dropdown">
+          <div class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownMenuLink" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            Receitas
+          </div>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="#">Bolos</a></li>
+            <li><a class="dropdown-item" href="#">Doces</a></li>
+            <li><a class="dropdown-item" href="#">Salgados</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <button type="button" class="btn btn-outline-light" [routerLink]="['/add']">
+      Adicionar Receitas
+    </button>
+  </div>
+</nav>

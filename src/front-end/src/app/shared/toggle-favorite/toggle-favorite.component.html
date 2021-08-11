@@ -1,0 +1,8 @@
+<button type="button" class="btn btn-outline-danger btn-sm" (click)="toggleFavorite()">
+  <div *ngIf="isFavorite; else notFavorite">
+    <i class="bi bi-heart-fill"></i>
+  </div>
+  <ng-template #notFavorite>
+    <i class="bi bi-heart"></i>
+  </ng-template>
+</button>

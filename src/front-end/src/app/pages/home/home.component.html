@@ -1,36 +1,24 @@
-<section>
-  <div class="fork-me-github">
-    <a href="https://github.com/adrianawindmuller/my-cookbook-angular"><img loading="lazy" width="149" height="149"
-        src="https://github.blog/wp-content/uploads/2008/12/forkme_right_gray_6d6d6d.png?resize=149%2C149"
-        class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
-  </div>
-  <div fxLayout="row wrap" fxLayoutAlign="center start">
-    <mat-card *ngFor="let recipe of recipes" class="ml3 my3">
-      <app-carousel [images]="recipe.images" [sizeCard]="true" [routerLink]="['/recipe', recipe.recipeId]"
-        class="carousel">
-      </app-carousel>
-      <div fxLayout="column" class="p1">
-        <mat-card-subtitle fxLayoutAlign="end center" fxLayout="row">
-          <div fxFlex class="category">{{recipe.categoryName}} </div>
-          <div fxflex fxLayoutAlign="end start">
-            <app-favorite-button [favorite]="recipe.favorite" [recipeId]="recipe.recipeId"></app-favorite-button>
-            <button mat-icon-button color="primary" [matMenuTriggerFor]="menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu">
-              <button mat-menu-item [routerLink]="['/recipe', recipe.recipeId, 'edit']">
-                <mat-icon aria-hidden="false">create</mat-icon>Editar
-              </button>
-              <button mat-menu-item (click)="deleteRecipe(recipe.recipeId)">
-                <mat-icon aria-hidden="false">delete</mat-icon>Remover
-              </button>
-            </mat-menu>
-          </div>
-        </mat-card-subtitle>
-        <mat-card-title fxLayoutAlign="start center" fxLayout="row">
-          <div>{{recipe.recipeName}} </div>
-        </mat-card-title>
+<div class="container-fluid" style="min-height: 95vh; max-height: 100%;">
+  <div class="d-flex justify-content-around flex-wrap">
+    <div *ngFor="let recipe of recipes" class="card mt-4 mb-4" style="width: 18rem">
+      <div style="height: 150px;">
+        <img src="{{ recipe.images[0] }}" class="" alt="{{recipe.name}}" style="height: 100%; width: 100%;" />
       </div>
-    </mat-card>
+      <div class="card-body">
+        <h5 class="card-title fw-bold mb-1">{{ recipe.name }}</h5>
+        <p class="mb-1">
+          <i class="bi bi-person"></i>
+          Por {{recipe.userName}}
+        </p>
+        <p class="card-text">
+          <i class="bi bi-tag"></i>
+          <span>{{recipe.categoryName}}</span>
+        </p>
+        <div class="d-flex justify-content-between">
+          <a [routerLink]="['/recipe', recipe.id]" class="btn btn-outline-primary">Ver receita</a>
+          <app-toggle-favorite [isFavorite]="recipe.favorite" [id]="recipe.id"></app-toggle-favorite>
+        </div>
+      </div>
+    </div>
   </div>
-</section>
+</div>

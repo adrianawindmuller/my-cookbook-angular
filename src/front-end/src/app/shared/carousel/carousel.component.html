@@ -1,9 +1,9 @@
-<ly-carousel [withClass]="classes.carouselHome" *ngIf="sizeCard" autoplay hasNavigationArrows="false">
-  <ly-carousel-item *ngFor=" let item of images" [withClass]="classes.carouselItem" [srcImg]="item">
-  </ly-carousel-item>
-</ly-carousel>
-
-<ly-carousel [withClass]="classes.carousel" *ngIf="!sizeCard">
-  <ly-carousel-item *ngFor="let item of images" [withClass]="classes.carouselItem" [srcImg]="item">
-  </ly-carousel-item>
-</ly-carousel>
+<ngb-carousel *ngIf="images" style="max-width: 550px;">
+  <ng-template ngbSlide *ngFor="let image of images">
+    <div class="picsum-img-wrapper">
+      <img [src]="image" alt="{{name}}" class="image">
+    </div>
+    <div class="carousel-caption">
+    </div>
+  </ng-template>
+</ngb-carousel>

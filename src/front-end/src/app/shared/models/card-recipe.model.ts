@@ -1,7 +1,9 @@
 export class CardRecipe {
-  recipeId: number;
-  recipeName: string;
-  categoryName: number;
+  id!: number;
+  userId!: number;
+  userName!: string;
+  name!: string;
+  categoryName!: string;
   images: string[] = [];
-  favorite: boolean;
+  favorite!: boolean;
 }
