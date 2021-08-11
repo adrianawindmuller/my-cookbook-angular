@@ -55,7 +55,7 @@ namespace MyCookbook.Api.Controllers
                 model.Ingredients,
                 model.PreparationMode,
                 imagens,
-                model.Publicated);
+                model.Published);
 
 
             await _recipeRepository.AddAsync(recipe);
@@ -95,7 +95,7 @@ namespace MyCookbook.Api.Controllers
                 model.PreparationTimeInMinutes,
                 model.Ingredients,
                 model.PreparationMode,
-                model.Publicated,
+                model.Published,
                 images
                 );
 
@@ -217,7 +217,7 @@ namespace MyCookbook.Api.Controllers
                 Ingredients = recipe.Ingredients,
                 PreparationMode = recipe.PreparationMode,
                 Images = imagesVm,
-                Publicated = recipe.Publicated
+                Published = recipe.Published
             };
 
             return Ok(vm);

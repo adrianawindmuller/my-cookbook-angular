@@ -48,7 +48,7 @@ namespace MyCookbook.Test
         [InlineData("", "Nome obrigatório! (Parameter 'name')")]
         [InlineData(" ", "Nome obrigatório! (Parameter 'name')")]
         [InlineData(null, "Nome obrigatório! (Parameter 'name')")]
-        [InlineData("B", "Insira pelo menos 2 caracteres.(Parameter 'name')")]
+        [InlineData("B", "Insira pelo menos 2 caracteres. (Parameter 'name')")]
         [InlineData("Minha categoria com  ", "Insira no máximo 20 caracteres. (Parameter 'name')")]
         public void Edit_InvalidName_EditInvalid(string name, string errorExpected)
         {

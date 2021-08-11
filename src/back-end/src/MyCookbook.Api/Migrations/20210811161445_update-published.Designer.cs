@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyCookbook.Api.Infrastructure;
 
 namespace MyCookbook.Api.Migrations
 {
     [DbContext(typeof(MyCookBookDbContext))]
-    partial class MyCookBookDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210811161445_update-published")]
+    partial class updatepublished
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -124,10 +126,10 @@ namespace MyCookbook.Api.Migrations
                     b.Property<long>("PreparationTimeInMinutes")
                         .HasColumnType("bigint");
 
-                    b.Property<bool>("Published")
+                    b.Property<bool>("Publicated")
                         .HasColumnType("bit");
 
-                    b.Property<int>("Rating")
+                    b.Property<int?>("Rating")
                         .HasColumnType("int");
 
                     b.Property<int>("UserId")

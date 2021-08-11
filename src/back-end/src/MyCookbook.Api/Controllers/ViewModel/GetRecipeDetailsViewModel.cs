@@ -22,7 +22,7 @@ namespace MyCookbook.Api.Controllers.ViewModel
 
         public string PreparationMode { get; set; }
 
-        public int? Rating { get; set; }
+        public int Rating { get; set; }
 
         public bool Favorite { get; set; }
 

@@ -51,7 +51,7 @@ namespace MyCookbook.Test
              preparationTimeInMinutes,
              ingredients,
              preparationMode,
-             images);
+             images, false);
         }
 
         [Fact]
@@ -141,7 +141,7 @@ namespace MyCookbook.Test
             Assert.Equal(8, (int)recipe.NumberPortion);
             Assert.Equal("1 abobora....", recipe.Ingredients);
             Assert.Equal("Corte a abobora e coloque para cozinhar...", recipe.PreparationMode);
-            Assert.True(recipe.Publicated);
+            Assert.True(recipe.Published);
             Assert.Equal(_3Images, recipe.Images);
 
 
@@ -171,9 +171,9 @@ namespace MyCookbook.Test
         {
             var recipe = GetNewRecipe(_3Images, _NewUser, _NewCategory);
 
-            Assert.False(recipe.Publicated);
+            Assert.False(recipe.Published);
             recipe.TooglePublicated();
-            Assert.True(recipe.Publicated);
+            Assert.True(recipe.Published);
         }
 
 

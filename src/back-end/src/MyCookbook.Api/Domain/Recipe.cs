@@ -15,7 +15,7 @@ namespace MyCookbook.Api.Domain
             string ingredients,
             string preparationMode,
             List<Image> images,
-            bool publicated = false)
+            bool published)
         {
             Validate(name, user, category, images, ingredients, preparationMode, numberPortion, preparationTimeInMinutes);
             Name = name;
@@ -26,7 +26,7 @@ namespace MyCookbook.Api.Domain
             Ingredients = ingredients;
             PreparationMode = preparationMode;
             Images = images;
-            Publicated = publicated;
+            Published = published;
             Created = DateTime.Now;
         }
 
@@ -50,9 +50,9 @@ namespace MyCookbook.Api.Domain
 
         public DateTime Created { get; }
 
-        public bool Publicated { get; private set; }
+        public bool Published { get; private set; }
 
-        public int? Rating { get; private set; }
+        public int Rating { get; private set; }
 
         public bool Favorite { get; private set; }
 
@@ -63,7 +63,7 @@ namespace MyCookbook.Api.Domain
 
         public void TooglePublicated()
         {
-            Publicated = !Publicated;
+            Published = !Published;
         }
 
         public void SetRating(int rate)
@@ -84,7 +84,7 @@ namespace MyCookbook.Api.Domain
             uint preparationTimeInMinutes,
             string ingredients,
             string preparationMode,
-            bool publicated,
+            bool published,
             List<Image> images = null)
         {
             Validate(name, user, category, images, ingredients, preparationMode, numberPortions, preparationTimeInMinutes);
@@ -95,7 +95,7 @@ namespace MyCookbook.Api.Domain
             PreparationTimeInMinutes = preparationTimeInMinutes;
             Ingredients = ingredients;
             PreparationMode = preparationMode;
-            Publicated = publicated;
+            Published = published;
 
             if (images != null)
             {
@@ -105,7 +105,7 @@ namespace MyCookbook.Api.Domain
 
         }
 
-        public void Validate(
+        private void Validate(
             string name,
             User user,
             Category category,

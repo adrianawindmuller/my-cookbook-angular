@@ -46,7 +46,7 @@ namespace MyCookbook.Api.Controllers.ViewModel
         [Required(ErrorMessage = Text.ErrorMessenges.FielRequired)]
         public List<string> Images { get; set; }
 
-        public bool Publicated { get; set; }
+        public bool Published { get; set; }
 
     }
 }

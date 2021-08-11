@@ -46,14 +46,14 @@ namespace MyCookbook.Api.Infrastructure.Mapping
                 .WithOne()
                 .IsRequired();
 
-            builder.Property(p => p.Publicated)
-                .HasDefaultValue(false);
+            builder.Property(p => p.Published)
+                .IsRequired();
 
             builder.Property(p => p.Created)
                 .IsRequired();
 
             builder.Property(p => p.Rating)
-                 .IsRequired(false);
+                .IsRequired();
 
             builder.Property(p => p.Favorite)
                 .HasDefaultValue(false);
