@@ -1,4 +1,5 @@
-﻿using MyCookbook.Api.Domain;
+﻿using MyCookbook.Domain.Categories;
+using MyCookbook.Domain.Recipes;
 using System;
 using System.Collections.Generic;
 using Xunit;

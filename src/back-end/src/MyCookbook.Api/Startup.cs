@@ -5,10 +5,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using MyCookbook.Api.Domain;
-using MyCookbook.Api.Domain.SharedKernel;
-using MyCookbook.Api.Infrastructure;
-using MyCookbook.Api.Infrastructure.Data;
+using MyCookbook.Domain;
+using MyCookbook.Domain.Categories;
+using MyCookbook.Domain.Recipes;
+using MyCookbook.Infrastructure.Data.DbContexts;
+using MyCookbook.Infrastructure.Data.Repositories;
 
 namespace MyCookbook.Api
 {

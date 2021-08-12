@@ -1,4 +1,4 @@
-﻿using MyCookbook.Api.Domain;
+﻿using MyCookbook.Domain.Categories;
 using System;
 using Xunit;
 

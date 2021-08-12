@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MyCookbook.Api\MyCookbook.Api.csproj" />
+    <ProjectReference Include="..\MyCookbook.Domain\MyCookbook.Domain.csproj" />
   </ItemGroup>
 
 </Project>
