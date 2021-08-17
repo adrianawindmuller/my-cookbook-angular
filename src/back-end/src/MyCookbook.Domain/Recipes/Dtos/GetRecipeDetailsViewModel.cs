@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MyCookbook.Api.Recipes.Controllers.ViewModel
+namespace MyCookbook.Domain.Recipes.Dtos
 {
     public class GetRecipeDetailsViewModel
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MyCookbook.Domain.Categories
+namespace MyCookbook.Domain.Recipes
 {
     public class Category : Entity
     {
@@ -10,16 +10,9 @@ namespace MyCookbook.Domain.Categories
             Name = name;
         }
 
-        private Category() { } //isto é necessario para que o entity materialize a entidade
+        private Category() { }
 
         public string Name { get; private set; }
-
-
-        public void Edit(string name)
-        {
-            Validate(name);
-            Name = name;
-        }
 
         private void Validate(string name)
         {

@@ -1,4 +1,4 @@
-﻿using MyCookbook.Domain.Categories;
+﻿using MyCookbook.Domain.Recipes;
 using MyCookbook.Infrastructure.Data.DbContexts;
 
 namespace MyCookbook.Infrastructure.Data.Repositories

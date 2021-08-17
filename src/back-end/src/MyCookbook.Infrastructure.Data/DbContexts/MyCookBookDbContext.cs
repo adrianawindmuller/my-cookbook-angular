@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyCookbook.Domain;
-using MyCookbook.Domain.Categories;
+using MyCookbook.Domain.Recipes;
 using System.Reflection;
 using System.Threading.Tasks;
 

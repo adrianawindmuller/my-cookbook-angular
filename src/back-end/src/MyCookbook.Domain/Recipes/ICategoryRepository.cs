@@ -1,5 +1,5 @@
 ﻿
-namespace MyCookbook.Domain.Categories
+namespace MyCookbook.Domain.Recipes
 {
     public interface ICategoryRepository : IRepository<Category>
     {

@@ -5,17 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Recipes\Commands\" />
-    <Folder Include="Recipes\Queries\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="MediatR" Version="9.0.0" />
-    <PackageReference Include="AutoMapper" Version="10.1.1" />
-    <PackageReference Include="Dapper" Version="2.0.90" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\MyCookbook.Domain\MyCookbook.Domain.csproj" />
   </ItemGroup>
 

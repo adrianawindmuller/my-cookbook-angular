@@ -1,4 +1,4 @@
-﻿namespace MyCookbook.Api
+﻿namespace MyCookbook.Domain.Recipes.Dtos
 {
     public static class Text
     {

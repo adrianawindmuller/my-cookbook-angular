@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 
-namespace MyCookbook.Api.Recipes.Controllers.ViewModel
+namespace MyCookbook.Domain.Recipes.Dtos
 {
-    public class GetRecipeEditViewModel
+    public class RegisterRecipeViewModel
     {
-        public int IdRecipe { get; set; }
+        public int Id { get; set; }
 
-        public string NameRecipe { get; set; }
+        public string Name { get; set; }
 
         public int UserId { get; set; }
 
@@ -22,6 +22,7 @@ namespace MyCookbook.Api.Recipes.Controllers.ViewModel
 
         public List<string> Images { get; set; }
 
-        public bool Publicated { get; set; }
+        public bool Published { get; set; }
+
     }
 }

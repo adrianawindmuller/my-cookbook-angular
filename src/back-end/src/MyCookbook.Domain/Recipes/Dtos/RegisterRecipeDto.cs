@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace MyCookbook.Api.Recipes.Controllers.ViewModel
+namespace MyCookbook.Domain.Recipes.Dtos
 {
-    public class RegisterRecipeViewModel
+    public class RegisterRecipeDto
     {
-        public int Id { get; set; }
-
         [Required(ErrorMessage = Text.ErrorMessenges.FielRequired)]
         [MaxLength(60, ErrorMessage = "Insira no máximo 60 caracteres.")]
         [MinLength(5, ErrorMessage = "Insira pelo menos 5 caracteres.")]

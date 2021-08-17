@@ -1,90 +1,33 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MyCookbook.Api.Recipes.Controllers.ViewModel;
-using MyCookbook.Domain.Categories;
-using System.Collections.Generic;
-using System.Linq;
+using MyCookbook.Domain.Recipes;
 using System.Threading.Tasks;
 
 namespace MyCookbook.Api.Recipes.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CategoryController : ControllerBase
+    public class CategoryController : BaseController
     {
-        private ICategoryRepository _categoryRepository;
+        private readonly ICategoryApplication _categoryApplication;
 
-        public CategoryController(ICategoryRepository categoryRepository)
+        public CategoryController(ICategoryApplication categoryApplication)
         {
-            _categoryRepository = categoryRepository;
+            _categoryApplication = categoryApplication;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAsync()
+        public async Task<IActionResult> GetCateforiesAsync()
         {
-            var categories = await _categoryRepository.ListAllAsync();
-
-            var vm = new List<GetCategoryViewModel>();
-
-            vm.AddRange(categories.Select(c => new GetCategoryViewModel { Id = c.Id, Name = c.Name }));
-
-            return Ok(vm);
+            var response = await _categoryApplication.GetCateforiesAsync();
+            return Result(response);
         }
 
         [Route("{id}")]
         [HttpGet]
-        public async Task<IActionResult> GetIdAsync(int id)
+        public async Task<IActionResult> GetCategoryByIdAsync(int id)
         {
-            var category = await _categoryRepository.GetByIdAsync(id);
-
-            var vm = new GetCategoryViewModel
-            {
-                Id = category.Id,
-                Name = category.Name
-            };
-
-            return Ok(vm);
-
-        }
-
-        [HttpPost]
-        public async Task PostAsync(RegisterCategoryViewModel model)
-        {
-            var category = new Category(model.Name);
-
-            await _categoryRepository.AddAsync(category);
-            await _categoryRepository.UnitOfWork.CommitAsync();
-        }
-
-        [Route("{id}")]
-        [HttpDelete]
-        public async Task<IActionResult> DeleteAsync(int id)
-        {
-            var category = await _categoryRepository.GetByIdAsync(id);
-            if (category is null)
-            {
-                return NotFound($"Categoria {id} não encontrado.");
-            }
-
-            _categoryRepository.Delete(category);
-            await _categoryRepository.UnitOfWork.CommitAsync();
-            return Ok("Deletado com sucesso!");
-        }
-
-        [Route("{id}")]
-        [HttpPut]
-        public async Task<IActionResult> PutAsync(int id, RegisterCategoryViewModel model)
-        {
-            var category = await _categoryRepository.GetByIdAsync(id);
-            if (category is null)
-            {
-                return NotFound($"Categoria {id} não encontrada.");
-            }
-
-            category.Edit(model.Name);
-            _categoryRepository.Update(category);
-            await _categoryRepository.UnitOfWork.CommitAsync();
-            return Ok("Atualizado com sucesso!");
-
+            var response = await _categoryApplication.GetCategoryByIdAsync(id);
+            return Result(response);
         }
     }
 }
