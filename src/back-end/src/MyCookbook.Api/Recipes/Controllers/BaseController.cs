@@ -5,7 +5,8 @@ namespace MyCookbook.Api.Recipes.Controllers
 {
     public class BaseController : ControllerBase
     {
-        public IActionResult Result(Response response)
+        [NonAction]
+        protected IActionResult Result(Response response)
         {
             if (response.ResponseType == ResponseType.BadRequest)
             {
