@@ -12,6 +12,7 @@ import { RatingComponent } from './rating/rating.component';
 import { CardDetailsRecipeComponent } from './card-details-recipe/card-details-recipe.component';
 import { DialogConfirmComponent } from './dialog-confirm/dialog-confirm.component';
 import { ToggleFavoriteComponent } from './toggle-favorite/toggle-favorite.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ToggleFavoriteComponent } from './toggle-favorite/toggle-favorite.compo
     CardDetailsRecipeComponent,
     DialogConfirmComponent,
     ToggleFavoriteComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -48,6 +50,7 @@ import { ToggleFavoriteComponent } from './toggle-favorite/toggle-favorite.compo
     RatingComponent,
     CardDetailsRecipeComponent,
     ToggleFavoriteComponent,
+    NotFoundComponent,
   ],
   providers: [RecipeService],
 })

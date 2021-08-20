@@ -1,5 +1,5 @@
-<div class="container-fluid" style="min-height: 95vh; max-height: 100%;">
-  <div class="d-flex justify-content-around flex-wrap">
+<div class="container-fluid p-0" style="min-height: 95vh; max-height: 100%;">
+  <div *ngIf="recipes.length else notFound" class="d-flex justify-content-around flex-wrap">
     <div *ngFor="let recipe of recipes" class="card mt-4 mb-4" style="width: 18rem">
       <div style="height: 150px;">
         <img src="{{ recipe.images[0] }}" class="" alt="{{recipe.name}}" style="height: 100%; width: 100%;" />
@@ -21,4 +21,7 @@
       </div>
     </div>
   </div>
+  <ng-template #notFound>
+    <app-not-found></app-not-found>
+  </ng-template>
 </div>
