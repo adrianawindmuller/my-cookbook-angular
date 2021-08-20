@@ -8,13 +8,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyCookbook.Api", "MyCookboo
 		{61128524-AD94-45FE-8DA9-97D55BD3A903} = {61128524-AD94-45FE-8DA9-97D55BD3A903}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyCookbook.Test", "MyCookbook.Test\MyCookbook.Test.csproj", "{131059CC-6308-480E-8300-60FDC41BE4E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyCookbook.UnitTest", "MyCookbook.Test\MyCookbook.UnitTest.csproj", "{131059CC-6308-480E-8300-60FDC41BE4E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCookbook.Application", "MyCookbook.Application\MyCookbook.Application.csproj", "{61128524-AD94-45FE-8DA9-97D55BD3A903}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyCookbook.Application", "MyCookbook.Application\MyCookbook.Application.csproj", "{61128524-AD94-45FE-8DA9-97D55BD3A903}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCookbook.Domain", "MyCookbook.Domain\MyCookbook.Domain.csproj", "{63EAD0A9-BFEF-41C3-94D3-7461748788EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyCookbook.Domain", "MyCookbook.Domain\MyCookbook.Domain.csproj", "{63EAD0A9-BFEF-41C3-94D3-7461748788EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCookbook.Infrastructure.Data", "MyCookbook.Infrastructure.Data\MyCookbook.Infrastructure.Data.csproj", "{12408B4C-3EE7-43B9-966E-D78B78CE154E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyCookbook.Infrastructure.Data", "MyCookbook.Infrastructure.Data\MyCookbook.Infrastructure.Data.csproj", "{12408B4C-3EE7-43B9-966E-D78B78CE154E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{89F0DF68-02E1-4E43-9D18-FE1B552FD16D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -89,6 +91,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{131059CC-6308-480E-8300-60FDC41BE4E5} = {89F0DF68-02E1-4E43-9D18-FE1B552FD16D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D9241EF1-9F9E-4AFA-9C8F-FB985F9AEBF6}

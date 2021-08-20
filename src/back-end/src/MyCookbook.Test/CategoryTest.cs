@@ -2,7 +2,7 @@
 using System;
 using Xunit;
 
-namespace MyCookbook.Test
+namespace MyCookbook.UnitTest
 {
     public class CategoryTest
     {

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using Xunit;
 
-namespace MyCookbook.Test
+namespace MyCookbook.UnitTest
 {
     public class RecipeTest
     {
