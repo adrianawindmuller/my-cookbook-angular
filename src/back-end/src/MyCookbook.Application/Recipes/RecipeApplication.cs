@@ -1,6 +1,7 @@
 ﻿using MyCookbook.Domain.Common;
 using MyCookbook.Domain.Recipes;
 using MyCookbook.Domain.Recipes.Dtos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -143,9 +144,7 @@ namespace MyCookbook.Application.RecipesApplication
 
                 vmRecipes.Add(vmRecipe);
             }
-
             return Response.Ok(vmRecipes);
-
         }
 
         public async Task<Response> GetRecipeDetails(int id)
@@ -241,6 +240,12 @@ namespace MyCookbook.Application.RecipesApplication
             await _recipeRepository.UnitOfWork.CommitAsync();
 
             return Response.NoContent();
+        }
+
+        public async Task<Response> FilterRecipe(string name)
+        {
+
+            throw new NotImplementedException();
         }
     }
 }

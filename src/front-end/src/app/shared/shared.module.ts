@@ -13,6 +13,7 @@ import { CardDetailsRecipeComponent } from './card-details-recipe/card-details-r
 import { DialogConfirmComponent } from './dialog-confirm/dialog-confirm.component';
 import { ToggleFavoriteComponent } from './toggle-favorite/toggle-favorite.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { FilterRecipePipe } from './pipes/filter-recipe.pipe';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     DialogConfirmComponent,
     ToggleFavoriteComponent,
     NotFoundComponent,
+    FilterRecipePipe,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -51,6 +53,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     CardDetailsRecipeComponent,
     ToggleFavoriteComponent,
     NotFoundComponent,
+    FilterRecipePipe,
   ],
   providers: [RecipeService],
 })
