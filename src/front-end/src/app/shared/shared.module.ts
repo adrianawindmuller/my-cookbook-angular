@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from '../app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RecipeService } from './recipe.service';
-import { HttpClientModule } from '@angular/common/http';
+import { RecipeService } from './services/recipe.service';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselComponent } from './carousel/carousel.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -14,6 +14,8 @@ import { DialogConfirmComponent } from './dialog-confirm/dialog-confirm.componen
 import { ToggleFavoriteComponent } from './toggle-favorite/toggle-favorite.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { FilterRecipePipe } from './pipes/filter-recipe.pipe';
+import { LoadingService } from './services/loading.service';
+import { NetworkInterceptor } from './services/network.interceptor';
 
 @NgModule({
   declarations: [
@@ -55,6 +57,10 @@ import { FilterRecipePipe } from './pipes/filter-recipe.pipe';
     NotFoundComponent,
     FilterRecipePipe,
   ],
-  providers: [RecipeService],
+  providers: [
+    RecipeService,
+    LoadingService,
+    { provide: HTTP_INTERCEPTORS, useClass: NetworkInterceptor, multi: true },
+  ],
 })
 export class SharedModule {}

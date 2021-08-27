@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { RecipeService } from '../recipe.service';
+import { RecipeService } from '../services/recipe.service';
 
 @Component({
   selector: 'app-rating',

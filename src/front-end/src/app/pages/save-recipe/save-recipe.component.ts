@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 import { Category } from 'src/app/shared/models/category';
 import { SaveRecipe } from 'src/app/shared/models/save-recipe.model';
-import { RecipeService } from 'src/app/shared/recipe.service';
+import { RecipeService } from 'src/app/shared/services/recipe.service';
 import { first } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';

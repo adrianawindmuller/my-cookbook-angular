@@ -1,6 +1,7 @@
 <div class="container-fluid p-0" style="min-height: 95vh; max-height: 100%;">
-  <div *ngIf="recipes else notFound">
-    <div class="d-flex px-4 py-2">
+
+  <div *ngIf="recipes">
+    <div class="d-flex justify-content-center px-4 py-2">
       <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Pesquisar receita por nome"
         [(ngModel)]="filterName" style="width: 500px;">
     </div>
@@ -28,7 +29,7 @@
     </div>
   </div>
 
-  <ng-template #notFound>
+  <div *ngIf="!isLoading && !recipes">
     <app-not-found></app-not-found>
-  </ng-template>
+  </div>
 </div>
