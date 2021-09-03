@@ -34,13 +34,21 @@
 **Home**
 ![home](src/front-end/src/assets/home.png)
 
+**Adicionar receita**
 ![create](src/front-end/src/assets/create-recipe-1.png)
 ![create](src/front-end/src/assets/create-recipe-2.png)
 
+**Ver receita**
 ![details](src/front-end/src/assets/details-recipe-1.png)
 ![details](src/front-end/src/assets/details-recipe-2.png)
 
+**Editar receita**
+![delete](src/front-end/src/assets/edit-recipe-1.png)
+![delete](src/front-end/src/assets/edit-recipe-2.png)
+
+**Deletar receita**
 ![delete](src/front-end/src/assets/delete-recipe.png)
 
+**Ver Categorias**
 ![categories](src/front-end/src/assets/categories.png)
 ![dropdown-categories](src/front-end/src/assets/dropdown-categories.png)

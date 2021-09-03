@@ -25,6 +25,7 @@ export class SaveRecipeComponent implements OnInit {
   categories!: Category[];
   submitted!: boolean;
   isAddMode!: boolean;
+  name!: string;
   id!: number;
 
   constructor(
@@ -92,6 +93,8 @@ export class SaveRecipeComponent implements OnInit {
             this.addImagesInForm(image);
           }
         });
+
+      this.name = 'Editar';
     }
   }
 
