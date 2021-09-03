@@ -8,15 +8,18 @@ namespace MyCookbook.Domain.Recipes
     {
         private readonly List<Recipe> _recipes = new List<Recipe>();
 
-        public Category(string name)
+        public Category(string name, string icon)
         {
             Validate(name);
             Name = name;
+            Icon = icon;
         }
 
         private Category() { }
 
         public string Name { get; private set; }
+
+        public string Icon { get; set; }
 
         public IReadOnlyList<Recipe> Recipes => _recipes.ToList();
 

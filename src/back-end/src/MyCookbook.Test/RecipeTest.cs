@@ -31,7 +31,7 @@ namespace MyCookbook.UnitTest
 
         private User _NewUser = new User("Adriana", "adriana@gmail.com", "src://adriana.jpg", "r0D@hf35");
 
-        private Category _NewCategory = new Category("Bolo");
+        private Category _NewCategory = new Category("Bolo", "bolo.png");
 
         private Recipe GetNewRecipe(
             List<Image> images,
@@ -131,7 +131,7 @@ namespace MyCookbook.UnitTest
         public void EditRecipe_ValidEdit_ValidRecipe()
         {
             var userNew = new User("Taís", "tais@gmail.com", "src://tais.jpg", "A5F@hf88");
-            var categoryNew = new Category("Sopas");
+            var categoryNew = new Category("Sopas", "sopa.png");
             var recipe = GetNewRecipe(_3Images, _NewUser, _NewCategory);
 
             recipe.Edit("Sopa de Abobora", userNew, categoryNew, 8, 60, "1 abobora....", "Corte a abobora e coloque para cozinhar...", true, _3Images);
@@ -150,7 +150,7 @@ namespace MyCookbook.UnitTest
         [Fact]
         public void EditRecipe_InvalidEdit_InvalidRecipe()
         {
-            var category = new Category("Bolo");
+            var category = new Category("Bolo", "bolo.png");
             var userNew = new User("Taís", "tais@gmail.com", "src://tais.jpg", "A5F@hf88");
             var recipe = GetNewRecipe(_3Images, _NewUser, _NewCategory);
             Assert.Throws<ArgumentException>(() => recipe.Edit("", userNew, category, 60, 5, " ", "", true, _7Images));

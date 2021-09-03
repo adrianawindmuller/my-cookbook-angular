@@ -8,5 +8,7 @@
 
         public int NumberOfRecipes { get; set; }
 
+        public string Icon { get; set; }
+
     }
 }

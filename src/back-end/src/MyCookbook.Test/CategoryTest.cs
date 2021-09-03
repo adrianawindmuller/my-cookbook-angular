@@ -7,14 +7,15 @@ namespace MyCookbook.UnitTest
     public class CategoryTest
     {
         [Theory]
-        [InlineData("Bolo")]
-        [InlineData("Receitas Rápidas")]
+        [InlineData("Bolo", "carne.png")]
+        [InlineData("Receitas Rápidas", "bolo.png")]
 
-        public void NewCategory_ValidName_CategoryValid(string name)
+        public void NewCategory_ValidName_CategoryValid(string name, string icon)
         {
-            var category = new Category(name);
+            var category = new Category(name, icon);
 
             Assert.Equal(name, category.Name);
+            Assert.Equal(icon, category.Icon);
         }
 
         [Theory]
@@ -25,7 +26,7 @@ namespace MyCookbook.UnitTest
         [InlineData("Minha categoria com  ", "Insira no máximo 20 caracteres. (Parameter 'name')")]
         public void NewCategory_InvalidName_CategoryInvalid(string name, string errorExpected)
         {
-            var ex = Assert.Throws<ArgumentException>(() => new Category(name));
+            var ex = Assert.Throws<ArgumentException>(() => new Category(name, "bolo.png"));
             Assert.Equal(errorExpected, ex.Message);
         }
     }

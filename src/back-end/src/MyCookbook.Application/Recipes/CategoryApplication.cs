@@ -22,7 +22,14 @@ namespace MyCookbook.Domain.Recipes
 
             var vm = new List<GetCategoryViewModel>();
 
-            vm.AddRange(categories.Select(c => new GetCategoryViewModel { Id = c.Id, Name = c.Name, NumberOfRecipes = c.NumberOfRecipes }));
+            vm.AddRange(categories.Select(c => new GetCategoryViewModel
+            {
+                Id = c.Id,
+                Name = c.Name,
+                NumberOfRecipes = c.NumberOfRecipes,
+                Icon = c.Icon
+            }
+            ));
 
             return Response.Ok(vm);
         }
