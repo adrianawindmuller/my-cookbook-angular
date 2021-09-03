@@ -22,9 +22,14 @@
 - [SqlServer 5](https://www.microsoft.com/pt-br/sql-server/sql-server-2019)
 - [xUnit](https://xunit.net/)
 
-### Este foi o resultado :
+### 🏷️ **Versão 1**
 
-🎥 [Vídeo Youtube versão 1](https://www.youtube.com/watch?v=3E-1YAEN120&t=1s)
+🎥 [Vídeo Youtube ](https://www.youtube.com/watch?v=3E-1YAEN120&t=1s)
+
+### 🏷️ **Versão 2**
+
+**Diagrama de classe do domínio**
+![home](src/front-end/src/assets/diagrama-de-classe.png)
 
 **Home**
 ![home](src/front-end/src/assets/home.png)
@@ -36,3 +41,6 @@
 ![details](src/front-end/src/assets/details-recipe-2.png)
 
 ![delete](src/front-end/src/assets/delete-recipe.png)
+
+![categories](src/front-end/src/assets/categories.png)
+![dropdown-categories](src/front-end/src/assets/dropdown-categories.png)
