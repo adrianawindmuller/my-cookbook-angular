@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MyCookbook.Domain.Recipes.Recipe">
+    <Position X="9" Y="1" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAQAAAACAEAAACAgAACQAAAAgBBUCAACAAAAACEA=</HashCode>
+      <FileName>Recipes\Recipe.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Category" />
+      <Property Name="User" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Images" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="MyCookbook.Domain.Recipes.User">
+    <Position X="13.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACCAACAAAAAAIEQAAAAAAAACAAAAAAAAAgA=</HashCode>
+      <FileName>Recipes\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MyCookbook.Domain.Recipes.Image">
+    <Position X="13.5" Y="4" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Recipes\Image.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MyCookbook.Domain.Recipes.Category">
+    <Position X="4.5" Y="1.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAACAAAIAQAAAAAAAAAEAAAAAEAAAA=</HashCode>
+      <FileName>Recipes\Category.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
