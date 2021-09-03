@@ -17,12 +17,13 @@ namespace MyCookbook.Infrastructure.Data.Mapping
                    .HasColumnName("CategoryId");
 
             builder.Property(p => p.Name)
-                .HasColumnType("varchar(20)") // Qualquer quantidade de caracteres até 200
+                .HasColumnType("varchar(20)")
                 .IsRequired();
 
-
-            // char(9) limita para exatamente 9 caracteres.
-
+            builder.HasMany(p => p.Recipes)
+                .WithOne(p => p.Category)
+                .OnDelete(DeleteBehavior.NoAction)
+                .IsRequired();
         }
     }
 }

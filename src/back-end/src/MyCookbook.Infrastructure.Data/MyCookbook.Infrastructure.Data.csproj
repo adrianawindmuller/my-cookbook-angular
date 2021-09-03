@@ -36,4 +36,9 @@
     <ProjectReference Include="..\MyCookbook.Domain\MyCookbook.Domain.csproj" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

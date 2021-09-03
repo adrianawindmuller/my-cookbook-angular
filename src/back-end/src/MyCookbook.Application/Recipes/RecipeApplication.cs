@@ -51,7 +51,6 @@ namespace MyCookbook.Application.RecipesApplication
                 imagens,
                 dto.Published);
 
-
             await _recipeRepository.AddAsync(recipe);
             await _recipeRepository.UnitOfWork.CommitAsync();
 

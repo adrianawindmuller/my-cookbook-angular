@@ -10,8 +10,8 @@ using MyCookbook.Infrastructure.Data.DbContexts;
 namespace MyCookbook.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(MyCookBookDbContext))]
-    [Migration("20210812185911_Initial")]
-    partial class Initial
+    [Migration("20210902194950_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@ namespace MyCookbook.Infrastructure.Data.Migrations
                 .HasAnnotation("ProductVersion", "5.0.9")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("MyCookbook.Domain.Categories.Category", b =>
+            modelBuilder.Entity("MyCookbook.Domain.Recipes.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -47,22 +47,47 @@ namespace MyCookbook.Infrastructure.Data.Migrations
                         new
                         {
                             Id = 2,
-                            Name = "Sopas"
-                        },
-                        new
-                        {
-                            Id = 3,
                             Name = "Carnes"
                         },
                         new
                         {
+                            Id = 3,
+                            Name = "Aves"
+                        },
+                        new
+                        {
                             Id = 4,
-                            Name = "Massas"
+                            Name = "Peixe"
                         },
                         new
                         {
                             Id = 5,
-                            Name = "Peixe"
+                            Name = "Saladas"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Sopas"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Massas"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Doces e sobremesas"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "Lanches"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "Alimentação saúdavel"
                         });
                 });
 
@@ -173,6 +198,16 @@ namespace MyCookbook.Infrastructure.Data.Migrations
                         .HasName("UserId");
 
                     b.ToTable("User");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "adri@gmail.com",
+                            Name = "Adriana W.",
+                            Password = "s5a4%wS5",
+                            Photo = "imagen.png"
+                        });
                 });
 
             modelBuilder.Entity("MyCookbook.Domain.Recipes.Image", b =>
@@ -186,10 +221,10 @@ namespace MyCookbook.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("MyCookbook.Domain.Recipes.Recipe", b =>
                 {
-                    b.HasOne("MyCookbook.Domain.Categories.Category", "Category")
-                        .WithMany()
+                    b.HasOne("MyCookbook.Domain.Recipes.Category", "Category")
+                        .WithMany("Recipes")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("MyCookbook.Domain.Recipes.User", "User")
@@ -201,6 +236,11 @@ namespace MyCookbook.Infrastructure.Data.Migrations
                     b.Navigation("Category");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("MyCookbook.Domain.Recipes.Category", b =>
+                {
+                    b.Navigation("Recipes");
                 });
 
             modelBuilder.Entity("MyCookbook.Domain.Recipes.Recipe", b =>

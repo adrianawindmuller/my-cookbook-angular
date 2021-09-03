@@ -1,5 +1,8 @@
-﻿using MyCookbook.Domain.Recipes;
+﻿using Microsoft.EntityFrameworkCore;
+using MyCookbook.Domain.Recipes;
 using MyCookbook.Infrastructure.Data.DbContexts;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace MyCookbook.Infrastructure.Data.Repositories
 {
@@ -7,6 +10,15 @@ namespace MyCookbook.Infrastructure.Data.Repositories
     {
         public CategoryRepository(MyCookBookDbContext db) : base(db)
         {
+        }
+
+        public override async Task<IReadOnlyList<Category>> ListAllAsync()
+        {
+            return await Db
+                .Set<Category>()
+                .Include(x => x.Recipes)
+                .AsNoTracking()
+                .ToListAsync();
         }
     }
 }

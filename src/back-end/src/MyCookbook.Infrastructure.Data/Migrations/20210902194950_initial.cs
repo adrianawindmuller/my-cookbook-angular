@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MyCookbook.Infrastructure.Data.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -61,8 +61,7 @@ namespace MyCookbook.Infrastructure.Data.Migrations
                         name: "FK_Recipe_Category_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Category",
-                        principalColumn: "CategoryId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "CategoryId");
                     table.ForeignKey(
                         name: "FK_Recipe_User_UserId",
                         column: x => x.UserId,
@@ -97,11 +96,21 @@ namespace MyCookbook.Infrastructure.Data.Migrations
                 values: new object[,]
                 {
                     { 1, "Bolos" },
-                    { 2, "Sopas" },
-                    { 3, "Carnes" },
-                    { 4, "Massas" },
-                    { 5, "Peixe" }
+                    { 2, "Carnes" },
+                    { 3, "Aves" },
+                    { 4, "Peixe" },
+                    { 5, "Saladas" },
+                    { 6, "Sopas" },
+                    { 7, "Massas" },
+                    { 8, "Doces e sobremesas" },
+                    { 9, "Lanches" },
+                    { 10, "Alimentação saúdavel" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "User",
+                columns: new[] { "UserId", "Email", "Name", "Password", "Photo" },
+                values: new object[] { 1, "adri@gmail.com", "Adriana W.", "s5a4%wS5", "imagen.png" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Image_RecipeId",

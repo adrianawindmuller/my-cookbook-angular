@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MyCookbook.Domain.Recipes
 {
     public class Category : Entity
     {
+        private readonly List<Recipe> _recipes = new List<Recipe>();
+
         public Category(string name)
         {
             Validate(name);
@@ -13,6 +17,10 @@ namespace MyCookbook.Domain.Recipes
         private Category() { }
 
         public string Name { get; private set; }
+
+        public IReadOnlyList<Recipe> Recipes => _recipes.ToList();
+
+        public int NumberOfRecipes => _recipes.Count();
 
         private void Validate(string name)
         {

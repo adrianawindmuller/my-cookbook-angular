@@ -25,7 +25,8 @@ namespace MyCookbook.Infrastructure.Data.Mapping
                  .IsRequired();
 
             builder.HasOne(p => p.Category)
-                 .WithMany()
+                 .WithMany(p => p.Recipes)
+                 .OnDelete(DeleteBehavior.NoAction)
                  .IsRequired();
 
             builder.Property(p => p.NumberPortion)

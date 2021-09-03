@@ -75,7 +75,6 @@ namespace MyCookbook.Domain.Recipes
             Rating = rate;
         }
 
-
         public void Edit(
             string name,
             User user,
