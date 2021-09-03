@@ -3,10 +3,11 @@ import { Category } from 'src/app/shared/models/category';
 import { RecipeService } from 'src/app/shared/services/recipe.service';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
+  selector: 'app-all-categories',
+  templateUrl: './all-categories.component.html',
+  styleUrls: ['./all-categories.component.css'],
 })
-export class HeaderComponent implements OnInit {
+export class AllCategoriesComponent implements OnInit {
   categories: Category[] = [];
   constructor(private recipeService: RecipeService) {}
 

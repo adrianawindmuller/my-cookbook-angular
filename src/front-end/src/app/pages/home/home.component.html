@@ -1,10 +1,11 @@
 <div class="container-fluid p-0" style="min-height: 95vh; max-height: 100%;">
-
   <div *ngIf="recipes">
+
     <div class="d-flex justify-content-center px-4 py-2">
       <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Pesquisar receita por nome"
         [(ngModel)]="filterName" style="width: 500px;">
     </div>
+
     <div class="d-flex justify-content-around flex-wrap">
       <div *ngFor="let recipe of recipes | filterRecipe: filterName" class="card mt-4 mb-4 " style="width: 18rem">
         <div style="height: 150px;">

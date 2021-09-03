@@ -5,9 +5,10 @@ import { SharedModule } from '../shared/shared.module';
 import { ToastrModule } from 'ngx-toastr';
 import { DetailsRecipeComponent } from './details-recipe/details-recipe.component';
 import { SaveRecipeComponent } from './save-recipe/save-recipe.component';
+import { AllCategoriesComponent } from './all-categories/all-categories.component';
 
 @NgModule({
-  declarations: [HomeComponent, SaveRecipeComponent, DetailsRecipeComponent],
+  declarations: [HomeComponent, SaveRecipeComponent, DetailsRecipeComponent, AllCategoriesComponent],
   imports: [CommonModule, SharedModule, ToastrModule.forRoot()],
 })
 export class PagesModule {}

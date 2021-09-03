@@ -1,0 +1,354 @@
+[33mcommit c71f7b97926363c2234e22263b6a1c6e64f80268[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Fri Sep 3 16:24:05 2021 +0100
+
+    :sparkles: added recipes in category domain
+
+[33mcommit 1817f5a82c2eb92a7e6d7e8210abbf8ab922aaf8[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Fri Aug 27 17:46:31 2021 +0100
+
+    :sparkles: implementing HttpInterceptor
+
+[33mcommit 17bea6bbcfcce3e46fea99e0fc8f09a08fef04f8[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Thu Aug 26 17:15:07 2021 +0100
+
+    :sparkles: added search recipes
+
+[33mcommit 5334dd9252b04efc9785c93e97cf264dc97f8e62[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Fri Aug 20 22:32:05 2021 +0100
+
+    :sparkles: added not found page
+
+[33mcommit 75685509dad1ee055bc96c250a1c84f2f2ab595b[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Fri Aug 20 18:26:04 2021 +0100
+
+    :bug: sorted out bug API
+
+[33mcommit 5213886d8c49118118d2886ecd50d6b170680ee5[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Fri Aug 20 16:29:31 2021 +0100
+
+    :recycle: refactoring name test project
+
+[33mcommit 1e2948db15efbc9820497c291d99085fa0defb5b[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Tue Aug 17 18:50:30 2021 +0100
+
+    :recycle: refactoring Api and create Application
+
+[33mcommit 348cc7ac99763c6bc11597924e3a6beed7d16d6a[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Thu Aug 12 20:20:34 2021 +0100
+
+    :recycle: separate application in projects, API, Application, Domain and Infrastructure
+
+[33mcommit e5edd1efd02a381a498a845d0688e1b9778be85d[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Wed Aug 11 23:19:42 2021 +0100
+
+    :books: update readme
+
+[33mcommit 5902cb5afb3de5083178530e81934967094bceae[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Wed Aug 11 22:35:04 2021 +0100
+
+    :books: update readme
+
+[33mcommit 4efafecfd7ec4456566aeee5920f677df64102a1[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Wed Aug 11 22:32:50 2021 +0100
+
+    :books: update readme
+
+[33mcommit 8e408c2243d875459e2937a27f1ae2203783348d[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Wed Aug 11 22:29:16 2021 +0100
+
+    :books: update readme
+
+[33mcommit 99370a45fdf1b8e261ab4d085820dfa397596f70[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Wed Aug 11 22:28:00 2021 +0100
+
+    :wrench: update to Framework .net 5 and PackageReferences
+
+[33mcommit 05d34f2d5d29ea48ddab606d69d776e7483a6c31[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Wed Aug 11 21:39:31 2021 +0100
+
+    :recycle: reworked the entire project to update to angular 12 and override the previous one
+
+[33mcommit 42f46ff6760c98bfce4a973d9915c6f108689340[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Wed Aug 11 18:26:48 2021 +0100
+
+    :recycle: refactoring recipe domain and recipe map
+
+[33mcommit 466d06ed805a67ca7f0a721bc4f5f2b8d27b632d[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Tue Aug 10 17:04:20 2021 +0100
+
+    :sparkles: endpoint deleteRecipe
+
+[33mcommit fb8fe220b3c9f3514d148b6378ccb73e5dd19c7f[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Mon Aug 9 20:51:44 2021 +0100
+
+    :recycle: refactoring PutRecipe
+
+[33mcommit 9bb5597f948d037de6fa35d8ea279f3c0157c0ab[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Sat Aug 7 12:54:20 2021 +0100
+
+    :recycle: refactoring GetRecipeDetails
+
+[33mcommit b6518acc67d689edfa68f130f478c5843dd1f0bc[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Wed Aug 4 18:38:53 2021 +0100
+
+    :recycle: refactoring get recipes
+
+[33mcommit aca6ce45bf043d3623806135ef6ebcbfeed920f9[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Sun Aug 1 18:55:36 2021 +0100
+
+    :recycle: refactor CardRecipeViewModel
+
+[33mcommit 7bc5564c94f34e93f2bd2a33429270f0b92d1824[m[33m ([m[1;31morigin/develop[m[33m, [m[1;32mdevelop[m[33m)[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Thu Jul 22 19:13:34 2021 +0100
+
+    :books: atualização do Readme
+
+[33mcommit 5ddf66ae5b1cf97d224c2b42d80be19409a6e641[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Tue Nov 3 17:04:14 2020 +0000
+
+    :sparkles: endpoint post and get recipe
+
+[33mcommit e40af763776b8a7183b009f2aaa59f1c47765f2d[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Fri Oct 30 19:12:17 2020 +0000
+
+    :sparkles: endpoint rating
+
+[33mcommit d98401b973b494f6b8a91b85a116109ea1d66ef3[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Fri Oct 30 17:15:21 2020 +0000
+
+    :sparkles: endpoint favorite
+
+[33mcommit eef55f31e8550c04e374bb9e8a4a28452324232f[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Fri Oct 30 16:17:27 2020 +0000
+
+    :sparkles: created http request to get recipe id
+
+[33mcommit 2681e96144da1411ed450f0dee5079b4a2f96cf9[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Fri Oct 30 12:32:10 2020 +0000
+
+    :sparkles: created http request to get recipe in home
+
+[33mcommit 2326d99d724c06146047cbc00c0a6a98b587156d[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Wed Oct 28 18:10:42 2020 +0000
+
+    :recycle: Refactoring forms in the edit recipe
+
+[33mcommit 03b7f9cdbb4bbf81376aacb3e7475b124ec34d64[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Wed Oct 28 17:32:47 2020 +0000
+
+    :recycle: Refactoring forms in the recipe
+
+[33mcommit 6a54129389ac43d798280634cd5fac750b3ed8cc[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Tue Oct 27 19:48:32 2020 +0000
+
+    :sparkles: configured angular environment
+
+[33mcommit ae3ff64d1b0bbf9782e34c314c022209b9280fb2[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Tue Oct 27 19:41:36 2020 +0000
+
+    :sparkles: add back-end
+
+[33mcommit 2129f22435ea43dd70c45012b7bc0acb9c4c4f3c[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Fri Oct 23 17:18:04 2020 +0100
+
+    :recycle: changed variable names
+
+[33mcommit 6accc2f9535845205de5cf3f0e4bf6c7e7f3a2ef[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Fri Oct 23 16:46:09 2020 +0100
+
+    :bug:  fixed upload bug and edit recipe image
+
+[33mcommit 1a274371f7f227df1e8a6154b933762d020bb70c[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Thu Oct 22 17:24:19 2020 +0100
+
+    :recycle: refactoring in the view recipe
+
+[33mcommit 489d6cd5c6ce08062363d302cef9f3aef2e1f0c5[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Thu Oct 22 15:57:07 2020 +0100
+
+    :art: change recipe display layout
+
+[33mcommit 9a029b1e7c11b9c70de68bfdfd8bec1cc25c4c99[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Mon Oct 19 18:15:52 2020 +0100
+
+    :construction: edit recipe is in construction
+
+[33mcommit 287648ace7cfb8550dc317561179d6190ae4689e[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Wed Oct 14 18:12:11 2020 +0100
+
+    :sparkles: add dialog to confirm when to include recipe
+
+[33mcommit 629d8b098b8bde23d8af5651dcc927e520f12407[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Tue Oct 6 16:00:19 2020 +0100
+
+    :sparkles: created delete recipe
+
+[33mcommit b6fc9f0ed6f641d91893d516b89f03d5e5ce5342[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Mon Oct 5 21:41:11 2020 +0100
+
+    :bug: Fixed carosel size for home
+
+[33mcommit 7f8c978e1e5bb9ce050f002a4c079469eccaba01[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Mon Oct 5 19:52:57 2020 +0100
+
+    :bug: Fixed carosel size for home
+
+[33mcommit a79f4f2449b282c7b9304fd4e7c364e2531ed821[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Sun Sep 27 20:59:59 2020 +0100
+
+    :bug: fixed bug of adding more images.
+    Added formatting to preparation and ingredients
+
+[33mcommit 957364f2a1492475a0e301138c66f42d41bf2138[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Sun Sep 20 20:44:24 2020 +0100
+
+    :sparkles: completed view recipe
+
+[33mcommit 0e44230cd1a621ceef294b2a4a74c5fd6d8eafcb[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Wed Sep 16 18:36:04 2020 +0100
+
+    :books: updated documents
+
+[33mcommit 0753aca1871354500355efbbbe596ae4bf31662d[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Wed Sep 16 18:33:41 2020 +0100
+
+    :books: updated documents and component changes
+
+[33mcommit 93859426e425e6488b3392537195c7e44627c52e[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Tue Sep 15 19:11:49 2020 +0100
+
+    :sparkles: creating carousel component
+
+[33mcommit fd6c08cb070389d25c89dd375d2bbdea43169a2c[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Tue Sep 15 13:00:33 2020 +0100
+
+    :sparkles: creating ranking component
+
+[33mcommit 86a631d03bef0a7a8559e277afa4097a115701b8[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Sun Sep 13 20:26:54 2020 +0100
+
+    :construction: in progress recipe preview
+
+[33mcommit 4ff4eceb585073384f7d09559c6760fe67125ad6[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Sun Sep 13 15:54:17 2020 +0100
+
+    :art: completed home page
+
+[33mcommit ab2791a5199c96b00122eeb72b2f34c31b44cdaa[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Fri Sep 11 19:31:26 2020 +0100
+
+    :sparkles: created favorite button and organized components
+
+[33mcommit 3b700ae90994746325174d92bac2ae56cb3b4671[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Thu Sep 10 20:41:22 2020 +0100
+
+    :sparkles: add toastr and post on JSON Server
+
+[33mcommit c7737cf6860d124253a5f2afb75c18fef18b0cca[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Thu Sep 10 18:18:38 2020 +0100
+
+    :sparkles: created steps to add recipes
+
+[33mcommit ea2e311ef8ae2000649e8836fa2515bbdc10e030[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Sun Sep 6 01:30:34 2020 +0100
+
+    :books: updated documents
+
+[33mcommit 6534ba905f27b700e301c4c8035acabc566b84f1[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Sun Sep 6 01:27:25 2020 +0100
+
+    :books: updated documents
+
+[33mcommit 85b75522a2f7a2ec231461bbc8ced523beb88bdb[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Sun Sep 6 01:23:22 2020 +0100
+
+    :books: updated documents
+
+[33mcommit ad8df66cd6024fda6fc86c1bc8d4ffb19bbe4de4[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Sun Sep 6 01:08:02 2020 +0100
+
+    :art: added home page and menu
+
+[33mcommit 225f5c65da42e587b524c22fdba2963175fd7e72[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Sat Sep 5 19:24:30 2020 +0100
+
+    :sparkles: completed sidenav
+
+[33mcommit a1d77a04137d8c7e16ccabb3afcfff03f47906a8[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Fri Sep 4 16:22:54 2020 +0100
+
+    :sparkles: create sidenav
+
+[33mcommit dee94c881a3ce991a33de0ad5498855bf999a30a[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Tue Sep 1 20:37:29 2020 +0100
+
+    :sparkles: initial setup completed
+
+[33mcommit f85bb6b3b78a700a4e9dc85b19407777354212e2[m
+Author: Adriana Windmuller <adrianawindmuller@outlook.com>
+Date:   Mon Aug 31 19:18:20 2020 +0100
+
+    :tada: Initial Commit
+
+[33mcommit 3b356e5a46701a915e645bf8ba23273057682c33[m
+Author: adrianawindmuller <62520468+adrianawindmuller@users.noreply.github.com>
+Date:   Mon Aug 31 17:23:26 2020 +0100
+
+    Initial commit
