@@ -20,18 +20,47 @@ namespace MyCookbook.Domain.Recipes
         {
             var categories = await _categoryRepository.ListAllAsync();
 
-            var vm = new List<GetCategoryViewModel>();
+            var vmCategories = new List<GetCategoryViewModel>();
 
-            vm.AddRange(categories.Select(c => new GetCategoryViewModel
+            vmCategories.AddRange(categories.Select(category => new GetCategoryViewModel
             {
-                Id = c.Id,
-                Name = c.Name,
-                NumberOfRecipes = c.NumberOfRecipes,
-                Icon = c.Icon
-            }
-            ));
+                Id = category.Id,
+                Name = category.Name,
+                Icon = category.Icon,
+            }));
 
-            return Response.Ok(vm);
+            return Response.Ok(vmCategories);
+        }
+
+        public async Task<Response> GetCategoryWithRecipes()
+        {
+            var categories = await _categoryRepository.ListAllWithRecipesAsync();
+
+            var vmCategories = new List<GetCategoryWithRecipesViewModel>();
+            var vmRecipes = new List<CardRecipeViewModel>();
+
+            foreach (var category in categories)
+            {
+                vmCategories.Add(new GetCategoryWithRecipesViewModel
+                {
+                    Id = category.Id,
+                    Name = category.Name,
+                    NumberOfRecipes = category.NumberOfRecipes,
+                    Icon = category.Icon,
+                    Recipes = category.Recipes.Select(recipe => new CardRecipeViewModel
+                    {
+                        Id = recipe.Id,
+                        Name = recipe.Name,
+                        CategoryName = recipe.Category.Name,
+                        Favorite = recipe.Favorite,
+                        UserId = recipe.User.Id,
+                        UserName = recipe.User.Name,
+                        Images = recipe.Images.Select(image => image.RawContent).ToList()
+                    }).ToList()
+                });
+            }
+
+            return Response.Ok(vmCategories);
         }
 
         public async Task<Response> GetCategoryByIdAsync(int id)

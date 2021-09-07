@@ -7,6 +7,8 @@ namespace MyCookbook.Domain.Recipes
     {
         public Task<Response> GetCateforiesAsync();
 
+        public Task<Response> GetCategoryWithRecipes();
+
         public Task<Response> GetCategoryByIdAsync(int id);
     }
 }

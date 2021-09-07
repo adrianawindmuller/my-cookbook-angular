@@ -22,6 +22,15 @@ namespace MyCookbook.Api.Recipes.Controllers
             return Result(response);
         }
 
+        [Route("recipes")]
+        [HttpGet]
+        public async Task<IActionResult> GetCategoryWithRecipes()
+        {
+            var response = await _categoryApplication.GetCategoryWithRecipes();
+            return Result(response);
+        }
+
+
         [Route("{id}")]
         [HttpGet]
         public async Task<IActionResult> GetCategoryByIdAsync(int id)
