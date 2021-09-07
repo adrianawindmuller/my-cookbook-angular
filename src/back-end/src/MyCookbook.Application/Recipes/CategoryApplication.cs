@@ -35,9 +35,7 @@ namespace MyCookbook.Domain.Recipes
         public async Task<Response> GetCategoryWithRecipes()
         {
             var categories = await _categoryRepository.ListAllWithRecipesAsync();
-
             var vmCategories = new List<GetCategoryWithRecipesViewModel>();
-            var vmRecipes = new List<CardRecipeViewModel>();
 
             foreach (var category in categories)
             {
@@ -47,18 +45,33 @@ namespace MyCookbook.Domain.Recipes
                     Name = category.Name,
                     NumberOfRecipes = category.NumberOfRecipes,
                     Icon = category.Icon,
-                    Recipes = category.Recipes.Select(recipe => new CardRecipeViewModel
-                    {
-                        Id = recipe.Id,
-                        Name = recipe.Name,
-                        CategoryName = recipe.Category.Name,
-                        Favorite = recipe.Favorite,
-                        UserId = recipe.User.Id,
-                        UserName = recipe.User.Name,
-                        Images = recipe.Images.Select(image => image.RawContent).ToList()
-                    }).ToList()
                 });
             }
+
+            return Response.Ok(vmCategories);
+        }
+
+        public async Task<Response> GetCategoryByIdWithRecipes(int id)
+        {
+            var category = await _categoryRepository.ByIdWithRecipesAsync(id);
+
+            var vmCategories = new GetCategoryByIdWithRecipesViewModel
+            {
+                Id = category.Id,
+                Name = category.Name,
+                NumberOfRecipes = category.NumberOfRecipes,
+                Icon = category.Icon,
+                Recipes = category.Recipes.Select(recipe => new CardRecipeViewModel
+                {
+                    Id = recipe.Id,
+                    Name = recipe.Name,
+                    CategoryName = recipe.Category.Name,
+                    Favorite = recipe.Favorite,
+                    UserId = recipe.User.Id,
+                    UserName = recipe.User.Name,
+                    Images = recipe.Images.Select(image => image.RawContent).ToList()
+                }).ToList()
+            };
 
             return Response.Ok(vmCategories);
         }

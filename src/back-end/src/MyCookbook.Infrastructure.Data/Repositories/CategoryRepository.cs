@@ -17,11 +17,20 @@ namespace MyCookbook.Infrastructure.Data.Repositories
             return await Db
                 .Set<Category>()
                 .Include(x => x.Recipes)
+                .AsNoTracking()
+                .ToListAsync();
+        }
+
+        public async Task<Category> ByIdWithRecipesAsync(int id)
+        {
+            return await Db
+                .Set<Category>()
+                .Include(x => x.Recipes)
                     .ThenInclude(x => x.Images)
                 .Include(x => x.Recipes)
                     .ThenInclude(r => r.User)
                 .AsNoTracking()
-                .ToListAsync();
+                .FirstOrDefaultAsync(x => x.Id == id);
         }
     }
 }

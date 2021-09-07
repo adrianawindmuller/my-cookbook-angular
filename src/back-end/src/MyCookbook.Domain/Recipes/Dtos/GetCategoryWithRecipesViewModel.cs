@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace MyCookbook.Domain.Recipes.Dtos
+﻿namespace MyCookbook.Domain.Recipes.Dtos
 {
     public class GetCategoryWithRecipesViewModel
     {
@@ -11,8 +9,5 @@ namespace MyCookbook.Domain.Recipes.Dtos
         public int NumberOfRecipes { get; set; }
 
         public string Icon { get; set; }
-
-        public List<CardRecipeViewModel> Recipes { get; set; } = new List<CardRecipeViewModel>();
-
     }
 }
