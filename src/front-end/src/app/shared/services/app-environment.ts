@@ -1,5 +1,5 @@
 import { HttpParams } from '@angular/common/http';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 export class AppEnviroment {
   private recipe: string;
@@ -26,6 +26,7 @@ export class AppEnviroment {
 
   public categoryApi = {
     getCategories: (): string => `${this.category}`,
-    getCategoriesWithRecipes: (): string => `${this.category}/recipes`,
+    getCategoryByIdWithRecipes: (id: number): string =>
+      `${this.category}/${id}/recipes`,
   };
 }

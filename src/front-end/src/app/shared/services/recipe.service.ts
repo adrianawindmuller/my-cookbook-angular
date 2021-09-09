@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { AppEnviroment } from '../app-environment';
+import { AppEnviroment } from './app-environment';
 import { CardRecipe } from '../models/card-recipe.model';
-import { Category } from '../models/category';
+import { Category } from '../models/category.model';
 import { SaveRecipe } from '../models/save-recipe.model';
 import { RecipeViewDetails } from '../models/recipe-view-details.model';
 import { Observable } from 'rxjs';
-import { CategoryWithRecipes } from '../models/category-with-recipes';
+import { CategoryWithRecipes } from '../models/category-with-recipes.model';
 
 @Injectable({
   providedIn: 'root',
@@ -18,21 +18,21 @@ export class RecipeService {
     this.appEnviroment = new AppEnviroment();
   }
 
-  getRecipes(): Observable<CardRecipe[]> {
-    return this.http.get<CardRecipe[]>(
-      this.appEnviroment.recipeApi.getRecipes()
-    );
-  }
-
   getCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(
       this.appEnviroment.categoryApi.getCategories()
     );
   }
 
-  getCategoriesWithRecipes(): Observable<CategoryWithRecipes[]> {
-    return this.http.get<CategoryWithRecipes[]>(
-      this.appEnviroment.categoryApi.getCategoriesWithRecipes()
+  getCategoriesByIdWithRecipes(id: number): Observable<CategoryWithRecipes> {
+    return this.http.get<CategoryWithRecipes>(
+      this.appEnviroment.categoryApi.getCategoryByIdWithRecipes(id)
+    );
+  }
+
+  getRecipes(): Observable<CardRecipe[]> {
+    return this.http.get<CardRecipe[]>(
+      this.appEnviroment.recipeApi.getRecipes()
     );
   }
 

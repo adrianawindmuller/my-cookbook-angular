@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Category } from 'src/app/shared/models/category';
-import { CategoryWithRecipes } from 'src/app/shared/models/category-with-recipes';
+import { Category } from 'src/app/shared/models/category.model';
 import { RecipeService } from 'src/app/shared/services/recipe.service';
 
 @Component({
@@ -9,12 +8,12 @@ import { RecipeService } from 'src/app/shared/services/recipe.service';
   styleUrls: ['./all-categories.component.css'],
 })
 export class AllCategoriesComponent implements OnInit {
-  categories: CategoryWithRecipes[] = [];
+  categories: Category[] = [];
   constructor(private recipeService: RecipeService) {}
 
   ngOnInit(): void {
     this.recipeService
-      .getCategoriesWithRecipes()
+      .getCategories()
       .subscribe((res) => (this.categories = res));
   }
 }

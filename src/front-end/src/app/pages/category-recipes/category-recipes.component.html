@@ -1,0 +1,22 @@
+<div class="container-fluid p-0">
+  <!-- Topo -->
+  <div class="p-4" style="background-color: rgb(216, 236, 255);">
+    <div class="d-flex justify-content-start align-items-center">
+      <div class="d-flex p-3 rounded-circle shadow" style="background-color: white;">
+        <img src="{{category.icon}}" class="icon-category" style="padding-right: 8px;" />
+      </div>
+      <div style="padding-left: 15px;">
+        <h1 class="fw-bold primary-color mb-0">{{category.name}}</h1>
+        <p class="fw-bold">{{category.numberOfRecipes}} receitas</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recipes -->
+  <div class="d-flex justify-content-around flex-wrap">
+    <app-card-recipe [recipes]="category.recipes"> </app-card-recipe>
+  </div>
+
+  <div>
+  </div>
+</div>
