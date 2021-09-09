@@ -16,6 +16,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { FilterRecipePipe } from './pipes/filter-recipe.pipe';
 import { LoadingService } from './services/loading.service';
 import { NetworkInterceptor } from './services/network.interceptor';
+import { CardRecipeComponent } from './card-recipe/card-recipe.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { NetworkInterceptor } from './services/network.interceptor';
     ToggleFavoriteComponent,
     NotFoundComponent,
     FilterRecipePipe,
+    CardRecipeComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -56,6 +58,7 @@ import { NetworkInterceptor } from './services/network.interceptor';
     ToggleFavoriteComponent,
     NotFoundComponent,
     FilterRecipePipe,
+    CardRecipeComponent,
   ],
   providers: [
     RecipeService,

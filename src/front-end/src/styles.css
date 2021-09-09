@@ -10,3 +10,16 @@ i {
 .sr-only {
   display: none;
 }
+
+.icon-category {
+  width: 80px;
+  height: 80px;
+}
+
+.primary-background {
+  background-color: #4e70ff;
+}
+
+.primary-color {
+  color: #4e70ff;
+}

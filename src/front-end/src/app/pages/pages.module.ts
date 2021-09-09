@@ -6,9 +6,10 @@ import { ToastrModule } from 'ngx-toastr';
 import { DetailsRecipeComponent } from './details-recipe/details-recipe.component';
 import { SaveRecipeComponent } from './save-recipe/save-recipe.component';
 import { AllCategoriesComponent } from './all-categories/all-categories.component';
+import { CategoryRecipesComponent } from './category-recipes/category-recipes.component';
 
 @NgModule({
-  declarations: [HomeComponent, SaveRecipeComponent, DetailsRecipeComponent, AllCategoriesComponent],
+  declarations: [HomeComponent, SaveRecipeComponent, DetailsRecipeComponent, AllCategoriesComponent, CategoryRecipesComponent],
   imports: [CommonModule, SharedModule, ToastrModule.forRoot()],
 })
 export class PagesModule {}
