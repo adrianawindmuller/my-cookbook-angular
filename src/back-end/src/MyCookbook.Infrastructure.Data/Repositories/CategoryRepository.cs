@@ -12,7 +12,7 @@ namespace MyCookbook.Infrastructure.Data.Repositories
         {
         }
 
-        public async Task<IReadOnlyList<Category>> ListAllWithRecipesAsync()
+        public override async Task<IReadOnlyList<Category>> ListAllAsync()
         {
             return await Db
                 .Set<Category>()

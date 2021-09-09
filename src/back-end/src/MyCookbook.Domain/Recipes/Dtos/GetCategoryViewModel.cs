@@ -6,6 +6,8 @@
 
         public string Name { get; set; }
 
+        public int NumberOfRecipes { get; set; }
+
         public string Icon { get; set; }
     }
 }

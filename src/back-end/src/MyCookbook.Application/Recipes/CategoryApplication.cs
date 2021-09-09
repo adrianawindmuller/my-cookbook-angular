@@ -26,27 +26,9 @@ namespace MyCookbook.Domain.Recipes
             {
                 Id = category.Id,
                 Name = category.Name,
+                NumberOfRecipes = category.NumberOfRecipes,
                 Icon = category.Icon,
             }));
-
-            return Response.Ok(vmCategories);
-        }
-
-        public async Task<Response> GetCategoryWithRecipes()
-        {
-            var categories = await _categoryRepository.ListAllWithRecipesAsync();
-            var vmCategories = new List<GetCategoryWithRecipesViewModel>();
-
-            foreach (var category in categories)
-            {
-                vmCategories.Add(new GetCategoryWithRecipesViewModel
-                {
-                    Id = category.Id,
-                    Name = category.Name,
-                    NumberOfRecipes = category.NumberOfRecipes,
-                    Icon = category.Icon,
-                });
-            }
 
             return Response.Ok(vmCategories);
         }
@@ -83,7 +65,8 @@ namespace MyCookbook.Domain.Recipes
             var vm = new GetCategoryViewModel
             {
                 Id = category.Id,
-                Name = category.Name
+                Name = category.Name,
+                Icon = category.Icon
             };
 
             return Response.Ok(vm);
