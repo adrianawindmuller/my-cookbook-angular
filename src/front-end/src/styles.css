@@ -1,4 +1,4 @@
-.body {
+body {
   height: 100%;
   background-color: #f9f9f9;
 }
@@ -22,4 +22,8 @@ i {
 
 .primary-color {
   color: #4e70ff;
+}
+
+.light-background {
+  background-color: rgb(216, 236, 255);
 }
