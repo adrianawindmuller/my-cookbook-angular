@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  Router,
+  RouterEvent,
+} from '@angular/router';
+import { Subject } from 'rxjs';
+import { filter, takeUntil } from 'rxjs/operators';
 import { CategoryWithRecipes } from 'src/app/shared/models/category-with-recipes.model';
 import { RecipeService } from 'src/app/shared/services/recipe.service';
 
@@ -13,11 +20,13 @@ export class CategoryRecipesComponent implements OnInit {
 
   constructor(
     private recipeService: RecipeService,
-    private route: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.categoryId = this.route.snapshot.params['id'];
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.categoryId = this.activeRoute.snapshot.params['id'];
 
     this.recipeService
       .getCategoriesByIdWithRecipes(this.categoryId)
