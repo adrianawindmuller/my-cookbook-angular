@@ -1,8 +1,7 @@
-import { Component, Inject, Injector, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
-import { map, tap } from 'rxjs/operators';
 import { DialogConfirmComponent } from 'src/app/shared/dialog-confirm/dialog-confirm.component';
 import { RecipeViewDetails } from 'src/app/shared/models/recipe-view-details.model';
 import { RecipeService } from 'src/app/shared/services/recipe.service';

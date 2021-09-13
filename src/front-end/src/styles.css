@@ -27,3 +27,7 @@ i {
 .light-background {
   background-color: rgb(216, 236, 255);
 }
+
+.capitalize {
+  text-transform: capitalize;
+}

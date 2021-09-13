@@ -128,6 +128,9 @@
             <label class="form-check-label" for="published"> Publicar (opcional) </label>
           </div>
 
+          <button (click)="navegateBack()" type="button" class="btn btn-light" style="margin-right: 10px;">
+            Cancelar
+          </button>
           <button type="submit" class="btn btn-primary" [disabled]="!recipeForm.valid">
             Salvar Receita
           </button>

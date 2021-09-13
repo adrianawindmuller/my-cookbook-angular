@@ -17,6 +17,7 @@ import { FilterRecipePipe } from './pipes/filter-recipe.pipe';
 import { LoadingService } from './services/loading.service';
 import { NetworkInterceptor } from './services/network.interceptor';
 import { CardRecipeComponent } from './card-recipe/card-recipe.component';
+import { NavegavateBackComponent } from './navegavate-back/navegavate-back.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { CardRecipeComponent } from './card-recipe/card-recipe.component';
     NotFoundComponent,
     FilterRecipePipe,
     CardRecipeComponent,
+    NavegavateBackComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -59,6 +61,7 @@ import { CardRecipeComponent } from './card-recipe/card-recipe.component';
     NotFoundComponent,
     FilterRecipePipe,
     CardRecipeComponent,
+    NavegavateBackComponent,
   ],
   providers: [
     RecipeService,

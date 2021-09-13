@@ -4,7 +4,6 @@ import {
   FormGroup,
   Validators,
   FormArray,
-  FormControl,
   AbstractControl,
 } from '@angular/forms';
 import { Category } from 'src/app/shared/models/category.model';
@@ -13,7 +12,7 @@ import { RecipeService } from 'src/app/shared/services/recipe.service';
 import { first } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-register-recipe',
@@ -33,7 +32,8 @@ export class SaveRecipeComponent implements OnInit {
     private recipeService: RecipeService,
     private toastr: ToastrService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -252,5 +252,9 @@ export class SaveRecipeComponent implements OnInit {
     }
 
     return '';
+  }
+
+  navegateBack() {
+    this.location.back();
   }
 }
