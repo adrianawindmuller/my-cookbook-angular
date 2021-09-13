@@ -55,7 +55,8 @@ export class DetailsRecipeComponent implements OnInit {
 
   openModalDeleteRecipe(id: number): void {
     let modalRef = this.modalService.open(DialogConfirmComponent);
-    modalRef.componentInstance.messenge = `Tem certeza que deseja excluir a receita ${this.recipe.name}?`;
+    modalRef.componentInstance.messenge = `Tem certeza que deseja deletar a receita ${this.recipe.name}?`;
+    modalRef.componentInstance.nameAction = 'Deletar Receita';
     modalRef.result.then((res) => {
       this.deleteRecipe(id);
     });

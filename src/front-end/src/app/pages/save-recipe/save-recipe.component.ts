@@ -13,6 +13,8 @@ import { first } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DialogConfirmComponent } from 'src/app/shared/dialog-confirm/dialog-confirm.component';
 
 @Component({
   selector: 'app-register-recipe',
@@ -33,7 +35,8 @@ export class SaveRecipeComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -255,6 +258,19 @@ export class SaveRecipeComponent implements OnInit {
   }
 
   navegateBack() {
-    this.location.back();
+    if (this.recipeForm.dirty) {
+      this.openModalConfirmeNavegateBack();
+    } else {
+      this.location.back();
+    }
+  }
+
+  openModalConfirmeNavegateBack(): void {
+    let modalRef = this.modalService.open(DialogConfirmComponent);
+    modalRef.componentInstance.messenge = `Você alterou alguns dados! Tem certeza que deseja voltar?`;
+    modalRef.componentInstance.nameAction = 'Voltar';
+    modalRef.result.then((res) => {
+      this.location.back();
+    });
   }
 }

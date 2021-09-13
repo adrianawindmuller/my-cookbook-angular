@@ -7,6 +7,8 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class DialogConfirmComponent implements OnInit {
   @Input() messenge!: string;
+  @Input() nameAction!: string;
+
   constructor(public modal: NgbActiveModal) {}
 
   ngOnInit(): void {}
