@@ -1,15 +1,21 @@
 <div class="container-fluid p-0" style="min-height: 95vh; max-height: 100%;">
   <div *ngIf="recipes">
 
-    <div class="d-flex justify-content-center px-4 py-2">
-      <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Pesquisar receita por nome"
-        [(ngModel)]="filterName" style="width: 500px;">
+    <!-- Filter-->
+    <div class="d-flex justify-content-start px-4 py-2">
+      <div class="input-group input-group-sm my-3" style="width: 500px;">
+        <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
+        <input type="text" [(ngModel)]="filterName" class="form-control" placeholder="Pesquisar receita por nome..."
+          aria-label="Pesquisar receita por nome..." aria-describedby="basic-addon1">
+      </div>
     </div>
 
     <app-card-recipe [recipes]="recipes" [filterName]="filterName"> </app-card-recipe>
   </div>
 
   <div *ngIf="!isLoading && !recipes">
-    <app-not-found></app-not-found>
+    <app-not-found messageNotFound="Ainda não tem nenhuma receita aqui!"
+      messageAddRecipe="Vamos criar sua primeira receita?">
+    </app-not-found>
   </div>
 </div>

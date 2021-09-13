@@ -1,5 +1,5 @@
-<div class="d-flex justify-content-around flex-wrap">
-  <div *ngFor="let recipe of recipes | filterRecipe: filterName" class="card rounded mt-4 mb-4 " style="width: 18rem">
+<div *ngIf="(recipes | filterRecipe: filterName) as result" class="d-flex justify-content-around flex-wrap">
+  <div *ngFor="let recipe of result" class="card rounded mt-4 mb-4" style="width: 18rem">
     <div style="height: 150px;">
       <img src="{{ recipe.images[0] }}" class="rounded" alt="{{recipe.name}}" style="height: 100%; width: 100%;" />
     </div>
@@ -18,5 +18,9 @@
         <app-toggle-favorite [isFavorite]="recipe.favorite" [id]="recipe.id"></app-toggle-favorite>
       </div>
     </div>
+  </div>
+  <div *ngIf="result.length === 0">
+    <app-not-found messageNotFound="Nenhuma receita encontrada." messageAddRecipe="Vamos adicionar uma receita?">
+    </app-not-found>
   </div>
 </div>

@@ -8,7 +8,6 @@ import { CardRecipe } from '../models/card-recipe.model';
 export class CardRecipeComponent implements OnInit {
   @Input() recipes!: CardRecipe[];
   @Input() filterName!: string;
-
   constructor() {}
 
   ngOnInit(): void {}
