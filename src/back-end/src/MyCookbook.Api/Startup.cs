@@ -46,6 +46,7 @@ namespace MyCookbook.Api
                 c.UseSqlServer(_configuration.GetConnectionString("MyCookBookConnection"));
             });
 
+
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddScoped<IRecipeRepository, RecipeRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();

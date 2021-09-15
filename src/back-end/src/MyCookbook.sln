@@ -18,6 +18,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyCookbook.Infrastructure.D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{89F0DF68-02E1-4E43-9D18-FE1B552FD16D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCookbook.Indentity", "MyCookbook.Indentity\MyCookbook.Indentity.csproj", "{7297237E-8623-4F1B-9487-DCA280ADB9F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -88,6 +90,18 @@ Global
 		{12408B4C-3EE7-43B9-966E-D78B78CE154E}.Release|x64.Build.0 = Release|Any CPU
 		{12408B4C-3EE7-43B9-966E-D78B78CE154E}.Release|x86.ActiveCfg = Release|Any CPU
 		{12408B4C-3EE7-43B9-966E-D78B78CE154E}.Release|x86.Build.0 = Release|Any CPU
+		{7297237E-8623-4F1B-9487-DCA280ADB9F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7297237E-8623-4F1B-9487-DCA280ADB9F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7297237E-8623-4F1B-9487-DCA280ADB9F0}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7297237E-8623-4F1B-9487-DCA280ADB9F0}.Debug|x64.Build.0 = Debug|Any CPU
+		{7297237E-8623-4F1B-9487-DCA280ADB9F0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7297237E-8623-4F1B-9487-DCA280ADB9F0}.Debug|x86.Build.0 = Debug|Any CPU
+		{7297237E-8623-4F1B-9487-DCA280ADB9F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7297237E-8623-4F1B-9487-DCA280ADB9F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7297237E-8623-4F1B-9487-DCA280ADB9F0}.Release|x64.ActiveCfg = Release|Any CPU
+		{7297237E-8623-4F1B-9487-DCA280ADB9F0}.Release|x64.Build.0 = Release|Any CPU
+		{7297237E-8623-4F1B-9487-DCA280ADB9F0}.Release|x86.ActiveCfg = Release|Any CPU
+		{7297237E-8623-4F1B-9487-DCA280ADB9F0}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

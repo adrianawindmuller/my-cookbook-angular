@@ -1,0 +1,3 @@
+@Imports MyCookbook_Indentity.Areas.HelpPage.ModelDescriptions
+@ModelType SimpleTypeModelDescription
+@Model.Documentation
