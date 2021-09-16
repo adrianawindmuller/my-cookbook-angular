@@ -18,7 +18,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyCookbook.Infrastructure.D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{89F0DF68-02E1-4E43-9D18-FE1B552FD16D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCookbook.Indentity", "MyCookbook.Indentity\MyCookbook.Indentity.csproj", "{7297237E-8623-4F1B-9487-DCA280ADB9F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCookbook.Identity", "MyCookbook.Indentity\MyCookbook.Identity.csproj", "{7297237E-8623-4F1B-9487-DCA280ADB9F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

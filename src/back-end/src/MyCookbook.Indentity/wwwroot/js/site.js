@@ -1,4 +1,26 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿class Password {
+    showPasswordClick(inputClass) {
+        let showPasswordInput = $(`.${inputClass} input`);
+        let showPasswordButton = $(`.${inputClass} button`);
+        let showPasswordIcon = $(`.${inputClass} i`);
 
-// Write your JavaScript code.
+        showPasswordButton.on('click', function (event) {
+            event.preventDefault();
+
+            if (showPasswordInput.attr("type") == "text") {
+                showPasswordInput.attr("type", "password");
+
+                showPasswordIcon
+                    .addClass("bi bi-eye-slash")
+                    .removeClass("bi bi-eye");
+            }
+            else if (showPasswordInput.attr("type") == "password") {
+                showPasswordInput.attr("type", "text");
+
+                showPasswordIcon
+                    .removeClass("bi bi-eye-slash")
+                    .addClass("bi bi-eye");
+            }
+        });
+    }
+}
