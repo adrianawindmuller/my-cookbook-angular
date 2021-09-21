@@ -26,7 +26,7 @@ namespace MyCookbook.Indentity
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddDefaultIdentity<ApplicationUser>(options =>
             {
-                options.SignIn.RequireConfirmedAccount = true;
+                options.SignIn.RequireConfirmedAccount = false;
 
             })
                 .AddEntityFrameworkStores<ApplicationDbContext>();
