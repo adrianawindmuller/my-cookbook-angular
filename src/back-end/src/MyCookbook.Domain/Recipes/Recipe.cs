@@ -8,7 +8,7 @@ namespace MyCookbook.Domain.Recipes
     {
         public Recipe(
             string name,
-            User user,
+            Guid user,
             Category category,
             uint numberPortion,
             uint preparationTimeInMinutes,
@@ -17,7 +17,7 @@ namespace MyCookbook.Domain.Recipes
             List<Image> images,
             bool published)
         {
-            Validate(name, user, category, images, ingredients, preparationMode, numberPortion, preparationTimeInMinutes);
+            Validate(name, category, images, ingredients, preparationMode, numberPortion, preparationTimeInMinutes);
             Name = name;
             User = user;
             Category = category;
@@ -34,7 +34,7 @@ namespace MyCookbook.Domain.Recipes
 
         public string Name { get; private set; }
 
-        public User User { get; private set; }
+        public Guid User { get; private set; }
 
         public Category Category { get; private set; }
 
@@ -77,7 +77,6 @@ namespace MyCookbook.Domain.Recipes
 
         public void Edit(
             string name,
-            User user,
             Category category,
             uint numberPortions,
             uint preparationTimeInMinutes,
@@ -86,9 +85,8 @@ namespace MyCookbook.Domain.Recipes
             bool published,
             List<Image> images = null)
         {
-            Validate(name, user, category, images, ingredients, preparationMode, numberPortions, preparationTimeInMinutes);
+            Validate(name, category, images, ingredients, preparationMode, numberPortions, preparationTimeInMinutes);
             Name = name;
-            User = user;
             Category = category;
             NumberPortion = numberPortions;
             PreparationTimeInMinutes = preparationTimeInMinutes;
@@ -106,7 +104,6 @@ namespace MyCookbook.Domain.Recipes
 
         private void Validate(
             string name,
-            User user,
             Category category,
             List<Image> images,
             string ingredients,
@@ -114,10 +111,6 @@ namespace MyCookbook.Domain.Recipes
             uint numberPortion,
             uint preparationTimeInMinutes)
         {
-            if (user is null)
-            {
-                throw new ArgumentException("Usuário obrigatório!", nameof(user));
-            }
 
             if (category is null)
             {

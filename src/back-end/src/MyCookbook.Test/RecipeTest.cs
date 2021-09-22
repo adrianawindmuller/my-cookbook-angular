@@ -29,13 +29,13 @@ namespace MyCookbook.UnitTest
             new Image("src:/bolo-de-chocolate-7"),
         };
 
-        private User _NewUser = new User("Adriana", "adriana@gmail.com", "src://adriana.jpg", "r0D@hf35");
+        private Guid _NewUser = new Guid("5f3fe1e4");
 
         private Category _NewCategory = new Category("Bolo", "bolo.png");
 
         private Recipe GetNewRecipe(
             List<Image> images,
-            User user,
+            Guid user,
             Category category,
             string name = "Bolo de Chocolate",
             string ingredients = "1 xicara de farinha....",
@@ -120,9 +120,6 @@ namespace MyCookbook.UnitTest
             });
             Assert.Equal("Insira no máximo 10 horas. (Parameter 'preparationTimeInMinutes')", ex14.Message);
 
-            var ex16 = Assert.Throws<ArgumentException>(() => GetNewRecipe(_3Images, user: null, _NewCategory));
-            Assert.Equal("Usuário obrigatório! (Parameter 'user')", ex16.Message);
-
             var ex17 = Assert.Throws<ArgumentException>(() => GetNewRecipe(_3Images, _NewUser, category: null));
             Assert.Equal("Categoria obrigatório! (Parameter 'category')", ex17.Message);
         }
@@ -130,13 +127,11 @@ namespace MyCookbook.UnitTest
         [Fact]
         public void EditRecipe_ValidEdit_ValidRecipe()
         {
-            var userNew = new User("Taís", "tais@gmail.com", "src://tais.jpg", "A5F@hf88");
             var categoryNew = new Category("Sopas", "sopa.png");
             var recipe = GetNewRecipe(_3Images, _NewUser, _NewCategory);
 
-            recipe.Edit("Sopa de Abobora", userNew, categoryNew, 8, 60, "1 abobora....", "Corte a abobora e coloque para cozinhar...", true, _3Images);
+            recipe.Edit("Sopa de Abobora", categoryNew, 8, 60, "1 abobora....", "Corte a abobora e coloque para cozinhar...", true, _3Images);
             Assert.Equal("Sopa de Abobora", recipe.Name);
-            Assert.Equal(userNew, recipe.User);
             Assert.Equal("Sopas", recipe.Category.Name);
             Assert.Equal(8, (int)recipe.NumberPortion);
             Assert.Equal("1 abobora....", recipe.Ingredients);
@@ -151,9 +146,8 @@ namespace MyCookbook.UnitTest
         public void EditRecipe_InvalidEdit_InvalidRecipe()
         {
             var category = new Category("Bolo", "bolo.png");
-            var userNew = new User("Taís", "tais@gmail.com", "src://tais.jpg", "A5F@hf88");
             var recipe = GetNewRecipe(_3Images, _NewUser, _NewCategory);
-            Assert.Throws<ArgumentException>(() => recipe.Edit("", userNew, category, 60, 5, " ", "", true, _7Images));
+            Assert.Throws<ArgumentException>(() => recipe.Edit("", category, 60, 5, " ", "", true, _7Images));
         }
 
         [Fact]

@@ -13,7 +13,7 @@ namespace MyCookbook.Domain.Recipes.Dtos
 
 
         [Required(ErrorMessage = Text.ErrorMessenges.FielRequired)]
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
 
 
         [Required(ErrorMessage = Text.ErrorMessenges.FielRequired)]

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace MyCookbook.Domain.Recipes.Dtos
 {
@@ -6,7 +7,7 @@ namespace MyCookbook.Domain.Recipes.Dtos
     {
         public int Id { get; set; }
 
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
 
         public string UserName { get; set; }
 

@@ -16,14 +16,12 @@ namespace MyCookbook.Infrastructure.Data.Repositories
         => Db.Set<Recipe>()
             .Include(x => x.Category)
             .Include(x => x.Images)
-            .Include(x => x.User)
             .FirstOrDefaultAsync(x => x.Id == id);
 
         public override async Task<IReadOnlyList<Recipe>> ListAllAsync()
          => await Db.Set<Recipe>()
             .Include(x => x.Category)
             .Include(x => x.Images)
-            .Include(x => x.User)
             .AsNoTracking().ToListAsync();
 
 

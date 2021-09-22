@@ -10,28 +10,19 @@ namespace MyCookbook.Application.RecipesApplication
 {
     public class RecipeApplication : IRecipeApplication
     {
-        private readonly IUserRepository _userRepository;
         private readonly ICategoryRepository _categoryRepository;
         private readonly IRecipeRepository _recipeRepository;
 
         public RecipeApplication(
-            IUserRepository userRepository,
             ICategoryRepository categoryRepository,
             IRecipeRepository recipeRepository)
         {
-            _userRepository = userRepository;
             _categoryRepository = categoryRepository;
             _recipeRepository = recipeRepository;
         }
 
         public async Task<Response> RegisterRecipe(RegisterRecipeDto dto)
         {
-            var user = await _userRepository.GetByIdAsync(dto.UserId);
-            if (user is null)
-            {
-                return Response.NotFound($"User {dto.UserId} não encontrada.");
-            }
-
             var category = await _categoryRepository.GetByIdAsync(dto.CategoryId);
             if (category is null)
             {
@@ -42,7 +33,7 @@ namespace MyCookbook.Application.RecipesApplication
 
             var recipe = new Recipe(
                 dto.Name,
-                user,
+                dto.UserId,
                 category,
                 dto.NumberPortion,
                 dto.PreparationTimeInMinutes,
@@ -56,7 +47,7 @@ namespace MyCookbook.Application.RecipesApplication
 
             var vmRecipe = new List<RegisterRecipeViewModel>
             {
-                new RegisterRecipeViewModel { Id = recipe.Id, Name = recipe.Name, UserId = recipe.User.Id }
+                new RegisterRecipeViewModel { Id = recipe.Id, Name = recipe.Name }
             };
 
             return Response.Created(vmRecipe);
@@ -71,12 +62,6 @@ namespace MyCookbook.Application.RecipesApplication
                 return Response.NotFound($"Receita {id} não encontrada");
             }
 
-            var user = await _userRepository.GetByIdAsync(dto.UserId);
-            if (user is null)
-            {
-                return Response.NotFound($"User {dto.UserId} não encontrada.");
-            };
-
             var category = await _categoryRepository.GetByIdAsync(dto.CategoryId);
             if (category is null)
             {
@@ -87,7 +72,6 @@ namespace MyCookbook.Application.RecipesApplication
 
             recipe.Edit(
                 dto.Name,
-                user,
                 category,
                 dto.NumberPortion,
                 dto.PreparationTimeInMinutes,
@@ -129,8 +113,6 @@ namespace MyCookbook.Application.RecipesApplication
                 var vmRecipe = new CardRecipeViewModel
                 {
                     Id = recipe.Id,
-                    UserId = recipe.User.Id,
-                    UserName = recipe.User.Name,
                     Name = recipe.Name,
                     CategoryName = recipe.Category.Name,
                     Favorite = recipe.Favorite,
@@ -164,8 +146,6 @@ namespace MyCookbook.Application.RecipesApplication
             {
                 Id = recipe.Id,
                 Name = recipe.Name,
-                UserId = recipe.User.Id,
-                UserName = recipe.User.Name,
                 CategoryName = recipe.Category.Name,
                 NumberPortion = recipe.NumberPortion,
                 PreparationTimeInMinutes = recipe.PreparationTimeInMinutes,
@@ -198,7 +178,6 @@ namespace MyCookbook.Application.RecipesApplication
                 Id = recipe.Id,
                 Name = recipe.Name,
                 CategoryId = recipe.Category.Id,
-                UserId = recipe.User.Id,
                 NumberPortion = recipe.NumberPortion,
                 PreparationTimeInMinutes = recipe.PreparationTimeInMinutes,
                 Ingredients = recipe.Ingredients,

@@ -27,8 +27,6 @@ namespace MyCookbook.Infrastructure.Data.Repositories
                 .Set<Category>()
                 .Include(x => x.Recipes)
                     .ThenInclude(x => x.Images)
-                .Include(x => x.Recipes)
-                    .ThenInclude(r => r.User)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
