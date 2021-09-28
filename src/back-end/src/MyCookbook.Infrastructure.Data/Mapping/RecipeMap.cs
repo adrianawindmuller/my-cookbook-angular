@@ -20,9 +20,8 @@ namespace MyCookbook.Infrastructure.Data.Mapping
                 .IsRequired()
                 .HasColumnType("varchar(60)");
 
-            builder.HasOne(p => p.User)
-                 .WithMany(p => p.Recipes)
-                 .IsRequired();
+            builder.Property(p => p.User)
+                .IsRequired();
 
             builder.HasOne(p => p.Category)
                  .WithMany(p => p.Recipes)

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyCookbook.Infrastructure.Data.DbContexts;
 
 namespace MyCookbook.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(MyCookBookDbContext))]
-    partial class MyCookBookDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210922181856_addPropertyUser")]
+    partial class addPropertyUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
