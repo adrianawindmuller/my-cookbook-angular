@@ -8,10 +8,9 @@ namespace MyCookbook.Domain.Recipes
     {
         public Recipe(
             string name,
-            Guid user,
             Category category,
-            uint numberPortion,
-            uint preparationTimeInMinutes,
+            int numberPortion,
+            int preparationTimeInMinutes,
             string ingredients,
             string preparationMode,
             List<Image> images,
@@ -19,7 +18,6 @@ namespace MyCookbook.Domain.Recipes
         {
             Validate(name, category, images, ingredients, preparationMode, numberPortion, preparationTimeInMinutes);
             Name = name;
-            User = user;
             Category = category;
             NumberPortion = numberPortion;
             PreparationTimeInMinutes = preparationTimeInMinutes;
@@ -34,13 +32,11 @@ namespace MyCookbook.Domain.Recipes
 
         public string Name { get; private set; }
 
-        public Guid User { get; private set; }
-
         public Category Category { get; private set; }
 
-        public uint NumberPortion { get; private set; }
+        public int NumberPortion { get; private set; }
 
-        public uint PreparationTimeInMinutes { get; private set; }
+        public int PreparationTimeInMinutes { get; private set; }
 
         public string Ingredients { get; private set; }
 
@@ -78,8 +74,8 @@ namespace MyCookbook.Domain.Recipes
         public void Edit(
             string name,
             Category category,
-            uint numberPortions,
-            uint preparationTimeInMinutes,
+            int numberPortions,
+            int preparationTimeInMinutes,
             string ingredients,
             string preparationMode,
             bool published,
@@ -108,8 +104,8 @@ namespace MyCookbook.Domain.Recipes
             List<Image> images,
             string ingredients,
             string preparationMode,
-            uint numberPortion,
-            uint preparationTimeInMinutes)
+            int numberPortion,
+            int preparationTimeInMinutes)
         {
 
             if (category is null)
@@ -123,7 +119,7 @@ namespace MyCookbook.Domain.Recipes
             if (images.Count > 6)
                 throw new ArgumentException("Insira no máximo 6 imagens.", nameof(images));
 
-            if (preparationTimeInMinutes < 10)
+            if (preparationTimeInMinutes <= 0 || preparationTimeInMinutes < 10)
                 throw new ArgumentException("Insira mais de 10 minutos.", nameof(preparationTimeInMinutes));
 
             if (TimeSpan.FromMinutes(preparationTimeInMinutes).Hours > 10)
@@ -160,7 +156,7 @@ namespace MyCookbook.Domain.Recipes
                 throw new ArgumentException("Insira no máximo 1000 caracteres.", nameof(preparationMode));
             #endregion
 
-            if (numberPortion < 1 || numberPortion > 40)
+            if (numberPortion <= 0 || numberPortion > 40)
                 throw new ArgumentException("Insira um numero de 1 a 40.", nameof(numberPortion));
 
         }

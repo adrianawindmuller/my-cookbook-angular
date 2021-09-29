@@ -14,9 +14,9 @@ namespace MyCookbook.Domain.Recipes.Dtos
 
         public string CategoryName { get; set; }
 
-        public uint NumberPortion { get; set; }
+        public int NumberPortion { get; set; }
 
-        public uint PreparationTimeInMinutes { get; set; }
+        public int PreparationTimeInMinutes { get; set; }
 
         public string Ingredients { get; set; }
 

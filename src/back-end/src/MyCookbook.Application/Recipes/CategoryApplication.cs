@@ -47,7 +47,6 @@ namespace MyCookbook.Domain.Recipes
                 {
                     Id = recipe.Id,
                     Name = recipe.Name,
-                    UserId = recipe.User,
                     CategoryName = recipe.Category.Name,
                     Favorite = recipe.Favorite,
                     Images = recipe.Images.Select(image => image.RawContent).ToList()

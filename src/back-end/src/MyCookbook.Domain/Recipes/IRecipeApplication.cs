@@ -21,7 +21,5 @@ namespace MyCookbook.Domain.Recipes
         public Task<Response> ToggleFavoriteAsync(int id);
 
         public Task<Response> SetRatingAsync(int id, int rate);
-
-        public Task<Response> FilterRecipe(string name);
     }
 }

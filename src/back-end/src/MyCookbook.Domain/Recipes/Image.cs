@@ -10,6 +10,7 @@ namespace MyCookbook.Domain.Recipes
         }
 
         private Image() { }
+
         public string RawContent { get; }
 
         public void Validate(string content)

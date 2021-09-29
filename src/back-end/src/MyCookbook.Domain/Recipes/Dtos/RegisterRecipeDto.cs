@@ -22,12 +22,12 @@ namespace MyCookbook.Domain.Recipes.Dtos
 
         [Required(ErrorMessage = Text.ErrorMessenges.FielRequired)]
         [Range(0, 40, ErrorMessage = "Insira um numero de 1 a 40.")]
-        public uint NumberPortion { get; set; }
+        public int NumberPortion { get; set; }
 
 
         [Required(ErrorMessage = Text.ErrorMessenges.FielRequired)]
         [Range(10, 600, ErrorMessage = "Insira um número de 10 minutos a 600 minutos.")]
-        public uint PreparationTimeInMinutes { get; set; }
+        public int PreparationTimeInMinutes { get; set; }
 
 
         [Required(ErrorMessage = Text.ErrorMessenges.FielRequired)]

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using MyCookbook.Domain.Recipes;
 using MyCookbook.Domain.Recipes.Dtos;
@@ -8,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace MyCookbook.Api.Recipes.Controllers
 {
-    [Authorize]
     [ApiController]
     [Route("api/[Controller]")]
     public class RecipeController : BaseController
@@ -49,7 +47,6 @@ namespace MyCookbook.Api.Recipes.Controllers
             return Result(response);
         }
 
-        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> GetRecipe()
         {
@@ -57,7 +54,6 @@ namespace MyCookbook.Api.Recipes.Controllers
             return Result(response);
         }
 
-        [AllowAnonymous]
         [Route("{id}/details")]
         [HttpGet]
         public async Task<IActionResult> GetRecipeDetails(int id)

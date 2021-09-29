@@ -1,7 +1,6 @@
 ﻿using MyCookbook.Domain.Common;
 using MyCookbook.Domain.Recipes;
 using MyCookbook.Domain.Recipes.Dtos;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -33,7 +32,6 @@ namespace MyCookbook.Application.RecipesApplication
 
             var recipe = new Recipe(
                 dto.Name,
-                dto.UserId,
                 category,
                 dto.NumberPortion,
                 dto.PreparationTimeInMinutes,
@@ -218,12 +216,6 @@ namespace MyCookbook.Application.RecipesApplication
             await _recipeRepository.UnitOfWork.CommitAsync();
 
             return Response.NoContent();
-        }
-
-        public async Task<Response> FilterRecipe(string name)
-        {
-
-            throw new NotImplementedException();
         }
     }
 }
