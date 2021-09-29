@@ -12,7 +12,6 @@
   <ItemGroup>
     <ProjectReference Include="..\MyCookbook.Application\MyCookbook.Application.csproj" />
     <ProjectReference Include="..\MyCookbook.Domain\MyCookbook.Domain.csproj" />
-    <ProjectReference Include="..\MyCookbook.Indentity\MyCookbook.Identity.csproj" />
     <ProjectReference Include="..\MyCookbook.Infrastructure.Data\MyCookbook.Infrastructure.Data.csproj" />
   </ItemGroup>
 
