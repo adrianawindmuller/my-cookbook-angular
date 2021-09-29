@@ -20,9 +20,6 @@ namespace MyCookbook.Infrastructure.Data.Mapping
                 .IsRequired()
                 .HasColumnType("varchar(60)");
 
-            builder.Property(p => p.User)
-                .IsRequired();
-
             builder.HasOne(p => p.Category)
                  .WithMany(p => p.Recipes)
                  .OnDelete(DeleteBehavior.NoAction)
