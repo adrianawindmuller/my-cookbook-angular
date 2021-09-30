@@ -7,8 +7,6 @@ export class RecipeViewDetails {
   ingredients!: string;
   preparationMode!: string;
   images: string[] = [];
-  userId!: number;
-  userName!: string;
   publicated!: boolean;
   favorite!: boolean;
   rating!: number;

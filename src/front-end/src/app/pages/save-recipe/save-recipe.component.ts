@@ -121,7 +121,6 @@ export class SaveRecipeComponent implements OnInit {
     newRecipe.categoryId = parseInt(newRecipe.categoryId);
 
     let recipeModel = newRecipe as SaveRecipe;
-    recipeModel.userId = 1;
 
     this.recipeService.postRecipe(recipeModel).subscribe((res) => {
       this.router.navigate(['./home']);
@@ -137,7 +136,6 @@ export class SaveRecipeComponent implements OnInit {
     newRecipe.categoryId = parseInt(newRecipe.categoryId);
 
     let recipeModel = newRecipe as SaveRecipe;
-    recipeModel.userId = 1;
 
     this.recipeService.putRecipe(this.id, recipeModel).subscribe((res) => {
       this.router.navigate(['./recipe', this.id]);
