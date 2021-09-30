@@ -2,8 +2,9 @@
   <div class="row justify-content-center">
     <div class="col-lg-7 p-5 shadow rounded" style="background-color: white">
       <div class="d-flex flex-column">
-        <p class="fs-3 text-center fw-bold">{{name ? name : "Adicionar"}} Receita</p>
+        <p class="fs-3 text-center fw-bold">{{titleName ? titleName : "Adicionar"}} Receita</p>
         <form (ngSubmit)="onSubmit()" [formGroup]="recipeForm" class="needs-validation" novalidate>
+
           <!-- name -->
           <div class="mb-3">
             <label for="name" class="form-label"> Nome da receita </label>
@@ -18,7 +19,8 @@
           <!-- categorias -->
           <div class="mb-3">
             <label for="category" class="form-label">Categoria</label>
-            <select formControlName="categoryId" id="category" class="form-select"
+            <select *ngIf="categories$ | async as categories" formControlName="categoryId" id="category"
+              class="form-select"
               [ngClass]="{ 'is-invalid': (submitted && form.categoryId.errors) || (form.categoryId.touched && form.categoryId.errors) }">
               <option selected disabled value="">
                 Selecione uma categoria

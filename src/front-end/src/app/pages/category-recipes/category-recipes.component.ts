@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   ActivatedRoute,
   NavigationEnd,
   Router,
   RouterEvent,
 } from '@angular/router';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { CategoryWithRecipes } from 'src/app/shared/models/category-with-recipes.model';
 import { RecipeService } from 'src/app/shared/services/recipe.service';
@@ -14,9 +14,10 @@ import { RecipeService } from 'src/app/shared/services/recipe.service';
   selector: 'app-category-recipes',
   templateUrl: './category-recipes.component.html',
 })
-export class CategoryRecipesComponent implements OnInit {
+export class CategoryRecipesComponent implements OnInit, OnDestroy {
   category!: CategoryWithRecipes;
   categoryId!: number;
+  sub!: Subscription;
 
   constructor(
     private recipeService: RecipeService,
@@ -28,8 +29,12 @@ export class CategoryRecipesComponent implements OnInit {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.categoryId = this.activeRoute.snapshot.params['id'];
 
-    this.recipeService
+    this.sub = this.recipeService
       .getCategoriesByIdWithRecipes(this.categoryId)
       .subscribe((res) => (this.category = res));
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 }

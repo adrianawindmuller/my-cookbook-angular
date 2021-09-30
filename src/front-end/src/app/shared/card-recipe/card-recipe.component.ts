@@ -5,10 +5,7 @@ import { CardRecipe } from '../models/card-recipe.model';
   selector: 'app-card-recipe',
   templateUrl: './card-recipe.component.html',
 })
-export class CardRecipeComponent implements OnInit {
+export class CardRecipeComponent {
   @Input() recipes!: CardRecipe[];
   @Input() filterName!: string;
-  constructor() {}
-
-  ngOnInit(): void {}
 }

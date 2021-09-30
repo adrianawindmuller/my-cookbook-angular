@@ -1,19 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Category } from 'src/app/shared/models/category.model';
 import { RecipeService } from 'src/app/shared/services/recipe.service';
 
 @Component({
   selector: 'app-all-categories',
   templateUrl: './all-categories.component.html',
-  styleUrls: ['./all-categories.component.css'],
 })
 export class AllCategoriesComponent implements OnInit {
-  categories: Category[] = [];
+  categories$: Observable<Category[]> | undefined;
   constructor(private recipeService: RecipeService) {}
 
   ngOnInit(): void {
-    this.recipeService
-      .getCategories()
-      .subscribe((res) => (this.categories = res));
+    this.categories$ = this.recipeService.getCategories();
   }
 }

@@ -5,10 +5,8 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-navegavate-back',
   templateUrl: './navegavate-back.component.html',
 })
-export class NavegavateBackComponent implements OnInit {
+export class NavegavateBackComponent {
   constructor(private location: Location) {}
-
-  ngOnInit(): void {}
 
   navegateBack() {
     this.location.back();

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 import { DialogConfirmComponent } from 'src/app/shared/dialog-confirm/dialog-confirm.component';
 import { RecipeViewDetails } from 'src/app/shared/models/recipe-view-details.model';
 import { RecipeService } from 'src/app/shared/services/recipe.service';
@@ -10,10 +11,11 @@ import { RecipeService } from 'src/app/shared/services/recipe.service';
   selector: 'app-edit-recipe',
   templateUrl: './details-recipe.component.html',
 })
-export class DetailsRecipeComponent implements OnInit {
+export class DetailsRecipeComponent implements OnInit, OnDestroy {
   recipe!: RecipeViewDetails;
   htmlIngredients!: string;
   htmlPreparationMode!: string;
+  sub!: Subscription;
 
   constructor(
     private recipeService: RecipeService,
@@ -31,7 +33,7 @@ export class DetailsRecipeComponent implements OnInit {
   }
 
   getRecipe(id: number): void {
-    this.recipeService.getRecipeId(id).subscribe((res) => {
+    this.sub = this.recipeService.getRecipeId(id).subscribe((res) => {
       this.recipe = res;
       this.htmlIngredients = this.changeStringinHtml(res.ingredients, true);
       this.htmlPreparationMode = this.changeStringinHtml(
@@ -57,18 +59,22 @@ export class DetailsRecipeComponent implements OnInit {
     let modalRef = this.modalService.open(DialogConfirmComponent);
     modalRef.componentInstance.messenge = `Tem certeza que deseja deletar a receita ${this.recipe.name}?`;
     modalRef.componentInstance.nameAction = 'Deletar Receita';
-    modalRef.result.then((res) => {
+    modalRef.result.then(() => {
       this.deleteRecipe(id);
     });
   }
 
   deleteRecipe(id: number): void {
-    this.recipeService.deleteRecipeId(id).subscribe((res) => {
+    this.sub = this.recipeService.deleteRecipeId(id).subscribe(() => {
       this.router.navigate(['./home']);
       this.toastr.success('Receita deletada com sucesso!', '', {
         progressBar: true,
         timeOut: 5000,
       });
     });
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 }

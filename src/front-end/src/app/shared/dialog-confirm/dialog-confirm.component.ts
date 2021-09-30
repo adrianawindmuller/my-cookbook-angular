@@ -5,11 +5,9 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   selector: 'app-dialog-confirm',
   templateUrl: './dialog-confirm.component.html',
 })
-export class DialogConfirmComponent implements OnInit {
+export class DialogConfirmComponent {
   @Input() messenge!: string;
   @Input() nameAction!: string;
 
   constructor(public modal: NgbActiveModal) {}
-
-  ngOnInit(): void {}
 }

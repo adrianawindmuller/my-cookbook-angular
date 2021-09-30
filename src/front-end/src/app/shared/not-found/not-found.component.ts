@@ -4,11 +4,7 @@ import { Component, Input, OnInit } from '@angular/core';
   selector: 'app-not-found',
   templateUrl: './not-found.component.html',
 })
-export class NotFoundComponent implements OnInit {
+export class NotFoundComponent {
   @Input() messageNotFound!: string;
   @Input() messageAddRecipe!: string;
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }

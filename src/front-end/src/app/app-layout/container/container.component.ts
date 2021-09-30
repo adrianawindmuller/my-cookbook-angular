@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { observable, Subscription } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { LoadingService } from 'src/app/shared/services/loading.service';
 
@@ -7,8 +8,9 @@ import { LoadingService } from 'src/app/shared/services/loading.service';
   templateUrl: './container.component.html',
   styleUrls: ['./container.component.css'],
 })
-export class ContainerComponent implements OnInit {
+export class ContainerComponent implements OnInit, OnDestroy {
   loading: boolean = false;
+  sub!: Subscription;
 
   constructor(private loader: LoadingService) {}
 
@@ -17,8 +19,12 @@ export class ContainerComponent implements OnInit {
   }
 
   listenToLoading(): void {
-    this.loader._loading.pipe(delay(0)).subscribe((res) => {
+    this.sub = this.loader._loading.pipe(delay(0)).subscribe((res) => {
       this.loading = res;
     });
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 }

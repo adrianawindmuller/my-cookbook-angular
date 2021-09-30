@@ -6,7 +6,7 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './carousel.component.html',
   styles: ['.image { border-radius: 16px; width: 100%; height: 350px; }'],
 })
-export class CarouselComponent implements OnInit {
+export class CarouselComponent {
   @Input() images!: string[];
   @Input() name!: string;
 
@@ -15,6 +15,4 @@ export class CarouselComponent implements OnInit {
     config.wrap = true;
     config.pauseOnHover = true;
   }
-
-  ngOnInit(): void {}
 }

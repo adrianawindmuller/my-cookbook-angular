@@ -5,12 +5,10 @@ import { RecipeService } from '../services/recipe.service';
   selector: 'app-toggle-favorite',
   templateUrl: './toggle-favorite.component.html',
 })
-export class ToggleFavoriteComponent implements OnInit {
+export class ToggleFavoriteComponent {
   @Input() id!: number;
   @Input() isFavorite!: boolean;
   constructor(private recipeService: RecipeService) {}
-
-  ngOnInit(): void {}
 
   toggleFavorite(): void {
     this.isFavorite = !this.isFavorite;

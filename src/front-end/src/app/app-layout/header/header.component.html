@@ -18,10 +18,12 @@
           <button class="btn btn-outline-link text-light" id="dropdownBasic1" ngbDropdownToggle>Receitas</button>
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
             <button ngbDropdownItem [routerLink]="['/categories']" class="fw-bold">Todas as categorias</button>
-            <button ngbDropdownItem *ngFor="let category of categories" [routerLink]="['/categories/', category.id]">
-              <img src="{{category.icon}}" style="width: 30px; height: 30px; padding-right: 5px;" />
-              <span class="fw-bold">{{category.name}}</span>
-            </button>
+            <div *ngIf="categories$ | async as categories">
+              <button ngbDropdownItem *ngFor="let category of categories" [routerLink]="['/categories/', category.id]">
+                <img src="{{category.icon}}" style="width: 30px; height: 30px; padding-right: 5px;" />
+                <span class="fw-bold">{{category.name}}</span>
+              </button>
+            </div>
           </div>
         </div>
       </ul>

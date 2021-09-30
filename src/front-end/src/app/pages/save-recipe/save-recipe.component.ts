@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -15,19 +15,21 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DialogConfirmComponent } from 'src/app/shared/dialog-confirm/dialog-confirm.component';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-register-recipe',
   templateUrl: './save-recipe.component.html',
   styleUrls: ['./save-recipe.component.css'],
 })
-export class SaveRecipeComponent implements OnInit {
+export class SaveRecipeComponent implements OnInit, OnDestroy {
   recipeForm!: FormGroup;
-  categories!: Category[];
+  categories$!: Observable<Category[]>;
   submitted!: boolean;
   isAddMode!: boolean;
-  name!: string;
+  titleName!: string;
   id!: number;
+  sub!: Subscription;
 
   constructor(
     private fb: FormBuilder,
@@ -43,9 +45,7 @@ export class SaveRecipeComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     this.isAddMode = !this.id;
 
-    this.recipeService
-      .getCategories()
-      .subscribe((res) => (this.categories = res));
+    this.categories$ = this.recipeService.getCategories();
 
     this.recipeForm = this.fb.group({
       name: [
@@ -86,7 +86,7 @@ export class SaveRecipeComponent implements OnInit {
     });
 
     if (!this.isAddMode) {
-      this.recipeService
+      this.sub = this.recipeService
         .getRecipeEditId(this.id)
         .pipe(first())
         .subscribe((x) => {
@@ -97,8 +97,21 @@ export class SaveRecipeComponent implements OnInit {
           }
         });
 
-      this.name = 'Editar';
+      this.titleName = 'Editar';
     }
+  }
+
+  get images(): FormArray {
+    return this.form.images as FormArray;
+  }
+
+  get form(): { [key: string]: AbstractControl } {
+    return this.recipeForm.controls;
+  }
+
+  addImagesInForm(image: string) {
+    const imagesForm = this.fb.control(image, [Validators.required]);
+    this.images.push(imagesForm);
   }
 
   onSubmit() {
@@ -113,6 +126,7 @@ export class SaveRecipeComponent implements OnInit {
     } else {
       this.updateRecipe();
     }
+
     this.submitted = false;
   }
 
@@ -122,7 +136,7 @@ export class SaveRecipeComponent implements OnInit {
 
     let recipeModel = newRecipe as SaveRecipe;
 
-    this.recipeService.postRecipe(recipeModel).subscribe((res) => {
+    this.sub = this.recipeService.postRecipe(recipeModel).subscribe(() => {
       this.router.navigate(['./home']);
       this.toastr.success('Receita adicionada com sucesso!', '', {
         progressBar: true,
@@ -137,18 +151,15 @@ export class SaveRecipeComponent implements OnInit {
 
     let recipeModel = newRecipe as SaveRecipe;
 
-    this.recipeService.putRecipe(this.id, recipeModel).subscribe((res) => {
-      this.router.navigate(['./recipe', this.id]);
-      this.toastr.success('Receita atualizada com sucesso!', '', {
-        progressBar: true,
-        timeOut: 5000,
+    this.sub = this.recipeService
+      .putRecipe(this.id, recipeModel)
+      .subscribe(() => {
+        this.router.navigate(['./recipe', this.id]);
+        this.toastr.success('Receita atualizada com sucesso!', '', {
+          progressBar: true,
+          timeOut: 5000,
+        });
       });
-    });
-  }
-
-  addImagesInForm(image: string) {
-    const imagesForm = this.fb.control(image, [Validators.required]);
-    this.images.push(imagesForm);
   }
 
   fileUploadImage(event: any): void {
@@ -168,14 +179,6 @@ export class SaveRecipeComponent implements OnInit {
   removeImage(index: number): void {
     this.images.removeAt(index);
     this.images.markAsTouched();
-  }
-
-  get images(): FormArray {
-    return this.form.images as FormArray;
-  }
-
-  get form(): { [key: string]: AbstractControl } {
-    return this.recipeForm.controls;
   }
 
   messengeErrorName(): string {
@@ -270,5 +273,9 @@ export class SaveRecipeComponent implements OnInit {
     modalRef.result.then((res) => {
       this.location.back();
     });
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 }

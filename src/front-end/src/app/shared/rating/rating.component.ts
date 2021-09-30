@@ -6,7 +6,7 @@ import { RecipeService } from '../services/recipe.service';
   selector: 'app-rating',
   templateUrl: './rating.component.html',
 })
-export class RatingComponent implements OnInit {
+export class RatingComponent {
   @Input() id!: number;
   @Input() rating!: number;
 
@@ -14,8 +14,6 @@ export class RatingComponent implements OnInit {
     private recipeService: RecipeService,
     private toastr: ToastrService
   ) {}
-
-  ngOnInit(): void {}
 
   setRating() {
     this.recipeService.setRating(this.id, this.rating).subscribe((res) => {

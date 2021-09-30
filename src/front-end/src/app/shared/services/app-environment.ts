@@ -1,4 +1,3 @@
-import { HttpParams } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 
 export class AppEnviroment {

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Category } from 'src/app/shared/models/category.model';
 import { RecipeService } from 'src/app/shared/services/recipe.service';
 
@@ -7,12 +8,11 @@ import { RecipeService } from 'src/app/shared/services/recipe.service';
   templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit {
-  categories: Category[] = [];
+  categories$: Observable<Category[]> | undefined;
+
   constructor(private recipeService: RecipeService) {}
 
   ngOnInit(): void {
-    this.recipeService
-      .getCategories()
-      .subscribe((res) => (this.categories = res));
+    this.categories$ = this.recipeService.getCategories();
   }
 }
