@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
+import { EMPTY, Subscription } from 'rxjs';
+import { catchError, delay } from 'rxjs/operators';
 import { CardRecipe } from 'src/app/shared/models/card-recipe.model';
 import { LoadingService } from 'src/app/shared/services/loading.service';
 import { RecipeService } from 'src/app/shared/services/recipe.service';
@@ -14,17 +15,20 @@ export class HomeComponent implements OnInit, OnDestroy {
   recipes!: CardRecipe[];
   isLoading: boolean = false;
   sub!: Subscription;
+  errorMessage!: string;
 
   constructor(
     private recipeService: RecipeService,
-    private loader: LoadingService
+    private loader: LoadingService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
     this.listenToLoading();
-    this.sub = this.recipeService
-      .getRecipes()
-      .subscribe((res) => (this.recipes = res));
+    this.sub = this.recipeService.getRecipes().subscribe(
+      (res) => (this.recipes = res),
+      (error) => this.toastr.error(error)
+    );
   }
 
   listenToLoading(): void {

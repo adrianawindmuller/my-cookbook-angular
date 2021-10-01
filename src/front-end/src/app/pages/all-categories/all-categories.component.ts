@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+import { EMPTY, Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { Category } from 'src/app/shared/models/category.model';
 import { RecipeService } from 'src/app/shared/services/recipe.service';
 
@@ -9,9 +11,17 @@ import { RecipeService } from 'src/app/shared/services/recipe.service';
 })
 export class AllCategoriesComponent implements OnInit {
   categories$: Observable<Category[]> | undefined;
-  constructor(private recipeService: RecipeService) {}
+  constructor(
+    private recipeService: RecipeService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
-    this.categories$ = this.recipeService.getCategories();
+    this.categories$ = this.recipeService.getCategories().pipe(
+      catchError((err) => {
+        this.toastr.error(err);
+        return EMPTY;
+      })
+    );
   }
 }

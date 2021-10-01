@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from '../app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -18,6 +18,7 @@ import { LoadingService } from './services/loading.service';
 import { NetworkInterceptor } from './services/network.interceptor';
 import { CardRecipeComponent } from './card-recipe/card-recipe.component';
 import { NavegavateBackComponent } from './navegavate-back/navegavate-back.component';
+import { HttpErrorInterceptor } from './services/httpError.interceptor';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { NavegavateBackComponent } from './navegavate-back/navegavate-back.compo
   providers: [
     RecipeService,
     LoadingService,
+    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: NetworkInterceptor, multi: true },
   ],
 })

@@ -9,13 +9,13 @@ import {
 import { Category } from 'src/app/shared/models/category.model';
 import { SaveRecipe } from 'src/app/shared/models/save-recipe.model';
 import { RecipeService } from 'src/app/shared/services/recipe.service';
-import { first } from 'rxjs/operators';
+import { catchError, first } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DialogConfirmComponent } from 'src/app/shared/dialog-confirm/dialog-confirm.component';
-import { Observable, Subscription } from 'rxjs';
+import { EMPTY, Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-register-recipe',
@@ -45,7 +45,12 @@ export class SaveRecipeComponent implements OnInit, OnDestroy {
     this.id = this.route.snapshot.params['id'];
     this.isAddMode = !this.id;
 
-    this.categories$ = this.recipeService.getCategories();
+    this.categories$ = this.recipeService.getCategories().pipe(
+      catchError((err) => {
+        this.toastr.error(err);
+        return EMPTY;
+      })
+    );
 
     this.recipeForm = this.fb.group({
       name: [
@@ -89,13 +94,16 @@ export class SaveRecipeComponent implements OnInit, OnDestroy {
       this.sub = this.recipeService
         .getRecipeEditId(this.id)
         .pipe(first())
-        .subscribe((x) => {
-          this.recipeForm.patchValue(x);
+        .subscribe(
+          (x) => {
+            this.recipeForm.patchValue(x);
 
-          for (const image of x.images) {
-            this.addImagesInForm(image);
-          }
-        });
+            for (const image of x.images) {
+              this.addImagesInForm(image);
+            }
+          },
+          (error) => this.toastr.error(error)
+        );
 
       this.titleName = 'Editar';
     }
@@ -136,13 +144,16 @@ export class SaveRecipeComponent implements OnInit, OnDestroy {
 
     let recipeModel = newRecipe as SaveRecipe;
 
-    this.sub = this.recipeService.postRecipe(recipeModel).subscribe(() => {
-      this.router.navigate(['./home']);
-      this.toastr.success('Receita adicionada com sucesso!', '', {
-        progressBar: true,
-        timeOut: 5000,
-      });
-    });
+    this.sub = this.recipeService.postRecipe(recipeModel).subscribe(
+      () => {
+        this.router.navigate(['./home']);
+        this.toastr.success('Receita adicionada com sucesso!', '', {
+          progressBar: true,
+          timeOut: 5000,
+        });
+      },
+      (err) => this.toastr.error(err)
+    );
   }
 
   updateRecipe(): void {
@@ -151,15 +162,16 @@ export class SaveRecipeComponent implements OnInit, OnDestroy {
 
     let recipeModel = newRecipe as SaveRecipe;
 
-    this.sub = this.recipeService
-      .putRecipe(this.id, recipeModel)
-      .subscribe(() => {
+    this.sub = this.recipeService.putRecipe(this.id, recipeModel).subscribe(
+      () => {
         this.router.navigate(['./recipe', this.id]);
         this.toastr.success('Receita atualizada com sucesso!', '', {
           progressBar: true,
           timeOut: 5000,
         });
-      });
+      },
+      (err) => this.toastr.error(err)
+    );
   }
 
   fileUploadImage(event: any): void {

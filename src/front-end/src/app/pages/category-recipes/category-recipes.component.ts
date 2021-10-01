@@ -5,6 +5,7 @@ import {
   Router,
   RouterEvent,
 } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Subject, Subscription } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { CategoryWithRecipes } from 'src/app/shared/models/category-with-recipes.model';
@@ -22,7 +23,8 @@ export class CategoryRecipesComponent implements OnInit, OnDestroy {
   constructor(
     private recipeService: RecipeService,
     private activeRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -31,7 +33,10 @@ export class CategoryRecipesComponent implements OnInit, OnDestroy {
 
     this.sub = this.recipeService
       .getCategoriesByIdWithRecipes(this.categoryId)
-      .subscribe((res) => (this.category = res));
+      .subscribe(
+        (res) => (this.category = res),
+        (err) => this.toastr.error(err)
+      );
   }
 
   ngOnDestroy(): void {

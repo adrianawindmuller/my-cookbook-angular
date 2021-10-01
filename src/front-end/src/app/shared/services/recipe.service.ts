@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { AppEnviroment } from './app-environment';
 import { CardRecipe } from '../models/card-recipe.model';
 import { Category } from '../models/category.model';
 import { SaveRecipe } from '../models/save-recipe.model';
 import { RecipeViewDetails } from '../models/recipe-view-details.model';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { CategoryWithRecipes } from '../models/category-with-recipes.model';
 
 @Injectable({

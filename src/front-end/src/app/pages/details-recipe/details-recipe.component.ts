@@ -33,14 +33,17 @@ export class DetailsRecipeComponent implements OnInit, OnDestroy {
   }
 
   getRecipe(id: number): void {
-    this.sub = this.recipeService.getRecipeId(id).subscribe((res) => {
-      this.recipe = res;
-      this.htmlIngredients = this.changeStringinHtml(res.ingredients, true);
-      this.htmlPreparationMode = this.changeStringinHtml(
-        res.preparationMode,
-        false
-      );
-    });
+    this.sub = this.recipeService.getRecipeId(id).subscribe(
+      (res) => {
+        this.recipe = res;
+        this.htmlIngredients = this.changeStringinHtml(res.ingredients, true);
+        this.htmlPreparationMode = this.changeStringinHtml(
+          res.preparationMode,
+          false
+        );
+      },
+      (err) => this.toastr.error(err)
+    );
   }
 
   changeStringinHtml(text: string, isIngredients: boolean): string {
@@ -65,13 +68,16 @@ export class DetailsRecipeComponent implements OnInit, OnDestroy {
   }
 
   deleteRecipe(id: number): void {
-    this.sub = this.recipeService.deleteRecipeId(id).subscribe(() => {
-      this.router.navigate(['./home']);
-      this.toastr.success('Receita deletada com sucesso!', '', {
-        progressBar: true,
-        timeOut: 5000,
-      });
-    });
+    this.sub = this.recipeService.deleteRecipeId(id).subscribe(
+      () => {
+        this.router.navigate(['./home']);
+        this.toastr.success('Receita deletada com sucesso!', '', {
+          progressBar: true,
+          timeOut: 5000,
+        });
+      },
+      (err) => this.toastr.error(err)
+    );
   }
 
   ngOnDestroy(): void {
