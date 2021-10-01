@@ -19,6 +19,7 @@ import { NetworkInterceptor } from './services/network.interceptor';
 import { CardRecipeComponent } from './card-recipe/card-recipe.component';
 import { NavegavateBackComponent } from './navegavate-back/navegavate-back.component';
 import { HttpErrorInterceptor } from './services/httpError.interceptor';
+import { CategoryService } from './services/category.service';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { HttpErrorInterceptor } from './services/httpError.interceptor';
   ],
   providers: [
     RecipeService,
+    CategoryService,
     LoadingService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: NetworkInterceptor, multi: true },

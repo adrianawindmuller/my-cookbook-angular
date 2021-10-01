@@ -1,15 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import {
-  ActivatedRoute,
-  NavigationEnd,
-  Router,
-  RouterEvent,
-} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Subject, Subscription } from 'rxjs';
-import { filter, takeUntil } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 import { CategoryWithRecipes } from 'src/app/shared/models/category-with-recipes.model';
-import { RecipeService } from 'src/app/shared/services/recipe.service';
+import { CategoryService } from 'src/app/shared/services/category.service';
 
 @Component({
   selector: 'app-category-recipes',
@@ -21,7 +15,7 @@ export class CategoryRecipesComponent implements OnInit, OnDestroy {
   sub!: Subscription;
 
   constructor(
-    private recipeService: RecipeService,
+    private categoryService: CategoryService,
     private activeRoute: ActivatedRoute,
     private router: Router,
     private toastr: ToastrService
@@ -31,7 +25,7 @@ export class CategoryRecipesComponent implements OnInit, OnDestroy {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.categoryId = this.activeRoute.snapshot.params['id'];
 
-    this.sub = this.recipeService
+    this.sub = this.categoryService
       .getCategoriesByIdWithRecipes(this.categoryId)
       .subscribe(
         (res) => (this.category = res),

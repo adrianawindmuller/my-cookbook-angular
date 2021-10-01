@@ -1,7 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Category } from 'src/app/shared/models/category.model';
-import { RecipeService } from 'src/app/shared/services/recipe.service';
+import { CategoryService } from 'src/app/shared/services/category.service';
 
 @Component({
   selector: 'app-header',
@@ -10,9 +10,9 @@ import { RecipeService } from 'src/app/shared/services/recipe.service';
 export class HeaderComponent implements OnInit {
   categories$: Observable<Category[]> | undefined;
 
-  constructor(private recipeService: RecipeService) {}
+  constructor(private categoryService: CategoryService) {}
 
   ngOnInit(): void {
-    this.categories$ = this.recipeService.getCategories();
+    this.categories$ = this.categoryService.getCategories();
   }
 }

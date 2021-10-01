@@ -16,6 +16,7 @@ import { Location } from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DialogConfirmComponent } from 'src/app/shared/dialog-confirm/dialog-confirm.component';
 import { EMPTY, Observable, Subscription } from 'rxjs';
+import { CategoryService } from 'src/app/shared/services/category.service';
 
 @Component({
   selector: 'app-register-recipe',
@@ -34,6 +35,7 @@ export class SaveRecipeComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private recipeService: RecipeService,
+    private categoryService: CategoryService,
     private toastr: ToastrService,
     private router: Router,
     private route: ActivatedRoute,
@@ -45,7 +47,7 @@ export class SaveRecipeComponent implements OnInit, OnDestroy {
     this.id = this.route.snapshot.params['id'];
     this.isAddMode = !this.id;
 
-    this.categories$ = this.recipeService.getCategories().pipe(
+    this.categories$ = this.categoryService.getCategories().pipe(
       catchError((err) => {
         this.toastr.error(err);
         return EMPTY;

@@ -18,18 +18,6 @@ export class RecipeService {
     this.appEnviroment = new AppEnviroment();
   }
 
-  getCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(
-      this.appEnviroment.categoryApi.getCategories()
-    );
-  }
-
-  getCategoriesByIdWithRecipes(id: number): Observable<CategoryWithRecipes> {
-    return this.http.get<CategoryWithRecipes>(
-      this.appEnviroment.categoryApi.getCategoryByIdWithRecipes(id)
-    );
-  }
-
   getRecipes(): Observable<CardRecipe[]> {
     return this.http.get<CardRecipe[]>(
       this.appEnviroment.recipeApi.getRecipes()
