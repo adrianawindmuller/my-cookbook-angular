@@ -1,23 +1,33 @@
-<div class="container-fluid p-0" style="min-height: 95vh; max-height: 100%;">
-  <div *ngIf="recipes">
+<div class="container-fluid p-4">
+  <div *ngIf="recipes$ | async as recipes">
+    <div class="card">
+      <div class="card-body">
 
-    <!-- Filter-->
-    <div class="d-flex justify-content-start px-4 py-2">
-      <div class="input-group input-group-sm my-3" style="width: 500px;">
-        <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
-        <input type="text" [(ngModel)]="filterName" class="form-control" placeholder="Pesquisar receita por nome..."
-          aria-label="Pesquisar receita por nome..." aria-describedby="basic-addon1">
+        <div class="d-flex justify-content-between p-2">
+
+          <!-- Filter-->
+          <div class="input-group input-group-sm " style="width: 500px;">
+            <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
+            <input type="text" [(ngModel)]="filterName" class="form-control" placeholder="Pesquisar receita por nome..."
+              aria-label="Pesquisar receita por nome..." aria-describedby="basic-addon1">
+          </div>
+
+          <!-- Display -->
+          <select *ngIf="categories$ | async as categories" class="form-select" aria-label="Default select example"
+            style="width: 300px;" (change)="onSelected($event)">
+            <option selected value="0">Mostrar todos</option>
+            <option *ngFor="let category of categories" value="{{category.id}}">
+              {{category.name}}</option>
+          </select>
+        </div>
+        <app-card-recipe [recipes]="recipes" [filterName]="filterName"> </app-card-recipe>
+      </div>
+
+      <div *ngIf="!isLoading && !recipes">
+        <app-not-found messageNotFound="Ainda não tem nenhuma receita aqui!"
+          messageAddRecipe="Vamos criar sua primeira receita?">
+        </app-not-found>
       </div>
     </div>
-
-    <app-card-recipe [recipes]="recipes" [filterName]="filterName"> </app-card-recipe>
   </div>
-
-  <div *ngIf="!isLoading && !recipes">
-    <app-not-found messageNotFound="Ainda não tem nenhuma receita aqui!"
-      messageAddRecipe="Vamos criar sua primeira receita?">
-    </app-not-found>
-  </div>
-
-  <p>{{errorMessage}}</p>
 </div>

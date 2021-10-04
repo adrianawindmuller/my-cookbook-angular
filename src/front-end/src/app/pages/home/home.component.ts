@@ -1,8 +1,21 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { EMPTY, Subscription } from 'rxjs';
-import { catchError, delay } from 'rxjs/operators';
+import {
+  BehaviorSubject,
+  combineLatest,
+  EMPTY,
+  Observable,
+  Subscription,
+} from 'rxjs';
+import { catchError, delay, map } from 'rxjs/operators';
 import { CardRecipe } from 'src/app/shared/models/card-recipe.model';
+import { Category } from 'src/app/shared/models/category.model';
+import { CategoryService } from 'src/app/shared/services/category.service';
 import { LoadingService } from 'src/app/shared/services/loading.service';
 import { RecipeService } from 'src/app/shared/services/recipe.service';
 
@@ -12,23 +25,51 @@ import { RecipeService } from 'src/app/shared/services/recipe.service';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   filterName!: string;
-  recipes!: CardRecipe[];
+  recipes$!: Observable<CardRecipe[]>;
+  categories$!: Observable<Category[]>;
   isLoading: boolean = false;
   sub!: Subscription;
-  errorMessage!: string;
+
+  private categoryselectedSubject = new BehaviorSubject<number>(0);
+  categorySelectedAction$ = this.categoryselectedSubject.asObservable();
 
   constructor(
     private recipeService: RecipeService,
+    private categoryService: CategoryService,
     private loader: LoadingService,
     private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
     this.listenToLoading();
-    this.sub = this.recipeService.getRecipes().subscribe(
-      (res) => (this.recipes = res),
-      (error) => this.toastr.error(error)
+
+    this.categories$ = this.categoryService.getCategories().pipe(
+      catchError((err) => {
+        this.toastr.error(err);
+        return EMPTY;
+      })
     );
+
+    this.recipes$ = combineLatest([
+      this.recipeService.getRecipes(),
+      this.categorySelectedAction$,
+    ]).pipe(
+      map(([recipes, selectedCategoryId]) =>
+        recipes.filter((recipes) =>
+          selectedCategoryId ? recipes.categoryId === selectedCategoryId : true
+        )
+      ),
+      catchError((err) => {
+        this.toastr.error(err);
+        return EMPTY;
+      })
+    );
+  }
+
+  onSelected(Event: any): void {
+    var categoryId = parseInt(Event.target.value);
+    console.log(categoryId);
+    this.categoryselectedSubject.next(categoryId);
   }
 
   listenToLoading(): void {

@@ -112,6 +112,7 @@ namespace MyCookbook.Application.RecipesApplication
                 {
                     Id = recipe.Id,
                     Name = recipe.Name,
+                    CategoryId = recipe.Category.Id,
                     CategoryName = recipe.Category.Name,
                     Favorite = recipe.Favorite,
                 };

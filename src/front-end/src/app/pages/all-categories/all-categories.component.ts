@@ -10,6 +10,7 @@ import { CategoryService } from 'src/app/shared/services/category.service';
 })
 export class AllCategoriesComponent implements OnInit {
   categories$: Observable<Category[]> | undefined;
+
   constructor(
     private categoryService: CategoryService,
     private toastr: ToastrService
