@@ -12,7 +12,7 @@ import {
   Observable,
   Subscription,
 } from 'rxjs';
-import { catchError, delay, map } from 'rxjs/operators';
+import { catchError, delay, map, shareReplay, tap } from 'rxjs/operators';
 import { CardRecipe } from 'src/app/shared/models/card-recipe.model';
 import { Category } from 'src/app/shared/models/category.model';
 import { CategoryService } from 'src/app/shared/services/category.service';
@@ -68,7 +68,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   onSelected(Event: any): void {
     var categoryId = parseInt(Event.target.value);
-    console.log(categoryId);
     this.categoryselectedSubject.next(categoryId);
   }
 

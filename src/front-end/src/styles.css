@@ -31,3 +31,23 @@ i {
 .capitalize {
   text-transform: capitalize;
 }
+
+.img-card {
+  height: 100%;
+  width: 100%;
+}
+
+.img-card:hover {
+  cursor: pointer;
+}
+
+.card-shadow:hover {
+  box-shadow: 5px 5px 5px #e7e6e6;
+  top: -10px;
+}
+
+.card-shadow {
+  position: relative;
+  top: 0;
+  transition: top ease 0.5s;
+}
