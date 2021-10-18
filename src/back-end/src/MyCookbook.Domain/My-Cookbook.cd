@@ -3,26 +3,18 @@
   <Class Name="MyCookbook.Domain.Recipes.Recipe">
     <Position X="9" Y="1" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAABAQAAAACAEAAACAgAACQAAAAgBBUCAACAAAAACEA=</HashCode>
+      <HashCode>AAAAAQAAAACAEAAACAgAACQAAAAgBBUCAACAAAAACEA=</HashCode>
       <FileName>Recipes\Recipe.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Category" />
-      <Property Name="User" />
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
       <Property Name="Images" />
     </ShowAsCollectionAssociation>
   </Class>
-  <Class Name="MyCookbook.Domain.Recipes.User">
-    <Position X="13.5" Y="0.5" Width="2.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAACCAACAAAAAAIEQAAAAAAAACAAAAAAAAAgA=</HashCode>
-      <FileName>Recipes\User.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="MyCookbook.Domain.Recipes.Image">
-    <Position X="13.5" Y="4" Width="2.5" />
+    <Position X="13.75" Y="1.75" Width="2.5" />
     <TypeIdentifier>
       <HashCode>QAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Recipes\Image.cs</FileName>

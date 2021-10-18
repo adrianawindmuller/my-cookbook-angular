@@ -1,3 +1,4 @@
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
@@ -8,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using MyCookbook.Application.RecipesApplication;
 using MyCookbook.Domain;
 using MyCookbook.Domain.Recipes;
+using MyCookbook.Domain.Recipes.Dtos;
 using MyCookbook.Infrastructure.Data.DbContexts;
 using MyCookbook.Infrastructure.Data.Repositories;
 
@@ -29,6 +31,11 @@ namespace MyCookbook.Api
             services.AddControllers(options =>
             {
                 options.Conventions.Add(new RouteTokenTransformerConvention(new SlugifyParameterTransformer()));
+            }).AddFluentValidation(fv =>
+            {
+                fv.RegisterValidatorsFromAssemblyContaining<RegisterRecipeValidator>();
+                fv.ImplicitlyValidateChildProperties = true;
+
             });
 
             services.AddCors(c =>
