@@ -1,4 +1,4 @@
-<ngb-carousel *ngIf="images" style="max-width: 550px;">
+<ngb-carousel *ngIf="images" style="max-width: 500px; min-width: 300px;">
   <ng-template ngbSlide *ngFor="let image of images">
     <div class="picsum-img-wrapper">
       <img [src]="image" alt="{{name}}" class="image">

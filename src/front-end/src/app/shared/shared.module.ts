@@ -9,7 +9,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselComponent } from './carousel/carousel.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RatingComponent } from './rating/rating.component';
-import { CardDetailsRecipeComponent } from './card-details-recipe/card-details-recipe.component';
 import { DialogConfirmComponent } from './dialog-confirm/dialog-confirm.component';
 import { ToggleFavoriteComponent } from './toggle-favorite/toggle-favorite.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -25,7 +24,6 @@ import { CategoryService } from './services/category.service';
   declarations: [
     CarouselComponent,
     RatingComponent,
-    CardDetailsRecipeComponent,
     DialogConfirmComponent,
     ToggleFavoriteComponent,
     NotFoundComponent,
@@ -58,7 +56,6 @@ import { CategoryService } from './services/category.service';
     //componentes
     CarouselComponent,
     RatingComponent,
-    CardDetailsRecipeComponent,
     ToggleFavoriteComponent,
     NotFoundComponent,
     FilterRecipePipe,

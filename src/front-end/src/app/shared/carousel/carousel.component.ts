@@ -1,5 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbCarouselConfig,
+  NgbSlideEvent,
+  NgbSlideEventSource,
+} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-carousel',
@@ -12,7 +16,7 @@ export class CarouselComponent {
 
   constructor(config: NgbCarouselConfig) {
     config.showNavigationArrows = true;
-    config.wrap = true;
+    config.wrap = false;
     config.pauseOnHover = true;
   }
 }
