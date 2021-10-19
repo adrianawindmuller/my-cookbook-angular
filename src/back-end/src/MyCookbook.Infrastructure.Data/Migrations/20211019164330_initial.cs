@@ -13,27 +13,12 @@ namespace MyCookbook.Infrastructure.Data.Migrations
                 {
                     CategoryId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "varchar(20)", nullable: false)
+                    Name = table.Column<string>(type: "varchar(20)", nullable: false),
+                    Icon = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("CategoryId", x => x.CategoryId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "User",
-                columns: table => new
-                {
-                    UserId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "varchar(20)", nullable: false),
-                    Email = table.Column<string>(type: "varchar(200)", nullable: false),
-                    Password = table.Column<string>(type: "varchar(50)", nullable: false),
-                    Photo = table.Column<string>(type: "varchar(MAX)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("UserId", x => x.UserId);
                 });
 
             migrationBuilder.CreateTable(
@@ -43,10 +28,9 @@ namespace MyCookbook.Infrastructure.Data.Migrations
                     RecipeId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "varchar(60)", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
-                    NumberPortion = table.Column<long>(type: "bigint", nullable: false),
-                    PreparationTimeInMinutes = table.Column<long>(type: "bigint", nullable: false),
+                    NumberPortion = table.Column<int>(type: "int", nullable: false),
+                    PreparationTimeInMinutes = table.Column<int>(type: "int", nullable: false),
                     Ingredients = table.Column<string>(type: "varchar(1000)", nullable: false),
                     PreparationMode = table.Column<string>(type: "varchar(1000)", nullable: false),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -62,12 +46,6 @@ namespace MyCookbook.Infrastructure.Data.Migrations
                         column: x => x.CategoryId,
                         principalTable: "Category",
                         principalColumn: "CategoryId");
-                    table.ForeignKey(
-                        name: "FK_Recipe_User_UserId",
-                        column: x => x.UserId,
-                        principalTable: "User",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -90,28 +68,6 @@ namespace MyCookbook.Infrastructure.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.InsertData(
-                table: "Category",
-                columns: new[] { "CategoryId", "Name" },
-                values: new object[,]
-                {
-                    { 1, "Bolos" },
-                    { 2, "Carnes" },
-                    { 3, "Aves" },
-                    { 4, "Peixe" },
-                    { 5, "Saladas" },
-                    { 6, "Sopas" },
-                    { 7, "Massas" },
-                    { 8, "Doces e sobremesas" },
-                    { 9, "Lanches" },
-                    { 10, "Alimentação saúdavel" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "User",
-                columns: new[] { "UserId", "Email", "Name", "Password", "Photo" },
-                values: new object[] { 1, "adri@gmail.com", "Adriana W.", "s5a4%wS5", "imagen.png" });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Image_RecipeId",
                 table: "Image",
@@ -121,11 +77,6 @@ namespace MyCookbook.Infrastructure.Data.Migrations
                 name: "IX_Recipe_CategoryId",
                 table: "Recipe",
                 column: "CategoryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Recipe_UserId",
-                table: "Recipe",
-                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -138,9 +89,6 @@ namespace MyCookbook.Infrastructure.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Category");
-
-            migrationBuilder.DropTable(
-                name: "User");
         }
     }
 }

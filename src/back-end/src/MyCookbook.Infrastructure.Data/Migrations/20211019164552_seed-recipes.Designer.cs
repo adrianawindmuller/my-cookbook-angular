@@ -10,8 +10,8 @@ using MyCookbook.Infrastructure.Data.DbContexts;
 namespace MyCookbook.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(MyCookBookDbContext))]
-    [Migration("20210929195827_seed-recipe")]
-    partial class seedrecipe
+    [Migration("20211019164552_seed-recipes")]
+    partial class seedrecipes
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -228,10 +228,10 @@ namespace MyCookbook.Infrastructure.Data.Migrations
                             Id = 1,
                             CategoryId = 1,
                             Created = new DateTime(2020, 6, 5, 12, 20, 30, 0, DateTimeKind.Unspecified),
-                            Ingredients = "1/2 xícara (chá) de óleo /n3 cenouras médias raladas /n4 ovos /n2 xícaras(chá) de açúcar /n2 e 1 / 2 xícaras(chá) de farinha de trigo/n1 colher(sopa) de fermento em pó",
+                            Ingredients = "1/2 xícara (chá) de óleo \n3 cenouras médias raladas \n4 ovos \n2 xícaras(chá) de açúcar \n2 e 1 / 2 xícaras(chá) de farinha de trigo\n1 colher(sopa) de fermento em pó",
                             Name = "Bolo de cenoura",
                             NumberPortion = 5,
-                            PreparationMode = "Em um liquidificador, adicione a cenoura, os ovos e o óleo, depois misture. /nAcrescente o açúcar e bata novamente por 5 minutos. /nEm uma tigela ou na batedeira, /nadicione a farinha de trigo e depois misture novamente. /nAcrescente o fermento e misture lentamente com uma colher. /nAsse em um forno preaquecido a 180° C por aproximadamente 40 minutos.",
+                            PreparationMode = "Em um liquidificador, adicione a cenoura, os ovos e o óleo, depois misture. \nAcrescente o açúcar e bata novamente por 5 minutos. \nEm uma tigela ou na batedeira, \nadicione a farinha de trigo e depois misture novamente. \nAcrescente o fermento e misture lentamente com uma colher. \nAsse em um forno preaquecido a 180° C por aproximadamente 40 minutos.",
                             PreparationTimeInMinutes = 60,
                             Published = false,
                             Rating = 0
@@ -241,10 +241,10 @@ namespace MyCookbook.Infrastructure.Data.Migrations
                             Id = 2,
                             CategoryId = 8,
                             Created = new DateTime(2021, 4, 10, 14, 30, 10, 0, DateTimeKind.Unspecified),
-                            Ingredients = "1 caixa de leite condensado /n1 colher(sopa) de margarina sem sal /n7 colheres(sopa) de achocolatado ou 4 colheres(sopa) de chocolate em pó /nchocolate granulado",
+                            Ingredients = "1 caixa de leite condensado \n1 colher(sopa) de margarina sem sal \n7 colheres(sopa) de achocolatado ou 4 colheres(sopa) de chocolate em pó \nchocolate granulado",
                             Name = "Brigadeiro",
                             NumberPortion = 15,
-                            PreparationMode = "Em uma panela funda, acrescente o leite condensado, a margarina e o chocolate em pó. /nCozinhe em fogo médio e mexa até que o brigadeiro comece a desgrudar da panela. /nDeixe esfriar e faça pequenas bolas com a mão passando a massa no chocolate granulado.",
+                            PreparationMode = "Em uma panela funda, acrescente o leite condensado, a margarina e o chocolate em pó. \nCozinhe em fogo médio e mexa até que o brigadeiro comece a desgrudar da panela. \nDeixe esfriar e faça pequenas bolas com a mão passando a massa no chocolate granulado.",
                             PreparationTimeInMinutes = 30,
                             Published = false,
                             Rating = 0
@@ -254,10 +254,10 @@ namespace MyCookbook.Infrastructure.Data.Migrations
                             Id = 3,
                             CategoryId = 6,
                             Created = new DateTime(2019, 8, 19, 8, 5, 55, 0, DateTimeKind.Unspecified),
-                            Ingredients = "250 g de abóbora moranga /n3 dentes de alho /n1 / 2 cebola cortada em cubinhos /nFio de óleo",
+                            Ingredients = "250 g de abóbora moranga \n3 dentes de alho \n1 / 2 cebola cortada em cubinhos \nFio de óleo",
                             Name = "Sopa de abóbora",
                             NumberPortion = 4,
-                            PreparationMode = "Descasque a abobora , corte-a em cubos. /nEm uma panela de pressão coloque o oleo, junte os alhos amassados e a cebola em cubinhos e deixe dourar, acrescente uma pitada de urucum os cubinhos de tempero e refogue a abobora. /nPonha aproximadamente 750 ml de água, feche a panela e deixe cozinhar por 20 minutos. /nDesligue o fogo, bata o conteudo com o mixter ou liquidificador até obter um creme homogêneo. /nVolte este creme ao fogo por mais 5 minutos, se ficar muito grosso acrescente um pouco de água e corrija o sal /nSirva, /nsalpicando a cebolinha, acompanhada de trorradas.",
+                            PreparationMode = "Descasque a abobora , corte-a em cubos. \nEm uma panela de pressão coloque o oleo, junte os alhos amassados e a cebola em cubinhos e deixe dourar, acrescente uma pitada de urucum os cubinhos de tempero e refogue a abobora. \nPonha aproximadamente 750 ml de água, feche a panela e deixe cozinhar por 20 minutos. \nDesligue o fogo, bata o conteudo com o mixter ou liquidificador até obter um creme homogêneo. \nVolte este creme ao fogo por mais 5 minutos, se ficar muito grosso acrescente um pouco de água e corrija o sal \nSirva, \nsalpicando a cebolinha, acompanhada de trorradas.",
                             PreparationTimeInMinutes = 60,
                             Published = false,
                             Rating = 0

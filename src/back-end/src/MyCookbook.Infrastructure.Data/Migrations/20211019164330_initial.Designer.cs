@@ -10,7 +10,7 @@ using MyCookbook.Infrastructure.Data.DbContexts;
 namespace MyCookbook.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(MyCookBookDbContext))]
-    [Migration("20210902194950_initial")]
+    [Migration("20211019164330_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,6 +29,10 @@ namespace MyCookbook.Infrastructure.Data.Migrations
                         .HasColumnName("CategoryId")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Icon")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("varchar(20)");
@@ -37,58 +41,6 @@ namespace MyCookbook.Infrastructure.Data.Migrations
                         .HasName("CategoryId");
 
                     b.ToTable("Category");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Bolos"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Carnes"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Aves"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Peixe"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Saladas"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Sopas"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Name = "Massas"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Name = "Doces e sobremesas"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Name = "Lanches"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Name = "Alimentação saúdavel"
-                        });
                 });
 
             modelBuilder.Entity("MyCookbook.Domain.Recipes.Image", b =>
@@ -141,15 +93,15 @@ namespace MyCookbook.Infrastructure.Data.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(60)");
 
-                    b.Property<long>("NumberPortion")
-                        .HasColumnType("bigint");
+                    b.Property<int>("NumberPortion")
+                        .HasColumnType("int");
 
                     b.Property<string>("PreparationMode")
                         .IsRequired()
                         .HasColumnType("varchar(1000)");
 
-                    b.Property<long>("PreparationTimeInMinutes")
-                        .HasColumnType("bigint");
+                    b.Property<int>("PreparationTimeInMinutes")
+                        .HasColumnType("int");
 
                     b.Property<bool>("Published")
                         .HasColumnType("bit");
@@ -157,57 +109,12 @@ namespace MyCookbook.Infrastructure.Data.Migrations
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id")
                         .HasName("RecipeId");
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("Recipe");
-                });
-
-            modelBuilder.Entity("MyCookbook.Domain.Recipes.User", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("UserId")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("varchar(200)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("varchar(20)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<string>("Photo")
-                        .IsRequired()
-                        .HasColumnType("varchar(MAX)");
-
-                    b.HasKey("Id")
-                        .HasName("UserId");
-
-                    b.ToTable("User");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Email = "adri@gmail.com",
-                            Name = "Adriana W.",
-                            Password = "s5a4%wS5",
-                            Photo = "imagen.png"
-                        });
                 });
 
             modelBuilder.Entity("MyCookbook.Domain.Recipes.Image", b =>
@@ -227,15 +134,7 @@ namespace MyCookbook.Infrastructure.Data.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("MyCookbook.Domain.Recipes.User", "User")
-                        .WithMany("Recipes")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Category");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("MyCookbook.Domain.Recipes.Category", b =>
@@ -246,11 +145,6 @@ namespace MyCookbook.Infrastructure.Data.Migrations
             modelBuilder.Entity("MyCookbook.Domain.Recipes.Recipe", b =>
                 {
                     b.Navigation("Images");
-                });
-
-            modelBuilder.Entity("MyCookbook.Domain.Recipes.User", b =>
-                {
-                    b.Navigation("Recipes");
                 });
 #pragma warning restore 612, 618
         }
