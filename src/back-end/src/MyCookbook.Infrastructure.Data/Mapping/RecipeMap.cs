@@ -25,6 +25,9 @@ namespace MyCookbook.Infrastructure.Data.Mapping
                  .OnDelete(DeleteBehavior.NoAction)
                  .IsRequired();
 
+            builder.Property(p => p.Difficulty)
+                .IsRequired();
+
             builder.Property(p => p.NumberPortion)
                  .IsRequired();
 

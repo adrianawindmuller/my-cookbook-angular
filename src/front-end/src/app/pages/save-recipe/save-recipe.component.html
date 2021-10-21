@@ -1,14 +1,14 @@
 <div class="container-fluid py-4">
   <div class="row justify-content-center">
-    <div class="col-lg-7 p-5 shadow rounded" style="background-color: white">
+    <div class="col-lg-7 px-5 py-3 card shadow rounded " style="background-color: white">
       <div class="d-flex flex-column">
-        <p class="fs-3 text-center fw-bold">{{titleName ? titleName : "Adicionar"}} Receita</p>
+        <p class="fs-3 text-center fw-bold text-primary">{{titleName ? titleName : "Adicionar"}} Receita</p>
         <form (ngSubmit)="onSubmit()" [formGroup]="recipeForm" class="needs-validation" novalidate>
 
           <!-- name -->
           <div class="mb-3">
-            <label for="name" class="form-label"> Nome da receita </label>
-            <input type="text" class="form-control" id="name" placeholder="Bolo de cenoura" formControlName="name"
+            <label for="name" class="form-label fw-bold"> Nome da receita </label>
+            <input type="text" class="form-control" id="name" placeholder="ex: Bolo de cenoura" formControlName="name"
               [ngClass]="{'is-invalid': (submitted && form.name.errors) || (form.name.touched && form.name.errors)}" />
             <div *ngIf="(submitted && form.name.errors) || (form.name.touched && form.name.errors)"
               class="invalid-feedback">
@@ -16,34 +16,49 @@
             </div>
           </div>
 
-          <!-- categorias -->
-          <div class="mb-3">
-            <label for="category" class="form-label">Categoria</label>
-            <select *ngIf="categories$ | async as categories" formControlName="categoryId" id="category"
-              class="form-select"
-              [ngClass]="{ 'is-invalid': (submitted && form.categoryId.errors) || (form.categoryId.touched && form.categoryId.errors) }">
-              <option selected disabled value="">
-                Selecione uma categoria
-              </option>
-              <option *ngFor="let category of categories" value="{{ category.id }}">
-                {{ category.name }}
-              </option>
-            </select>
-            <div *ngIf="(submitted && form.categoryId.errors) || (form.categoryId.touched && form.categoryId.errors) "
-              class="invalid-feedback">
-              <div *ngIf="form.categoryId.errors?.required">
-                Este campo é obrigatório
+          <div class="row row-cols-1 row-cols-sm-2">
+            <!-- categorias -->
+            <div class="col mb-3">
+              <label for="category" class="form-label fw-bold">Categoria</label>
+              <select *ngIf="categories$ | async as categories" formControlName="categoryId" id="category"
+                class="form-select"
+                [ngClass]="{ 'is-invalid': (submitted && form.categoryId.errors) || (form.categoryId.touched && form.categoryId.errors) }">
+                <option selected disabled value="">
+                  Selecione uma categoria
+                </option>
+                <option *ngFor="let category of categories" value="{{ category.id }}">
+                  {{ category.name }}
+                </option>
+              </select>
+              <div *ngIf="(submitted && form.categoryId.errors) || (form.categoryId.touched && form.categoryId.errors) "
+                class="invalid-feedback">
+                <div *ngIf="form.categoryId.errors?.required">
+                  Este campo é obrigatório
+                </div>
               </div>
+            </div>
+
+            <!-- Difuculdade -->
+            <div class="col mb-3">
+              <label for="Dificuldade" class="form-label fw-bold">Dificuldade</label>
+              <select formControlName="difficulty" id="Dificuldade" class="form-select">
+                <option selected disabled value="">
+                  Selecione um nivel de dificuldade
+                </option>
+                <option *ngFor="let key of keys" value={{key}}>
+                  {{ difficultys[key] }}
+                </option>
+              </select>
             </div>
           </div>
 
+          <!-- Número de porções e Tempo de preparo -->
           <div class="row row-cols-1 row-cols-sm-2">
-            <!-- Número de porções -->
             <div class="col mb-3">
-              <label for="portion" class="form-label">
+              <label for="portion" class="form-label fw-bold">
                 Numero de porções
               </label>
-              <input type="number" class="form-control" id="portion" placeholder="8" formControlName="numberPortion"
+              <input type="number" class="form-control" id="portion" placeholder="ex: 8" formControlName="numberPortion"
                 min="1" max="40"
                 [ngClass]="{ 'is-invalid': (submitted && form.numberPortion.errors) || (form.numberPortion.touched && form.numberPortion.errors)}" />
               <div
@@ -53,13 +68,12 @@
               </div>
             </div>
 
-            <!-- Tempo de preparo -->
             <div class="col">
-              <label for="preparation" class="form-label">
+              <label for="preparation" class="form-label fw-bold">
                 Tempo de preparo em min
               </label>
               <div class=" input-group mb-3">
-                <input type="number" class="form-control" placeholder="60" aria-label="Recipient's username"
+                <input type="number" class="form-control" placeholder="ex: 60" aria-label="Recipient's username"
                   aria-describedby="preparation" formControlName="preparationTimeInMinutes" min="10" max="600"
                   [ngClass]="{'is-invalid': (submitted && form.preparationTimeInMinutes.errors) ||
                    (form.preparationTimeInMinutes.touched && form.preparationTimeInMinutes.errors)}">
@@ -75,8 +89,10 @@
 
           <!-- Ingredientes -->
           <div class="mb-3">
-            <label for="ingredients" class="form-label">Ingredientes</label>
-            <textarea class="form-control" id="ingredients" rows="3" maxlength="1000" formControlName="ingredients"
+            <label for="ingredients" class="form-label"><b>Ingredientes</b> <small>(um ingrediente por
+                linha)</small></label>
+            <textarea class="form-control" id="ingredients" rows="3" maxlength="1000" placeholder="ex: 1 xicara de ..."
+              formControlName="ingredients"
               [ngClass]="{ 'is-invalid': (submitted && form.ingredients.errors) || (form.ingredients.touched && form.ingredients.errors)}"></textarea>
             <div *ngIf="(submitted && form.ingredients.errors) || (form.ingredients.touched && form.ingredients.errors)"
               class="invalid-feedback">
@@ -86,8 +102,10 @@
 
           <!-- Modo de preparo -->
           <div class="mb-3">
-            <label for="preparationMode" class="form-label">Modo de preparo</label>
-            <textarea class="form-control" id="preparationMode" rows="3" formControlName="preparationMode" [ngClass]="{ 'is-invalid': (submitted && form.preparationMode.errors) ||
+            <label for="preparationMode" class="form-label"><b>Modo de preparo </b><small>(um preparo por
+                linha)</small></label>
+            <textarea class="form-control" id="preparationMode" rows="3" placeholder="ex: Em um liquidificador..."
+              formControlName="preparationMode" [ngClass]="{ 'is-invalid': (submitted && form.preparationMode.errors) ||
                (form.preparationMode.touched && form.preparationMode.errors)}"></textarea>
             <div
               *ngIf="(submitted && form.preparationMode.errors) ||  (form.preparationMode.touched && form.preparationMode.errors)"
@@ -97,7 +115,7 @@
           </div>
 
           <!-- Upload Images -->
-          <p>Adicionar Imagem</p>
+          <p class="fw-bold">Adicionar Imagem</p>
           <div class="mb-3 d-flex align-items-center pt-2">
             <div>
               <button class="btn btn-primary rounded-circle" for="image" type="button" (click)="fileInput.click()">
@@ -127,13 +145,13 @@
           <!-- Publicado -->
           <div class="form-check mb-3">
             <input class="form-check-input" type="checkbox" value="" id="published" formControlName="published" />
-            <label class="form-check-label" for="published"> Publicar (opcional) </label>
+            <label class="form-check-label" for="published"><b> Publicar</b> (opcional) </label>
           </div>
 
           <button (click)="navegateBack()" type="button" class="btn btn-light" style="margin-right: 10px;">
             Cancelar
           </button>
-          <button type="submit" class="btn btn-primary" [disabled]="!recipeForm.valid">
+          <button type="submit" class="btn btn-primary fw-bold" [disabled]="!recipeForm.valid">
             Salvar Receita
           </button>
         </form>

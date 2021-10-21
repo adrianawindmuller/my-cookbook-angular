@@ -17,6 +17,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DialogConfirmComponent } from 'src/app/shared/dialog-confirm/dialog-confirm.component';
 import { EMPTY, Observable, Subscription } from 'rxjs';
 import { CategoryService } from 'src/app/shared/services/category.service';
+import { Difficulty } from 'src/app/shared/models/difficulty.enum';
 
 @Component({
   selector: 'app-register-recipe',
@@ -31,6 +32,9 @@ export class SaveRecipeComponent implements OnInit, OnDestroy {
   titleName!: string;
   id!: number;
   sub!: Subscription;
+  isCollapsed = false;
+  difficultys = Difficulty;
+  keys!: any[];
 
   constructor(
     private fb: FormBuilder,
@@ -64,6 +68,7 @@ export class SaveRecipeComponent implements OnInit, OnDestroy {
         ],
       ],
       categoryId: ['', Validators.required],
+      difficulty: ['', Validators.required],
       numberPortion: [
         '',
         [Validators.required, Validators.min(1), Validators.max(40)],
@@ -109,6 +114,8 @@ export class SaveRecipeComponent implements OnInit, OnDestroy {
 
       this.titleName = 'Editar';
     }
+
+    this.keys = Object.keys(this.difficultys).filter((k) => !isNaN(Number(k)));
   }
 
   get images(): FormArray {
@@ -143,7 +150,7 @@ export class SaveRecipeComponent implements OnInit, OnDestroy {
   registerRecipe(): void {
     const newRecipe = this.recipeForm.value;
     newRecipe.categoryId = parseInt(newRecipe.categoryId);
-
+    newRecipe.difficulty = parseInt(newRecipe.difficulty);
     let recipeModel = newRecipe as SaveRecipe;
 
     this.sub = this.recipeService.postRecipe(recipeModel).subscribe(
@@ -161,6 +168,7 @@ export class SaveRecipeComponent implements OnInit, OnDestroy {
   updateRecipe(): void {
     const newRecipe = this.recipeForm.value;
     newRecipe.categoryId = parseInt(newRecipe.categoryId);
+    newRecipe.difficulty = parseInt(newRecipe.difficulty);
 
     let recipeModel = newRecipe as SaveRecipe;
 

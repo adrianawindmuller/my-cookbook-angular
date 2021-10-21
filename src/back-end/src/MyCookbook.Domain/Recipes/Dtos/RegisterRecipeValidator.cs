@@ -1,4 +1,5 @@
 using FluentValidation;
+using System;
 
 namespace MyCookbook.Domain.Recipes.Dtos
 {
@@ -14,6 +15,9 @@ namespace MyCookbook.Domain.Recipes.Dtos
                 .GreaterThan(0)
                 .NotEmpty();
 
+            RuleFor(p => p.Difficulty)
+                .IsInEnum();
+
             RuleFor(p => p.NumberPortion)
                 .GreaterThan(0).WithMessage("Insira um numero maior que 1.")
                 .LessThan(40).WithMessage("Insira um numero menor que 40.")
@@ -21,7 +25,7 @@ namespace MyCookbook.Domain.Recipes.Dtos
 
             RuleFor(p => p.PreparationTimeInMinutes)
                 .GreaterThan(10).WithMessage("Insira um número maior que 10 minutos")
-                .LessThan(600).WithMessage("Insira um número menor que 600 minutos.")
+                .LessThan((int)TimeSpan.FromHours(10).TotalMinutes).WithMessage("Insira um número menor que 600 minutos.")
                 .NotEmpty();
 
             RuleFor(p => p.Ingredients)

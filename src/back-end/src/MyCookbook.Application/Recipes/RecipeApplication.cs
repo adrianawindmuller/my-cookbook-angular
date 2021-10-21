@@ -33,6 +33,7 @@ namespace MyCookbook.Application.RecipesApplication
             var recipe = new Recipe(
                 dto.Name,
                 category,
+                (Difficulty)dto.Difficulty,
                 dto.NumberPortion,
                 dto.PreparationTimeInMinutes,
                 dto.Ingredients,
@@ -71,6 +72,7 @@ namespace MyCookbook.Application.RecipesApplication
             recipe.Edit(
                 dto.Name,
                 category,
+                (Difficulty)dto.Difficulty,
                 dto.NumberPortion,
                 dto.PreparationTimeInMinutes,
                 dto.Ingredients,

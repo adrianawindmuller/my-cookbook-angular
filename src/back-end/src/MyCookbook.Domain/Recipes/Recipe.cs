@@ -9,6 +9,7 @@ namespace MyCookbook.Domain.Recipes
         public Recipe(
             string name,
             Category category,
+            Difficulty difficulty,
             int numberPortion,
             int preparationTimeInMinutes,
             string ingredients,
@@ -16,9 +17,10 @@ namespace MyCookbook.Domain.Recipes
             List<Image> images,
             bool published)
         {
-            Validate(name, category, images, ingredients, preparationMode, numberPortion, preparationTimeInMinutes);
+            Validate(name, category, difficulty, images, ingredients, preparationMode, numberPortion, preparationTimeInMinutes);
             Name = name;
             Category = category;
+            Difficulty = difficulty;
             NumberPortion = numberPortion;
             PreparationTimeInMinutes = preparationTimeInMinutes;
             Ingredients = ingredients;
@@ -33,6 +35,8 @@ namespace MyCookbook.Domain.Recipes
         public string Name { get; private set; }
 
         public Category Category { get; private set; }
+
+        public Difficulty Difficulty { get; set; }
 
         public int NumberPortion { get; private set; }
 
@@ -74,6 +78,7 @@ namespace MyCookbook.Domain.Recipes
         public void Edit(
             string name,
             Category category,
+            Difficulty difficulty,
             int numberPortions,
             int preparationTimeInMinutes,
             string ingredients,
@@ -81,9 +86,10 @@ namespace MyCookbook.Domain.Recipes
             bool published,
             List<Image> images = null)
         {
-            Validate(name, category, images, ingredients, preparationMode, numberPortions, preparationTimeInMinutes);
+            Validate(name, category, difficulty, images, ingredients, preparationMode, numberPortions, preparationTimeInMinutes);
             Name = name;
             Category = category;
+            Difficulty = difficulty;
             NumberPortion = numberPortions;
             PreparationTimeInMinutes = preparationTimeInMinutes;
             Ingredients = ingredients;
@@ -101,6 +107,7 @@ namespace MyCookbook.Domain.Recipes
         private void Validate(
             string name,
             Category category,
+            Difficulty difficulty,
             List<Image> images,
             string ingredients,
             string preparationMode,
@@ -109,9 +116,10 @@ namespace MyCookbook.Domain.Recipes
         {
 
             if (category is null)
-            {
                 throw new ArgumentException("Categoria obrigatório!", nameof(category));
-            }
+
+            if (!Enum.IsDefined<Difficulty>(difficulty))
+                throw new ArgumentException("Insira no mínimo 1 e no máximo 3", nameof(difficulty));
 
             if (images is null || !images.Any())
                 throw new ArgumentException("É necessário pelo menos uma imagem.", nameof(images));

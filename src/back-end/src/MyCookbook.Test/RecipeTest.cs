@@ -7,7 +7,7 @@ namespace MyCookbook.UnitTest
 {
     public class RecipeTest
     {
-        private List<Image> _3Images = new List<Image> // field(variavel privada)
+        private List<Image> _3Images = new List<Image>
         {
             new Image("src:/bolo-de-chocolate-1"),
             new Image("src:/bolo-de-chocolate-2"),
@@ -16,9 +16,9 @@ namespace MyCookbook.UnitTest
 
         private List<Image> _emptyImages = new List<Image>
         {
-        }; // field(variavel privada)
+        };
 
-        private List<Image> _7Images = new List<Image> // field(variavel privada)
+        private List<Image> _7Images = new List<Image>
         {
             new Image("src:/bolo-de-chocolate-1"),
             new Image("src:/bolo-de-chocolate-2"),
@@ -34,6 +34,7 @@ namespace MyCookbook.UnitTest
         private Recipe GetNewRecipe(
             List<Image> images,
             Category category,
+            Difficulty difficulty = Difficulty.Fácil,
             string name = "Bolo de Chocolate",
             string ingredients = "1 xicara de farinha....",
             string preparationMode = "Bata todos os ingrediente...",
@@ -43,6 +44,7 @@ namespace MyCookbook.UnitTest
 
             return new Recipe(name,
              category,
+             difficulty,
              numberPortion,
              preparationTimeInMinutes,
              ingredients,
@@ -57,6 +59,7 @@ namespace MyCookbook.UnitTest
 
             Assert.Equal("Bolo de Chocolate", recipe.Name);
             Assert.Equal("Bolo", recipe.Category.Name);
+            Assert.Equal(Difficulty.Fácil, recipe.Difficulty);
             Assert.Equal(5, (int)recipe.NumberPortion);
             Assert.Equal(60, (int)recipe.PreparationTimeInMinutes);
             Assert.Equal("1 xicara de farinha....", recipe.Ingredients);
@@ -109,12 +112,13 @@ namespace MyCookbook.UnitTest
             var ex13 = Assert.Throws<ArgumentException>(() => GetNewRecipe(_3Images, _NewCategory, preparationTimeInMinutes: 5));
             Assert.Equal("Insira mais de 10 minutos. (Parameter 'preparationTimeInMinutes')", ex13.Message);
 
-            var ex14 = Assert.Throws<ArgumentException>(() => GetNewRecipe(_3Images, _NewCategory, preparationTimeInMinutes: 120));
+            var ex14 = Assert.Throws<ArgumentException>(() => GetNewRecipe(_3Images, _NewCategory, preparationTimeInMinutes: (int)TimeSpan.FromHours(20).TotalMinutes));
             Assert.Equal("Insira no máximo 10 horas. (Parameter 'preparationTimeInMinutes')", ex14.Message);
 
             var ex17 = Assert.Throws<ArgumentException>(() => GetNewRecipe(_3Images, category: null));
             Assert.Equal("Categoria obrigatório! (Parameter 'category')", ex17.Message);
         }
+
 
         [Fact]
         public void EditRecipe_ValidEdit_ValidRecipe()
@@ -122,9 +126,10 @@ namespace MyCookbook.UnitTest
             var categoryNew = new Category("Sopas", "sopa.png");
             var recipe = GetNewRecipe(_3Images, _NewCategory);
 
-            recipe.Edit("Sopa de Abobora", categoryNew, 8, 60, "1 abobora....", "Corte a abobora e coloque para cozinhar...", true, _3Images);
+            recipe.Edit("Sopa de Abobora", categoryNew, Difficulty.Médio, 8, 60, "1 abobora....", "Corte a abobora e coloque para cozinhar...", true, _3Images);
             Assert.Equal("Sopa de Abobora", recipe.Name);
             Assert.Equal("Sopas", recipe.Category.Name);
+            Assert.Equal(Difficulty.Médio, recipe.Difficulty);
             Assert.Equal(8, (int)recipe.NumberPortion);
             Assert.Equal("1 abobora....", recipe.Ingredients);
             Assert.Equal("Corte a abobora e coloque para cozinhar...", recipe.PreparationMode);
@@ -139,7 +144,7 @@ namespace MyCookbook.UnitTest
         {
             var category = new Category("Bolo", "bolo.png");
             var recipe = GetNewRecipe(_3Images, _NewCategory);
-            Assert.Throws<ArgumentException>(() => recipe.Edit("", category, 60, 5, " ", "", true, _7Images));
+            Assert.Throws<ArgumentException>(() => recipe.Edit("", category, Difficulty.Médio, 60, 5, " ", "", true, _7Images));
         }
 
         [Fact]
