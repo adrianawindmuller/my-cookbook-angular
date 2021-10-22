@@ -48,6 +48,9 @@ namespace MyCookbook.Domain.Recipes
                     Id = recipe.Id,
                     Name = recipe.Name,
                     CategoryName = recipe.Category.Name,
+                    Difficulty = recipe.Difficulty,
+                    NumberPortion = recipe.NumberPortion,
+                    PreparationTimeInMinutes = recipe.PreparationTimeInMinutes,
                     Favorite = recipe.Favorite,
                     Images = recipe.Images.Select(image => image.RawContent).ToList()
                 }).ToList()
