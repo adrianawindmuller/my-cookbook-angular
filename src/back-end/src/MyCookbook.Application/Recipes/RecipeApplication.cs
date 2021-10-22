@@ -114,8 +114,11 @@ namespace MyCookbook.Application.RecipesApplication
                 {
                     Id = recipe.Id,
                     Name = recipe.Name,
+                    Difficulty = recipe.Difficulty,
                     CategoryId = recipe.Category.Id,
                     CategoryName = recipe.Category.Name,
+                    NumberPortion = recipe.NumberPortion,
+                    PreparationTimeInMinutes = recipe.PreparationTimeInMinutes,
                     Favorite = recipe.Favorite,
                 };
 
@@ -148,6 +151,7 @@ namespace MyCookbook.Application.RecipesApplication
                 Id = recipe.Id,
                 Name = recipe.Name,
                 CategoryName = recipe.Category.Name,
+                Difficulty = recipe.Difficulty,
                 NumberPortion = recipe.NumberPortion,
                 PreparationTimeInMinutes = recipe.PreparationTimeInMinutes,
                 Ingredients = recipe.Ingredients,
@@ -179,6 +183,7 @@ namespace MyCookbook.Application.RecipesApplication
                 Id = recipe.Id,
                 Name = recipe.Name,
                 CategoryId = recipe.Category.Id,
+                Difficulty = recipe.Difficulty,
                 NumberPortion = recipe.NumberPortion,
                 PreparationTimeInMinutes = recipe.PreparationTimeInMinutes,
                 Ingredients = recipe.Ingredients,

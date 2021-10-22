@@ -1,0 +1,36 @@
+.box-img {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  cursor: pointer;
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.box-img:hover .overlay {
+  display: block;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.button-action {
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.35s ease;
+}
+
+.box-img:hover .button-action {
+  opacity: 1;
+}
+
+.img-card {
+  position: absolute;
+}

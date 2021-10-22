@@ -8,9 +8,15 @@ namespace MyCookbook.Domain.Recipes.Dtos
 
         public string Name { get; set; }
 
+        public Difficulty Difficulty { get; set; }
+
         public string CategoryName { get; set; }
 
         public int CategoryId { get; set; }
+
+        public int NumberPortion { get; set; }
+
+        public int PreparationTimeInMinutes { get; set; }
 
         public bool Favorite { get; set; }
 

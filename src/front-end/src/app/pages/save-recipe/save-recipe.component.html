@@ -41,7 +41,8 @@
             <!-- Difuculdade -->
             <div class="col mb-3">
               <label for="Dificuldade" class="form-label fw-bold">Dificuldade</label>
-              <select formControlName="difficulty" id="Dificuldade" class="form-select">
+              <select formControlName="difficulty" id="Dificuldade" class="form-select"
+                [ngClass]="{ 'is-invalid': (submitted && form.difficulty.errors) || (form.difficulty.touched && form.difficulty.errors) }">
                 <option selected disabled value="">
                   Selecione um nivel de dificuldade
                 </option>
@@ -49,6 +50,12 @@
                   {{ difficultys[key] }}
                 </option>
               </select>
+              <div *ngIf="(submitted && form.difficulty.errors) || (form.difficulty.touched && form.difficulty.errors) "
+                class="invalid-feedback">
+                <div *ngIf="form.difficulty.errors?.required">
+                  Este campo é obrigatório
+                </div>
+              </div>
             </div>
           </div>
 

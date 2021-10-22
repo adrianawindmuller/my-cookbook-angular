@@ -4,6 +4,7 @@ import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { DialogConfirmComponent } from 'src/app/shared/dialog-confirm/dialog-confirm.component';
+import { Difficulty } from 'src/app/shared/models/difficulty.enum';
 import { RecipeViewDetails } from 'src/app/shared/models/recipe-view-details.model';
 import { RecipeService } from 'src/app/shared/services/recipe.service';
 
@@ -16,6 +17,7 @@ export class DetailsRecipeComponent implements OnInit, OnDestroy {
   htmlIngredients!: string;
   htmlPreparationMode!: string;
   sub!: Subscription;
+  difficulty = Difficulty;
 
   constructor(
     private recipeService: RecipeService,
