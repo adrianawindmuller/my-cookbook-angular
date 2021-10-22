@@ -1,6 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light primary-background">
   <div class="container-fluid">
-    <a class="navbar-brand fw-bold text-light" href="#">My CookBook</a>
+    <a class="navbar-brand fw-bold text-light" href="#">
+      <i class="bi bi-journal-bookmark-fill"></i>
+      My CookBook</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
       aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -11,7 +13,7 @@
           <a class="nav-link active text-light" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-light" href="#">Sobre</a>
+          <a class="nav-link text-light" [routerLink]="['/about']">Sobre</a>
         </li>
 
         <div ngbDropdown class="d-inline-block">

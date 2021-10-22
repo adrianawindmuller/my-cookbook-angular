@@ -7,9 +7,10 @@ import { DetailsRecipeComponent } from './details-recipe/details-recipe.componen
 import { SaveRecipeComponent } from './save-recipe/save-recipe.component';
 import { AllCategoriesComponent } from './all-categories/all-categories.component';
 import { CategoryRecipesComponent } from './category-recipes/category-recipes.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
-  declarations: [HomeComponent, SaveRecipeComponent, DetailsRecipeComponent, AllCategoriesComponent, CategoryRecipesComponent],
+  declarations: [HomeComponent, SaveRecipeComponent, DetailsRecipeComponent, AllCategoriesComponent, CategoryRecipesComponent, AboutComponent],
   imports: [CommonModule, SharedModule, ToastrModule.forRoot()],
 })
 export class PagesModule {}
