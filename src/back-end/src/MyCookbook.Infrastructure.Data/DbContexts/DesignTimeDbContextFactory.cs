@@ -22,7 +22,7 @@ namespace MyCookbook.Infrastructure.Data.DbContexts
 
             var optionsBuilder = new DbContextOptionsBuilder<MyCookBookDbContext>();
             Console.WriteLine($"DesignTimeDbContextFactory.Create(string): Connection string: {connectionString}");
-            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseSqlite(connectionString);
             var options = optionsBuilder.Options;
             return new MyCookBookDbContext(options);
         }

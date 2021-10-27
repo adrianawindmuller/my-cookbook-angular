@@ -18,7 +18,7 @@ namespace MyCookbook.Infrastructure.Data.Mapping
 
             builder.Property(p => p.RawContent)
                 .IsRequired()
-                .HasColumnType("varchar(MAX)");
+                .HasColumnType("varchar");
         }
     }
 }

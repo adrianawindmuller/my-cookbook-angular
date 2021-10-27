@@ -23,6 +23,7 @@ namespace MyCookbook.Infrastructure.Data.DbContexts
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
             builder.Entity<Category>().HasData(

@@ -50,7 +50,7 @@ namespace MyCookbook.Api
 
             services.AddDbContext<MyCookBookDbContext>(c =>
             {
-                c.UseSqlServer(_configuration.GetConnectionString("MyCookBookConnection"));
+                c.UseSqlite(_configuration.GetConnectionString("MyCookBookConnection"));
             });
 
 
