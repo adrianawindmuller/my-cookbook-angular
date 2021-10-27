@@ -9,8 +9,8 @@ using MyCookbook.Infrastructure.Data.DbContexts;
 namespace MyCookbook.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(MyCookBookDbContext))]
-    [Migration("20211027154243_seed-recipe")]
-    partial class seedrecipe
+    [Migration("20211027171551_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
