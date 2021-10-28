@@ -18,11 +18,8 @@ namespace MyCookbook.Infrastructure.Data.DbContexts
                 .AddJsonFile($"appsettings.{environmentName}.json", true)
                 .AddEnvironmentVariables()
                 .Build();
-            var connectionString = builder.GetConnectionString("MyCookBookConnection");
 
             var optionsBuilder = new DbContextOptionsBuilder<MyCookBookDbContext>();
-            Console.WriteLine($"DesignTimeDbContextFactory.Create(string): Connection string: {connectionString}");
-            optionsBuilder.UseSqlite(connectionString);
             var options = optionsBuilder.Options;
             return new MyCookBookDbContext(options);
         }
