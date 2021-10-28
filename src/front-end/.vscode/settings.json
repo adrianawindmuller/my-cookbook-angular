@@ -36,6 +36,6 @@
     "editor.defaultFormatter": "vscode.html-language-features"
   },
   "appService.zipIgnorePattern": ["node_modules{,/**}", ".vscode{,/**}"],
-  "appService.defaultWebAppToDeploy": "/subscriptions/2a6287a6-734a-478c-8ded-3c0f55887e46/resourceGroups/Recipe/providers/Microsoft.Web/sites/my-cookbook",
+  "appService.defaultWebAppToDeploy": "None",
   "appService.deploySubpath": "."
 }
