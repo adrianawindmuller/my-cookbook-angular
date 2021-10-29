@@ -21,7 +21,6 @@
     "diffEditor.removedTextBorder": "#ff0000",
     "diffEditor.insertedTextBorder": "#00ff00"
   },
-  "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
   "terminal.integrated.fontSize": 16,
   "explorer.confirmDragAndDrop": false,
   "diffEditor.renderSideBySide": false,
