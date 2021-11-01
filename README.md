@@ -1,4 +1,4 @@
-## **My Cookbook**
+# **My Cookbook**
 
 ## `O objetivo é criar uma aplicação de receitas culinárias, a fim de praticar meus conhecimentos no Framework Angular 12 com Bootstrap e Typescript, realizando a comunicação com uma Web API criada em ASP.net.`
 
