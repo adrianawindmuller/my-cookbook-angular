@@ -4,7 +4,7 @@
 
 <br>
 
-### 👉 **Web App:** https://my-cookbook.azurewebsites.net/home
+### 👉 **Web App:** https://my-cookbook.azurewebsites.net
 
 ### 👉 **Web Api Rest:** https://my-cookbook-api.azurewebsites.net/index.htm
 
