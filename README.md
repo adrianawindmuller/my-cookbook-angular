@@ -1,8 +1,12 @@
 ## **My Cookbook**
 
-![wip](https://camo.githubusercontent.com/a646be419b04e4d0f790613e408d79f991476fab/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f73746162696c6974792d776f726b5f696e5f70726f67726573732d6c69676874677265792e737667)
-
 ## `O objetivo é criar uma aplicação de receitas culinárias, a fim de praticar meus conhecimentos no Framework Angular 12 com Bootstrap e Typescript, realizando a comunicação com uma Web API criada em ASP.net.`
+
+<br>
+
+### 👉 **Web App:** https://my-cookbook.azurewebsites.net/home
+
+### 👉 **Web Api Rest:** https://my-cookbook-api.azurewebsites.net/index.htm
 
 <br>
 
