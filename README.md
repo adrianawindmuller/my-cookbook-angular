@@ -1,13 +1,6 @@
 # **My Cookbook**
 
 ## `O objetivo é criar uma aplicação de receitas culinárias, a fim de praticar meus conhecimentos no Framework Angular 12 com Bootstrap e Typescript, realizando a comunicação com uma Web API criada em ASP.net.`
-
-<br>
-
-### 👉 **Web App:** https://my-cookbook.azurewebsites.net
-
-### 👉 **Web Api Rest:** https://my-cookbook-api.azurewebsites.net/index.htm
-
 <br>
 
 ## 📌**Stack Front-end:**
