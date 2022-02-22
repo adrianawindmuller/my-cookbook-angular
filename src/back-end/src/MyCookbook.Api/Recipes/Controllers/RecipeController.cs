@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Routing;
 using MyCookbook.Domain.Recipes;
 using MyCookbook.Domain.Recipes.Dtos;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 
@@ -26,7 +27,7 @@ namespace MyCookbook.Api.Recipes.Controllers
                 ModelState.AddModelError("images", "Insira no máximo 6 imagens.");
             }
 
-            var response = await _recipeApplication.RegisterRecipe(dto);
+            var response = await _recipeApplication.CreateRecipe(dto);
             return Result(response);
 
         }
@@ -35,7 +36,7 @@ namespace MyCookbook.Api.Recipes.Controllers
         [HttpPut]
         public async Task<IActionResult> PutRecipe(int id, RegisterRecipeDto dto)
         {
-            var response = await _recipeApplication.PutRecipe(id, dto);
+            var response = await _recipeApplication.EditRecipeAsync(id, dto);
             return Result(response);
         }
 
@@ -43,14 +44,14 @@ namespace MyCookbook.Api.Recipes.Controllers
         [HttpDelete]
         public async Task<IActionResult> DeleteRecipe(int id)
         {
-            var response = await _recipeApplication.DeleteRecipe(id);
+            var response = await _recipeApplication.DeleteRecipeAsync(id);
             return Result(response);
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetRecipe()
+        public async Task<IActionResult> GetRecipes()
         {
-            var response = await _recipeApplication.GetRecipe();
+            var response = await _recipeApplication.ListAllRecipesAsync();
             return Result(response);
         }
 
@@ -58,7 +59,7 @@ namespace MyCookbook.Api.Recipes.Controllers
         [HttpGet]
         public async Task<IActionResult> GetRecipeDetails(int id)
         {
-            var response = await _recipeApplication.GetRecipeDetails(id);
+            var response = await _recipeApplication.ListAllRecipesDetailsAsync(id);
             return Result(response);
         }
 
@@ -66,7 +67,7 @@ namespace MyCookbook.Api.Recipes.Controllers
         [HttpGet]
         public async Task<IActionResult> GetRecipeEdit(int id)
         {
-            var response = await _recipeApplication.GetRecipeEdit(id);
+            var response = await _recipeApplication.FindRecipeByIdAsync(id);
             return Result(response);
         }
 
@@ -83,6 +84,14 @@ namespace MyCookbook.Api.Recipes.Controllers
         public async Task<IActionResult> SetRatingAsync(int id, [Required][Range(1, 5)] int rate)
         {
             var response = await _recipeApplication.SetRatingAsync(id, rate);
+            return Result(response);
+        }
+
+        [Route("name/{name}")]
+        [HttpGet]
+        public async Task<IActionResult> GetRecipesByName(string name)
+        {
+            var response = await _recipeApplication.FindRecipeByNameAsync(name);
             return Result(response);
         }
     }

@@ -25,7 +25,7 @@ import { RecipeService } from 'src/app/shared/services/recipe.service';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   filterName!: string;
-  recipes$!: Observable<CardRecipe[]>;
+  recipes!: CardRecipe[];
   categories$!: Observable<Category[]>;
   isLoading: boolean = false;
   sub!: Subscription;
@@ -43,27 +43,29 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.listenToLoading();
 
+    /*
     this.categories$ = this.categoryService.getCategories().pipe(
       catchError((err) => {
         this.toastr.error(err);
         return EMPTY;
       })
-    );
+    ); */
 
-    this.recipes$ = combineLatest([
-      this.recipeService.getRecipes(),
-      this.categorySelectedAction$,
-    ]).pipe(
-      map(([recipes, selectedCategoryId]) =>
-        recipes.filter((recipes) =>
-          selectedCategoryId ? recipes.categoryId === selectedCategoryId : true
-        )
-      ),
-      catchError((err) => {
-        this.toastr.error(err);
-        return EMPTY;
-      })
-    );
+    this.sub = this.recipeService
+      .getRecipes()
+      .subscribe((res) => (this.recipes = res));
+  }
+
+  filterNameRecipe() {
+    if (this.filterName.length) {
+      this.sub = this.recipeService
+        .filterName(this.filterName)
+        .subscribe((res) => (this.recipes = res));
+    } else {
+      this.sub = this.recipeService
+        .getRecipes()
+        .subscribe((res) => (this.recipes = res));
+    }
   }
 
   onSelected(Event: any): void {

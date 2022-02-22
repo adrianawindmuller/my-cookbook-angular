@@ -6,20 +6,22 @@ namespace MyCookbook.Domain.Recipes
 {
     public interface IRecipeApplication
     {
-        public Task<Response> RegisterRecipe(RegisterRecipeDto dto);
+        public Task<Response> CreateRecipe(RegisterRecipeDto dto);
 
-        public Task<Response> PutRecipe(int id, RegisterRecipeDto dto);
+        public Task<Response> EditRecipeAsync(int id, RegisterRecipeDto dto);
 
-        public Task<Response> DeleteRecipe(int id);
+        public Task<Response> DeleteRecipeAsync(int id);
 
-        public Task<Response> GetRecipe();
+        public Task<Response> ListAllRecipesAsync();
 
-        public Task<Response> GetRecipeDetails(int id);
+        public Task<Response> ListAllRecipesDetailsAsync(int id);
 
-        public Task<Response> GetRecipeEdit(int id);
+        public Task<Response> FindRecipeByIdAsync(int id);
 
         public Task<Response> ToggleFavoriteAsync(int id);
 
         public Task<Response> SetRatingAsync(int id, int rate);
+
+        public Task<Response> FindRecipeByNameAsync(string name);
     }
 }

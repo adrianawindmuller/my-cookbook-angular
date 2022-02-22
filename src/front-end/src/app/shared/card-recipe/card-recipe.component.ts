@@ -9,6 +9,5 @@ import { Difficulty } from '../models/difficulty.enum';
 })
 export class CardRecipeComponent {
   @Input() recipes!: CardRecipe[];
-  @Input() filterName!: string;
   difficulty = Difficulty;
 }

@@ -21,6 +21,7 @@ export class AppEnviroment {
       `${this.recipe}/${id}/toggle-favorite`,
     setRating: (id: number, rate: number): string =>
       `${this.recipe}/${id}/set-rating/${rate}`,
+    filterRecipe: (name: string): string => `${this.recipe}/name/${name}`,
   };
 
   public categoryApi = {

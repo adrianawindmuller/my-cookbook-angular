@@ -64,4 +64,10 @@ export class RecipeService {
       null
     );
   }
+
+  filterName(name: string): Observable<CardRecipe[]> {
+    return this.http.get<CardRecipe[]>(
+      this.appEnviroment.recipeApi.filterRecipe(name)
+    );
+  }
 }

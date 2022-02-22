@@ -1,4 +1,4 @@
-<div *ngIf="(recipes | filterRecipe: filterName) as result" class="d-flex justify-content-around flex-wrap">
+<div *ngIf="(recipes) as result" class="d-flex justify-content-around flex-wrap">
   <div *ngFor="let recipe of result" class="card rounded mt-4 mb-4 card-shadow" style="width: 18rem">
     <div class="box-img">
       <img src="{{ recipe.images[0] }}" class="rounded img-card" alt="{{recipe.name}}"

@@ -20,7 +20,7 @@ namespace MyCookbook.Application.RecipesApplication
             _recipeRepository = recipeRepository;
         }
 
-        public async Task<Response> RegisterRecipe(RegisterRecipeDto dto)
+        public async Task<Response> CreateRecipe(RegisterRecipeDto dto)
         {
             var category = await _categoryRepository.GetByIdAsync(dto.CategoryId);
             if (category is null)
@@ -53,7 +53,7 @@ namespace MyCookbook.Application.RecipesApplication
         }
 
 
-        public async Task<Response> PutRecipe(int id, RegisterRecipeDto dto)
+        public async Task<Response> EditRecipeAsync(int id, RegisterRecipeDto dto)
         {
             var recipe = await _recipeRepository.GetByIdAsync(id);
             if (recipe is null)
@@ -87,52 +87,29 @@ namespace MyCookbook.Application.RecipesApplication
             return Response.NoContent();
         }
 
-        public async Task<Response> DeleteRecipe(int id)
+        public async Task<Response> DeleteRecipeAsync(int id)
         {
-            var recipe = _recipeRepository.GetByIdAsync(id);
+            var recipe = await _recipeRepository.GetByIdAsync(id);
 
             if (recipe is null)
             {
                 return Response.NotFound($"Receita {id} não encontrada");
             }
 
-            _recipeRepository.Delete(recipe.Result);
+            _recipeRepository.Delete(recipe);
             await _recipeRepository.UnitOfWork.CommitAsync();
 
             return Response.NoContent();
         }
 
-        public async Task<Response> GetRecipe()
+        public async Task<Response> ListAllRecipesAsync()
         {
             var recipes = await _recipeRepository.ListAllAsync();
-            var vmRecipes = new List<CardRecipeViewModel>();
-
-
-            foreach (var recipe in recipes)
-            {
-                var vmRecipe = new CardRecipeViewModel
-                {
-                    Id = recipe.Id,
-                    Name = recipe.Name,
-                    Difficulty = recipe.Difficulty,
-                    CategoryId = recipe.Category.Id,
-                    CategoryName = recipe.Category.Name,
-                    NumberPortion = recipe.NumberPortion,
-                    PreparationTimeInMinutes = recipe.PreparationTimeInMinutes,
-                    Favorite = recipe.Favorite,
-                };
-
-                foreach (var image in recipe.Images)
-                {
-                    vmRecipe.Images.Add(image.RawContent);
-                }
-
-                vmRecipes.Add(vmRecipe);
-            }
+            var vmRecipes = RecipesToViewModel(recipes);
             return Response.Ok(vmRecipes);
         }
 
-        public async Task<Response> GetRecipeDetails(int id)
+        public async Task<Response> ListAllRecipesDetailsAsync(int id)
         {
             var recipe = await _recipeRepository.GetByIdAsync(id);
             if (recipe is null)
@@ -164,7 +141,7 @@ namespace MyCookbook.Application.RecipesApplication
             return Response.Ok(vmRecipe);
         }
 
-        public async Task<Response> GetRecipeEdit(int id)
+        public async Task<Response> FindRecipeByIdAsync(int id)
         {
             var recipe = await _recipeRepository.GetByIdAsync(id);
             if (recipe is null)
@@ -224,6 +201,46 @@ namespace MyCookbook.Application.RecipesApplication
             await _recipeRepository.UnitOfWork.CommitAsync();
 
             return Response.NoContent();
+        }
+
+        public async Task<Response> FindRecipeByNameAsync(string name)
+        {
+            var recipes = await _recipeRepository.GetRecipesByName(name);
+            var vmRecipes = RecipesToViewModel(recipes);
+            return Response.Ok(vmRecipes);
+        }
+        private static List<CardRecipeViewModel> RecipesToViewModel(IReadOnlyList<Recipe> recipes)
+        {
+            if (!recipes.Any())
+            {
+                return null;
+            }
+
+            var vmRecipes = new List<CardRecipeViewModel>();
+
+            foreach (var recipe in recipes)
+            {
+                var vmRecipe = new CardRecipeViewModel
+                {
+                    Id = recipe.Id,
+                    Name = recipe.Name,
+                    Difficulty = recipe.Difficulty,
+                    CategoryId = recipe.Category.Id,
+                    CategoryName = recipe.Category.Name,
+                    NumberPortion = recipe.NumberPortion,
+                    PreparationTimeInMinutes = recipe.PreparationTimeInMinutes,
+                    Favorite = recipe.Favorite,
+                };
+
+                foreach (var image in recipe.Images)
+                {
+                    vmRecipe.Images.Add(image.RawContent);
+                }
+
+                vmRecipes.Add(vmRecipe);
+            }
+
+            return vmRecipes;
         }
     }
 }
