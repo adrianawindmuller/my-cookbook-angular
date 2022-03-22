@@ -22,7 +22,7 @@ namespace MyCookbook.Infrastructure.Data.DbContexts
             // Está é a forma automática para aplicar o mapeamento 
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-            //builder.Seed();
+            builder.Seed();
         }
     }
 }
