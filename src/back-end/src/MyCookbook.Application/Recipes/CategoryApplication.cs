@@ -1,5 +1,7 @@
-﻿using MyCookbook.Domain.Common;
+﻿using Microsoft.EntityFrameworkCore;
+using MyCookbook.Domain.Common;
 using MyCookbook.Domain.Recipes.Dtos;
+using MyCookbook.Infrastructure.Data.DbContexts;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,17 +10,17 @@ namespace MyCookbook.Domain.Recipes
 {
     public class CategoryApplication : ICategoryApplication
     {
-        private readonly ICategoryRepository _categoryRepository;
+        private readonly MyCookBookDbContext _context;
 
         public CategoryApplication(
-            ICategoryRepository categoryRepository)
+            MyCookBookDbContext context)
         {
-            _categoryRepository = categoryRepository;
+            _context = context;
         }
 
         public async Task<Response> GetCateforiesAsync()
         {
-            var categories = await _categoryRepository.ListAllAsync();
+            var categories = await _context.Category.Include(x => x.Recipes).ToListAsync();
 
             var vmCategories = new List<GetCategoryViewModel>();
 
@@ -29,13 +31,16 @@ namespace MyCookbook.Domain.Recipes
                 NumberOfRecipes = category.NumberOfRecipes,
                 Icon = category.Icon,
             }));
-
+            _context.SaveChanges();
             return Response.Ok(vmCategories);
         }
 
         public async Task<Response> GetCategoryByIdWithRecipes(int id)
         {
-            var category = await _categoryRepository.ByIdWithRecipesAsync(id);
+            var category = await _context.Category
+                .Include(x => x.Recipes)
+                .ThenInclude(x => x.Images)
+                .FirstOrDefaultAsync(x => x.Id == id);
 
             var vmCategories = new GetCategoryByIdWithRecipesViewModel
             {
@@ -56,12 +61,13 @@ namespace MyCookbook.Domain.Recipes
                 }).ToList()
             };
 
+            _context.SaveChanges();
             return Response.Ok(vmCategories);
         }
 
         public async Task<Response> GetCategoryByIdAsync(int id)
         {
-            var category = await _categoryRepository.GetByIdAsync(id);
+            var category = await _context.Category.FirstOrDefaultAsync(x => x.Id == id);
 
             var vm = new GetCategoryViewModel
             {
@@ -70,6 +76,7 @@ namespace MyCookbook.Domain.Recipes
                 Icon = category.Icon
             };
 
+            _context.SaveChanges();
             return Response.Ok(vm);
         }
     }

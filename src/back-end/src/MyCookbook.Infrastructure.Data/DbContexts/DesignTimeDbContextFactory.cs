@@ -19,7 +19,11 @@ namespace MyCookbook.Infrastructure.Data.DbContexts
                 .AddEnvironmentVariables()
                 .Build();
 
+            var connectionString = builder.GetConnectionString("MyCookBookConnection");
+
             var optionsBuilder = new DbContextOptionsBuilder<MyCookBookDbContext>();
+            Console.WriteLine($"DesignTimeDbContextFactory.Create(string): Connection string: {connectionString}");
+            object p = optionsBuilder.UseSqlServer(connectionString);
             var options = optionsBuilder.Options;
             return new MyCookBookDbContext(options);
         }

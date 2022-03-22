@@ -1,6 +1,8 @@
-﻿using MyCookbook.Domain.Common;
+﻿using Microsoft.EntityFrameworkCore;
+using MyCookbook.Domain.Common;
 using MyCookbook.Domain.Recipes;
 using MyCookbook.Domain.Recipes.Dtos;
+using MyCookbook.Infrastructure.Data.DbContexts;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,20 +11,17 @@ namespace MyCookbook.Application.RecipesApplication
 {
     public class RecipeApplication : IRecipeApplication
     {
-        private readonly ICategoryRepository _categoryRepository;
-        private readonly IRecipeRepository _recipeRepository;
+        private readonly MyCookBookDbContext _context;
 
         public RecipeApplication(
-            ICategoryRepository categoryRepository,
-            IRecipeRepository recipeRepository)
+            MyCookBookDbContext context)
         {
-            _categoryRepository = categoryRepository;
-            _recipeRepository = recipeRepository;
+            _context = context;
         }
 
         public async Task<Response> CreateRecipe(RegisterRecipeDto dto)
         {
-            var category = await _categoryRepository.GetByIdAsync(dto.CategoryId);
+            var category = await _context.Category.FirstOrDefaultAsync(x => x.Id == dto.CategoryId);
             if (category is null)
             {
                 return Response.NotFound($"Categoria {dto.CategoryId} não encontrada.");
@@ -41,27 +40,27 @@ namespace MyCookbook.Application.RecipesApplication
                 imagens,
                 dto.Published);
 
-            await _recipeRepository.AddAsync(recipe);
-            await _recipeRepository.UnitOfWork.CommitAsync();
+            await _context.Recipe.AddAsync(recipe);
 
             var vmRecipe = new List<RegisterRecipeViewModel>
             {
                 new RegisterRecipeViewModel { Id = recipe.Id, Name = recipe.Name }
             };
 
+            _context.SaveChanges();
             return Response.Created(vmRecipe);
         }
 
 
         public async Task<Response> EditRecipeAsync(int id, RegisterRecipeDto dto)
         {
-            var recipe = await _recipeRepository.GetByIdAsync(id);
+            var recipe = await _context.Recipe.Include(x => x.Images).FirstOrDefaultAsync(x => x.Id == id);
             if (recipe is null)
             {
                 return Response.NotFound($"Receita {id} não encontrada");
             }
 
-            var category = await _categoryRepository.GetByIdAsync(dto.CategoryId);
+            var category = await _context.Category.FirstOrDefaultAsync(x => x.Id == dto.CategoryId);
             if (category is null)
             {
                 return Response.NotFound($"Categoria {dto.CategoryId}");
@@ -81,37 +80,40 @@ namespace MyCookbook.Application.RecipesApplication
                 images
                 );
 
-            _recipeRepository.Update(recipe);
-            await _recipeRepository.UnitOfWork.CommitAsync();
-
+            _context.Update(recipe);
+            _context.SaveChanges();
             return Response.NoContent();
         }
 
         public async Task<Response> DeleteRecipeAsync(int id)
         {
-            var recipe = await _recipeRepository.GetByIdAsync(id);
+            var recipe = await _context.Recipe.FirstOrDefaultAsync(x => x.Id == id);
 
             if (recipe is null)
             {
                 return Response.NotFound($"Receita {id} não encontrada");
             }
 
-            _recipeRepository.Delete(recipe);
-            await _recipeRepository.UnitOfWork.CommitAsync();
-
+            _context.Remove(recipe);
+            _context.SaveChanges();
             return Response.NoContent();
         }
 
         public async Task<Response> ListAllRecipesAsync()
         {
-            var recipes = await _recipeRepository.ListAllAsync();
+            var recipes = await _context.Recipe.Include(x => x.Category).Include(x => x.Images).ToListAsync();
             var vmRecipes = RecipesToViewModel(recipes);
+            _context.SaveChanges();
             return Response.Ok(vmRecipes);
         }
 
         public async Task<Response> ListAllRecipesDetailsAsync(int id)
         {
-            var recipe = await _recipeRepository.GetByIdAsync(id);
+            var recipe = await _context.Recipe
+                .Include(x => x.Images)
+                .Include(x => x.Category)
+                .FirstOrDefaultAsync(x => x.Id == id);
+
             if (recipe is null)
             {
                 return Response.NotFound($"Recipe {recipe.Id} não encontrada.");
@@ -138,12 +140,16 @@ namespace MyCookbook.Application.RecipesApplication
                 Rating = recipe.Rating,
             };
 
+            _context.SaveChanges();
             return Response.Ok(vmRecipe);
         }
 
         public async Task<Response> FindRecipeByIdAsync(int id)
         {
-            var recipe = await _recipeRepository.GetByIdAsync(id);
+            var recipe = await _context.Recipe
+                .Include(x => x.Category)
+                .Include(x => x.Images)
+                .FirstOrDefaultAsync(x => x.Id == id);
             if (recipe is null)
             {
                 return Response.NotFound($"Receita {id} não encontrada.");
@@ -169,46 +175,53 @@ namespace MyCookbook.Application.RecipesApplication
                 Published = recipe.Published
             };
 
+            _context.SaveChanges();
             return Response.Ok(vm);
 
         }
 
         public async Task<Response> ToggleFavoriteAsync(int id)
         {
-            var recipe = await _recipeRepository.GetByIdAsync(id);
+            var recipe = await _context.Recipe.FirstOrDefaultAsync(x => x.Id == id);
             if (recipe is null)
             {
                 return Response.NotFound($"Receita {id} não encontrada.");
             }
 
             recipe.ToogleFavorite();
-            _recipeRepository.Update(recipe);
-            await _recipeRepository.UnitOfWork.CommitAsync();
 
+            _context.Recipe.Update(recipe);
+            _context.SaveChanges();
             return Response.NoContent();
         }
 
         public async Task<Response> SetRatingAsync(int id, int rate)
         {
-            var recipe = await _recipeRepository.GetByIdAsync(id);
+            var recipe = await _context.Recipe.FirstOrDefaultAsync(x => x.Id == id);
             if (recipe is null)
             {
                 return Response.NotFound($"Receita {id} não encontrada.");
             }
 
             recipe.SetRating(rate);
-            _recipeRepository.Update(recipe);
-            await _recipeRepository.UnitOfWork.CommitAsync();
-
+            _context.Recipe.Update(recipe);
+            _context.SaveChanges();
             return Response.NoContent();
         }
 
         public async Task<Response> FindRecipeByNameAsync(string name)
         {
-            var recipes = await _recipeRepository.GetRecipesByName(name);
+            var recipes = await _context.Recipe
+                .Include(x => x.Category)
+                .Include(x => x.Images)
+                .Where(x => x.Name.Contains(name, System.StringComparison.OrdinalIgnoreCase))
+                .ToListAsync();
+
             var vmRecipes = RecipesToViewModel(recipes);
+            _context.SaveChanges();
             return Response.Ok(vmRecipes);
         }
+
         private static List<CardRecipeViewModel> RecipesToViewModel(IReadOnlyList<Recipe> recipes)
         {
             if (!recipes.Any())

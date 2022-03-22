@@ -36,7 +36,7 @@ namespace MyCookbook.Domain.Recipes
 
         public Category Category { get; private set; }
 
-        public Difficulty Difficulty { get; set; }
+        public Difficulty Difficulty { get; private set; }
 
         public int NumberPortion { get; private set; }
 
@@ -48,7 +48,7 @@ namespace MyCookbook.Domain.Recipes
 
         public List<Image> Images { get; private set; }
 
-        public DateTime Created { get; }
+        public DateTime Created { get; private set; }
 
         public bool Published { get; private set; }
 

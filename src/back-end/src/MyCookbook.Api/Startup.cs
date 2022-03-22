@@ -7,7 +7,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MyCookbook.Api.Configurations;
-using MyCookbook.Domain.Recipes;
 using MyCookbook.Domain.Recipes.Dtos;
 using MyCookbook.Infrastructure.Data.DbContexts;
 
@@ -45,17 +44,18 @@ namespace MyCookbook.Api
             });
 
             services.AddSwaggerGen();
+            services.AddDependencyInjectionDefault();
 
             services.AddDbContext<MyCookBookDbContext>(c =>
             {
-                c.UseInMemoryDatabase("TestRecipe");
+                c.UseSqlServer(_configuration.GetConnectionString("MyCookBookConnection"));
             });
 
-            services.AddDependencyInjectionDefault();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ICategoryRepository categoryRepository, IRecipeRepository recipeRepository)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -81,7 +81,6 @@ namespace MyCookbook.Api
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            app.Seed(categoryRepository, recipeRepository);
         }
     }
 }
