@@ -1,4 +1,4 @@
 export const environment = {
-  production: true,
+  production: false,
   BaseUrl: 'https://my-cookbook-api.azurewebsites.net/api',
 };
